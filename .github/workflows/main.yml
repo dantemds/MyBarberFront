@@ -2,7 +2,7 @@ name: s3 deployment
 
 on:
   push:
-    branches: [feature/formsAgendamento] # the branch we want this to run on
+    branches: [develop] # the branch we want this to run on
 
 jobs:
   build:
