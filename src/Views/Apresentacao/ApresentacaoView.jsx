@@ -9,13 +9,14 @@ import { ServicoContext } from '../../Contexts/ServicoContext'
 export default function ApresentacaoView() {
 
   const { setServicoSelecionado } = React.useContext(ServicoContext)
+  const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
 
   return (
     <Apresentacao id='Apresentacao'>
         <div>
             
             <div>
-                <h1>Val Barbearia</h1>
+                <h1>{barbeariaAll.nomeBarbearia}</h1>
             </div>
 
             <div>

@@ -124,6 +124,7 @@ export const SobreSC = styled.section`
             justify-content: center;
             margin-bottom: 8px;
             color: #fff;
+            text-decoration: none;
         }
 
         }

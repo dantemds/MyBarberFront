@@ -45,9 +45,9 @@ const deleteAgendamento = async (id) => {
         .catch(() => console.log("LOG: Falha ao cancelar o agendamento."))
 }
 
-const getAgendamentosBarbeiro = async (idBarbeiro, data) => {
+const getAgendamentosBarbeiro = async (idBarbearia ,idBarbeiro, data) => {
   
-    return await Temporario().get(`/barbeiro/2?data=${data}&idBarbeiro=${idBarbeiro}`)
+    return await Temporario().get(`/agendamentos/barbeiro/${idBarbearia}?data=${data}&idBarbeiro=${idBarbeiro}`)
         .then(res => {
             return res.data
         })
@@ -55,8 +55,7 @@ const getAgendamentosBarbeiro = async (idBarbeiro, data) => {
 }
 
 const getHorariosDisponiveis = async (filtro) => {
-    console.log(filtro)
-    return await Api().get(`/agendas/tenant/1?idBarbeiro=${filtro.idBarbeiro}&data=${filtro.data}&dia=${filtro.diaSemana}&idServico=${filtro.idServico}`)
+    return await Api().get(`/agendas/tenant/${filtro.idBarbearia}?idBarbeiro=${filtro.idBarbeiro}&data=${filtro.data}&dia=${filtro.diaSemana}&idServico=${filtro.idServico}`)
         .then(res => {
             return res.data
         })

@@ -33,6 +33,8 @@ export default function FormsAgendamentoView(props) {
     
     let diasDaSemana = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"]
 
+    const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
+
     ///// Variárveis de Estado /////
     const [fotoVisivel, setFotovisivel] = useState(false)
     const [fotoBarbeiro, setFotoBarbeiro] = useState('')
@@ -149,7 +151,7 @@ export default function FormsAgendamentoView(props) {
             setListaHorariosDisponiveis([])
             setListarHorariosIsLoading(true)
             RequestsClientes
-                .getHorariosDisponiveis(new FiltroHorariosDisponiveisModel(idBarbeiroSelecionado, idServicoSelecionado, dataSelecionada, diaDaSemanaSelecionado))
+                .getHorariosDisponiveis(new FiltroHorariosDisponiveisModel(barbeariaAll.idBarbearia, idBarbeiroSelecionado, idServicoSelecionado, dataSelecionada, diaDaSemanaSelecionado))
                 .then(res => {
                     setListaHorariosDisponiveis(res)
                     setListarHorariosIsLoading(false)

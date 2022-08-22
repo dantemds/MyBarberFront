@@ -13,13 +13,16 @@ export default function ServicosAgendadosView() {
   const [barbeiroSelecionado, setBarbeiroSelecionado] = useState('')
   const [listaAgendamentos, setListaAgendamentos] = useState([])
 
+  const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
+
+
   useEffect(() => {
     setBarbeiroSelecionado(JSON.parse(window.localStorage.getItem('usuario')))
   }, [0])
 
   useEffect(() => {
 
-    RequestsClientes.getAgendamentosBarbeiro(barbeiroSelecionado.idBarbeiro, dataSelecionada)
+    RequestsClientes.getAgendamentosBarbeiro(barbeariaAll.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
       .then(res => {
         setListaAgendamentos(res)
         console.log('LOG: Agendamentos recebidos com sucesso.')

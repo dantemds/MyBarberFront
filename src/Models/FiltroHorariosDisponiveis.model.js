@@ -1,5 +1,6 @@
 export class FiltroHorariosDisponiveisModel {
-    constructor(idBarbeiro, idServico, Data, DiaSemana){
+    constructor(idBarbearia, idBarbeiro, idServico, Data, DiaSemana){
+        this.idBarbearia = idBarbearia
         this.idBarbeiro = idBarbeiro
         this.idServico = idServico
         this.data = Data

@@ -1,9 +1,11 @@
+const colorsTema = JSON.parse(window.localStorage.getItem('barbeariaAll'))
+
 export const theme = {
     cores: {
-        primaria: '#202020',
+        primaria: colorsTema.temas.corSecundaria,
         textoPrimario: '#fff',
 
-        secundaria: '#B78865',
+        secundaria: colorsTema.temas.corPrimaria,
     },
 
     espacamento: [0, 4, 8, 12, 16, 24, 32, 64],
