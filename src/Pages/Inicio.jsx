@@ -18,19 +18,13 @@ export default function Inicio() {
 
     const [dadosBarbearia, setDadosBarbearia] = useState()
     const { barbearia } = useParams()
+    
 
     useEffect(() => {
         window.scroll({
             top: 0,
             behavior: 'smooth'
         })
-
-
-        // if (dadosBarbearia) {
-        //     setDadosBarbearia(JSON.parse(dadosBarbearia))
-        // }
-        // else {
-        window.localStorage.clear()
 
         RequestsClientes.getAll(barbearia)
             .then(res => {

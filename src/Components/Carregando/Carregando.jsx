@@ -1,7 +1,7 @@
 import React from 'react'
 import { CarregandoSC } from './style'
 
-import { theme } from '../../Styles/tema'
+import theme from '../../Styles/tema'
 
 import { Oval } from 'react-loading-icons'
 
