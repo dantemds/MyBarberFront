@@ -12,6 +12,7 @@ export const Apresentacao = styled.section`
     width: 100%;
 
     background-image: url(${bannerApresentacaoDesktop});
+    background-image: url('https://d1kvv1nz6mzy5a.cloudfront.net/images/Background-reuniao-Muralis-6anos-3.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
