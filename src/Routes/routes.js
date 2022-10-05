@@ -15,7 +15,7 @@ export default function Rotas() {
                 <Route path="/:barbearia" element={<Inicio />} />
                 <Route path="/forms-agendamento" element={<FormsAgendamento />} />
                 <Route path="/confirmacao-agendamento" element={<ConfirmacaoAgendamento />} />
-                <Route path="upload" element={<UploadS3></UploadS3>}/>
+                <Route path="/upload" element={<UploadS3></UploadS3>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/painel-barbeiro" element={<PainelBarbeiro />} />
 
