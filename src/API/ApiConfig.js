@@ -3,7 +3,7 @@ import axios from "axios";
 const Api = () => {
     return axios.create({
         // baseURL: 'http://apibarber.vps-kinghost.net:443/api/v1'
-        baseURL: 'http://75.101.213.247:443/api/v1'
+        baseURL: 'https://api.minha-barbearia.online'
     })
 }
 

@@ -7,7 +7,6 @@ export const Apresentacao = styled.section`
 
     display: flex;
     margin: auto;
-    margin-top: 50px;
     height: 70vh;
     width: 100%;
 
@@ -23,13 +22,12 @@ export const Apresentacao = styled.section`
         height: inherit;
         background-color: rgba(0, 0, 0, .1);
         box-shadow: 0 0 50px rgba(0,0,0,0.9) inset;
-        padding-top: 2rem;
     }
 
     h1 {
         width: 250px;
         margin: auto;
-        margin-top: 50px;
+        margin-top: calc(50px + 4rem);
         text-align: center;
         font-size: 3rem;
         font-style: italic;
@@ -41,23 +39,27 @@ export const Apresentacao = styled.section`
     }
 
     div + div {
-        height: 60%;
+        position: absolute;
+        height: auto;
         display: flex;
         justify-content: center;
         align-items: end;
-        bottom: 100px;
+        bottom: 4rem;
+        left: 50%;
+        right: 50%;
     }
 
     #btn-agendar {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 200px;
         height: auto;
-        padding: ${({ theme }) => theme.espacamento[3]}px;
+        padding: 1rem 4rem;
+        margin-bottom: 0;
         color: #fff;
-        border-radius: 5px;
-        font-size: 2rem;
+        border-radius: 50px;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
         background-color: #00c943;
         text-decoration: none;
         text-shadow: ${({ theme }) => theme.sombras.texto};
@@ -67,7 +69,6 @@ export const Apresentacao = styled.section`
     
     #btn-agendar > span {
         font-weight: 300;
-        font-family: 'Outfit', sans-serif;
     }
 
     @media (max-width: 768px) {

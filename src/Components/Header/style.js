@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const HeaderSC = styled.header`
-    background-color: ${({ theme }) => theme.cores.primaria};
+    /* background-color: ${({ theme }) => theme.cores.primaria}dd; */
+    background-color: #202020dd;
     color:${({ theme }) => theme.cores.textoPrimario};
     position: fixed;
     display: flex;  
@@ -16,7 +17,6 @@ export const HeaderSC = styled.header`
         align-items: center;
         gap: 8px;
         font-size: 1.3rem;
-        font-family: 'Righteous', cursive;
     }
 
     .Cabecalho-Logo img {
@@ -31,7 +31,7 @@ export const HeaderSC = styled.header`
         list-style: none;
         font-size: 1.4rem;
         font-weight: 600;
-        font-family: 'Kanit', sans-serif;
+        font-family: 'nunito', sans-serif !important;
     }
 
     li {
@@ -43,6 +43,7 @@ export const HeaderSC = styled.header`
         color: #fff;
         text-underline-offset: 5px;
         text-decoration-color: ${({ theme }) => theme.cores.primaria}; 
+        text-decoration-color: transparent; 
         border: none;
         transition: all .3s;
     } 
