@@ -1,26 +1,43 @@
 import styled from "styled-components";
 
 export const SobreSC = styled.section`
-    
+    padding: 64px 16px !important;
     color: #fff;
     background-color: #202020;
-    background-image: linear-gradient(to top left, rgb(0, 0, 0), #444444);
+    background-image: linear-gradient(to bottom right, rgb(20, 20, 20), #505050);
     
     > div {
         max-width: 1200px;
         display: flex;
         flex-direction: column;
         margin: auto;
-        padding: ${({ theme }) => theme.espacamento[7]}px 0;
 
-
-        h2 {
+        > h2 {
             width: 100%;
-            height: 54px;
+            height: auto !important;
             font-weight: 200;
-            font-size: 22pt;
-            text-transform: uppercase;
-            border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
+            font-size: 2rem !important;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            text-align: center;
+            padding: 0 24px;
+            color: #fff;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 64px;
+        }
+        
+        p {
+            font-size: 1rem !important;
+            margin: 0 !important;
+            margin-top: 1em !important;
+
+            text-decoration: underline ${({ theme }) => theme.cores.secundaria};
+
+            /* border: 1px dotted hotpink; */
         }
 
         .Fotos-wrap-content {
@@ -29,11 +46,87 @@ export const SobreSC = styled.section`
             width: 100%;
         }
 
+        .scroll-horizontal {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            gap: 2rem;
+            padding: 16px 0 0 0;
+            overflow-x: auto;
+            overscroll-behavior-inline: contain;
+
+            scroll-snap-type: inline mandatory;
+            scroll-snap-align: start;
+        }
+
+        .scroll-horizontal::-webkit-scrollbar {
+            width: 0 !important
+        }
+
+        .scroll-horizontal {
+            overflow: -moz-scrollbars-none; 
+        }
+
+        .scroll-horizontal {
+            -ms-overflow-style: none; 
+        }
+
+        .fotos-barbearia {
+            z-index: 900;
+        }
+
+        .fotos-barbeiro {
+            z-index: 0;
+            justify-content: center;
+        }
+
+        .fotos-barbearia img {
+            max-height: 270px;
+            border: 1px solid ${({ theme }) => theme.cores.secundaria};
+            border-radius: .5rem;
+            box-shadow: .3em .3em 1em rgba(0, 0, 0, 0.4);
+        }
+
+        .fotos-barbeiro div {
+            width: auto;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+
+            picture {
+                /* width: 100%; */
+                /* height: 100%; */
+                width: 128px;
+                height: 128px;
+                overflow: hidden;
+                border-radius: 100px;
+                border: 1px solid ${({ theme }) => theme.cores.secundaria};
+                box-shadow: .3em .3em 1em rgba(0, 0, 0, 0.4);
+
+                img {
+                    width: 128px;
+                    height: 128px;
+                    margin-left: 0rem;
+                    object-fit: contain;
+                    scale: 1.3;
+                    margin-top: 1rem;
+                }
+            }
+
+            p {
+                font-weight: 300;
+            }
+            
+        }
+
         > div {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            padding: ${({ theme }) => theme.espacamento[6]}px ${({ theme }) => theme.espacamento[7]}px;
             height: 100%;
             width: 100%;
             
@@ -124,12 +217,15 @@ export const SobreSC = styled.section`
             justify-content: center;
             margin-bottom: 8px;
             color: #fff;
+            text-decoration: none;
         }
 
         }
 
         .Fotos-icons-span {
             margin-left: 8px;
+            text-decoration: underline ${({ theme }) => theme.cores.secundaria};
+
     }
 
     
@@ -141,7 +237,6 @@ export const SobreSC = styled.section`
 
             > div {
                 flex-direction: column;
-                padding: ${({ theme }) => theme.espacamento[6]}px ${({ theme }) => theme.espacamento[6]}px;
 
             }
 
@@ -164,6 +259,32 @@ export const SobreSC = styled.section`
                     font-size: 15px;
                 }
             }
+
+            .fotos-barbeiro {
+                    z-index: 0;
+                    justify-content: start;
+
+                    div {
+
+                        picture {
+                            /* width: 100%; */
+                            height: 96px;
+                            width: 96px;
+                            /*height: 128px;
+                            overflow: hidden;
+                            border-radius: 100px;
+                            border: 1px solid ${({ theme }) => theme.cores.secundaria};
+                            box-shadow: .3em .3em 1em rgba(0, 0, 0, 0.4); */
+                            
+                            img {
+                                width: 96px;
+                                height: 96px;
+                                margin-top: .8rem;
+                            }
+                        }
+                    }
+            }
+
         }
     }
 
@@ -174,9 +295,12 @@ export const SobreSC = styled.section`
                 font-size: 1.2rem;
             }
 
+            h3 {
+                margin-top: 48px;
+            }
+
             .Fotos-texto {
                 padding: 0;
-                padding-top: ${({ theme }) => theme.espacamento[5]}px;
 
                 h1 {
                     font-size: 18px;

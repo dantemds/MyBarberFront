@@ -15,6 +15,8 @@ export default function Header(props) {
   
   const linksMenu = props.linkMenuDados
 
+  const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
+
   const EncerrarSessao = () => {
     window.localStorage.clear()
     window.location.reload()
@@ -23,7 +25,7 @@ export default function Header(props) {
   return (
     <HeaderSC menu={estadoMenu ? new MenuModel() : ''}>
 
-      <Link className="Cabecalho-Logo" to={`/${rotaBarbearia}`}><img src={Logo} alt="Logo"></img> Val Barbearia</Link>
+      <Link className="Cabecalho-Logo" to={`/${rotaBarbearia}`}><img src={Logo} alt="Logo"></img></Link>
 
       <nav>
 

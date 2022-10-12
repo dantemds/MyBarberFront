@@ -7,22 +7,25 @@ export const Apresentacao = styled.section`
 
     display: flex;
     margin: auto;
-    margin-top: 50px;
     height: 70vh;
     width: 100%;
-
+    
     background-image: url(${bannerApresentacaoDesktop});
+    background-image: url('https://d1kvv1nz6mzy5a.cloudfront.net/images/Background-reuniao-Muralis-6anos-3.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 
     > div {
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 4.5rem;
+        flex-direction: column;
         width: 100%;
         height: inherit;
         background-color: rgba(0, 0, 0, .1);
         box-shadow: 0 0 50px rgba(0,0,0,0.9) inset;
-        padding-top: 2rem;
     }
 
     h1 {
@@ -30,7 +33,8 @@ export const Apresentacao = styled.section`
         margin: auto;
         margin-top: 50px;
         text-align: center;
-        font-size: 3rem;
+        font-size: 2.5rem;
+        font-weight: 200;
         font-style: italic;
         text-shadow: 0 0 0.4em #000;
         color: #fff;
@@ -39,24 +43,42 @@ export const Apresentacao = styled.section`
         font-family: 'Lobster', sans-serif;
     }
 
-    div + div {
-        height: 60%;
+    .Wrap-Medias-Sociais {
+        width: 100%;
+        max-width: 1200px;
         display: flex;
-        justify-content: center;
-        align-items: end;
-        bottom: 100px;
+        flex-direction: column;
+        gap: 2rem;
+        margin: 0 auto;
+    }
+
+    .Wrap-Medias-Sociais a {
+        width: 16px;
+        height: 22px;
+        /* padding-bottom: 4px; */
+        border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
+    }
+
+    .Wrap-Medias-Sociais a svg {
+        color: #fff;
+        filter:drop-shadow(0 0 4px #000);
+    }
+
+    .Wrap-btn-agendar {
+        width: 16rem;
+        margin: 0 auto;
     }
 
     #btn-agendar {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 200px;
         height: auto;
-        padding: ${({ theme }) => theme.espacamento[3]}px;
+        padding: 1rem 4rem;
         color: #fff;
-        border-radius: 5px;
-        font-size: 2rem;
+        border-radius: 50px;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
         background-color: #00c943;
         text-decoration: none;
         text-shadow: ${({ theme }) => theme.sombras.texto};
@@ -65,12 +87,20 @@ export const Apresentacao = styled.section`
     }
     
     #btn-agendar > span {
-        font-weight: 300;
-        font-family: 'Outfit', sans-serif;
+        font-weight: 400;
+        padding-top: 4px;
     }
 
     @media (max-width: 768px) {
         height: calc(80vh - 50px);
         background-image: url(${bannerApresentacaoMobile});
+
+        > div {
+            padding: 4rem 24px;
+        }
+
+        .Wrap-Medias-Sociais {
+            width: 100%;
+        }
     }
 `
