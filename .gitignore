@@ -10,6 +10,7 @@
 
 # production
 /build
+/Mock
 
 # misc
 .DS_Store
