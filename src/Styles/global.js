@@ -6,11 +6,12 @@ export default createGlobalStyle`
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: 'nunito', sans-serif;
+        font-family: 'Nunito', sans-serif;
     }
 
     html {
         scroll-behavior: smooth;
+        background-color: #f2f2f2;
     }
 
     body {
@@ -31,4 +32,5 @@ export default createGlobalStyle`
     #root {
         width: 100%;
     }
+
 `;

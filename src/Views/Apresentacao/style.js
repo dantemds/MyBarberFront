@@ -9,7 +9,7 @@ export const Apresentacao = styled.section`
     margin: auto;
     height: 70vh;
     width: 100%;
-
+    
     background-image: url(${bannerApresentacaoDesktop});
     background-image: url('https://d1kvv1nz6mzy5a.cloudfront.net/images/Background-reuniao-Muralis-6anos-3.png');
     background-repeat: no-repeat;
@@ -18,6 +18,10 @@ export const Apresentacao = styled.section`
 
     > div {
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 4.5rem;
+        flex-direction: column;
         width: 100%;
         height: inherit;
         background-color: rgba(0, 0, 0, .1);
@@ -27,9 +31,10 @@ export const Apresentacao = styled.section`
     h1 {
         width: 250px;
         margin: auto;
-        margin-top: calc(50px + 4rem);
+        margin-top: 50px;
         text-align: center;
-        font-size: 3rem;
+        font-size: 2.5rem;
+        font-weight: 200;
         font-style: italic;
         text-shadow: 0 0 0.4em #000;
         color: #fff;
@@ -38,15 +43,30 @@ export const Apresentacao = styled.section`
         font-family: 'Lobster', sans-serif;
     }
 
-    div + div {
-        position: absolute;
-        height: auto;
+    .Wrap-Medias-Sociais {
+        width: 100%;
+        max-width: 1200px;
         display: flex;
-        justify-content: center;
-        align-items: end;
-        bottom: 4rem;
-        left: 50%;
-        right: 50%;
+        flex-direction: column;
+        gap: 2rem;
+        margin: 0 auto;
+    }
+
+    .Wrap-Medias-Sociais a {
+        width: 16px;
+        height: 22px;
+        /* padding-bottom: 4px; */
+        border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
+    }
+
+    .Wrap-Medias-Sociais a svg {
+        color: #fff;
+        filter:drop-shadow(0 0 4px #000);
+    }
+
+    .Wrap-btn-agendar {
+        width: 16rem;
+        margin: 0 auto;
     }
 
     #btn-agendar {
@@ -55,7 +75,6 @@ export const Apresentacao = styled.section`
         justify-content: center;
         height: auto;
         padding: 1rem 4rem;
-        margin-bottom: 0;
         color: #fff;
         border-radius: 50px;
         font-size: 1.5rem;
@@ -68,11 +87,20 @@ export const Apresentacao = styled.section`
     }
     
     #btn-agendar > span {
-        font-weight: 300;
+        font-weight: 400;
+        padding-top: 4px;
     }
 
     @media (max-width: 768px) {
         height: calc(80vh - 50px);
         background-image: url(${bannerApresentacaoMobile});
+
+        > div {
+            padding: 4rem 24px;
+        }
+
+        .Wrap-Medias-Sociais {
+            width: 100%;
+        }
     }
 `

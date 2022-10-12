@@ -4,6 +4,8 @@ import CardServicoController from '../../Controllers/CardServicoController'
 
 import { ServicosSC } from './style'
 
+import { BsArrowRightCircle } from 'react-icons/bs'
+
 export default function Servicos() {
   const dadosBarbearia = window.localStorage.getItem('barbeariaAll')
   const [servicos, setServicos] = useState()
@@ -12,6 +14,7 @@ export default function Servicos() {
 
   useEffect(() => {
     setServicos(JSON.parse(dadosBarbearia).servicos)
+   
   }, [0])
 
   return (
@@ -24,11 +27,16 @@ export default function Servicos() {
             servicos &&
             servicos.map(servico => {
               contador++
-              if (contador <= 6)
+              if (contador <= 4)
                 return <CardServicoController key={servico.idServico} dadosServico={servico} />
             })
           }
         </ul>
+
+        <div className='Wrap-mais-servicos'>
+          <a href="">Ver mais serviços</a>
+          <BsArrowRightCircle />
+        </div>
       </div>
 
     </ServicosSC>

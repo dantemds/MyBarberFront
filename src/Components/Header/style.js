@@ -11,6 +11,7 @@ export const HeaderSC = styled.header`
     justify-content: space-around;
     height: 50px;
     z-index: 1000;
+    border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
 
     .Cabecalho-Logo {
         display: flex;
@@ -71,16 +72,16 @@ export const HeaderSC = styled.header`
         
         ul {
             position: absolute;
-            top: calc(50px + 2rem);
-            background-color: ${({ theme }) => theme.cores.primaria};
+            top: 50px;
+            background-color: rgba(20, 20, 20, .8);
             display: flex;
             flex-direction: column;
             gap: 0px;
+            width: 100%;
             height: 0px;        
+            left: 0;
             visibility: hidden;
-            right: 2rem;
-            left: 2rem;
-            border-radius: 5px;
+            border-radius: 0 0 8px 8px;
             overflow-y: hidden;
             transition: all .2s;
             z-index: 1000;
@@ -134,7 +135,7 @@ export const HeaderSC = styled.header`
 
         li {
             width: 80%;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             text-shadow: none;
             padding: 1rem 0;

@@ -23,14 +23,9 @@ export default function CardServicoView(props) {
             <img src={props.dadosCard.urlImagem}></img>
 
             <div>
-                <div>
-                    {valTamanhoNomeServico(props.dadosCard.titulo)}
-                    <p>{props.dadosCard.preco},00 R$</p>
-                </div>
-
-                <div id='btnCardServicoWrap'>
-                    <Link id='btnCardServico' to="/forms-agendamento" onClick={() => setServicoSelecionado(props.dadosCard)}>Agendar</Link>
-                </div>
+                {valTamanhoNomeServico(props.dadosCard.titulo)}
+                <p><span className='spanPreco'>Preço:</span> {props.dadosCard.preco},00 R$</p>
+                <Link id='btnCardServico' to="/forms-agendamento" onClick={() => setServicoSelecionado(props.dadosCard)}>Agendar</Link>
             </div>
         </CardServico>
     )
