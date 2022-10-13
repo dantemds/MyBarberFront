@@ -34,7 +34,7 @@ export default function Inicio() {
             })
             .catch(() => navigate('/login'))
         // }
-
+            
 
     }, [0])
 

@@ -20,7 +20,7 @@ import { FiltroHorariosDisponiveisModel } from '../../Models/FiltroHorariosDispo
 
 import { Oval } from 'react-loading-icons'
 
-import theme from '../../Styles/tema'
+import theme from '../../Styles/tema copy'
 
 import Carregando from '../../Components/Carregando/Carregando'
 import { ServicoContext } from '../../Contexts/ServicoContext'
@@ -34,6 +34,7 @@ export default function FormsAgendamentoView(props) {
     let diasDaSemana = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"]
 
     const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
+    console.log(barbeariaAll)
 
     ///// Variárveis de Estado /////
     const [fotoVisivel, setFotovisivel] = useState(false)
@@ -210,7 +211,7 @@ export default function FormsAgendamentoView(props) {
                                 listaHorariosDisponiveis.length > 0 && ListarHorariosDisponiveis(listaHorariosDisponiveis)
                             }
                             {
-                                listarHorariosIsLoading && <Oval stroke={theme.cores.secundaria} speed={.75} />
+                                listarHorariosIsLoading && <Oval stroke={barbeariaAll.temas.corSecundaria} speed={.75} />
                             }
                             {
                                 !listarHorariosIsLoading && listaHorariosDisponiveis.length <= 0 && <div><p>Nenhum horário disponível.</p></div>

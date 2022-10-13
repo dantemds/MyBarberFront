@@ -25,7 +25,7 @@ export default function Header(props) {
   return (
     <HeaderSC menu={estadoMenu ? new MenuModel() : ''}>
 
-      <Link className="Cabecalho-Logo" to={`/${rotaBarbearia}`}><img src={Logo} alt="Logo"></img>{barbeariaAll.nomeBarbearia}</Link>
+      <Link className="Cabecalho-Logo" to={`/${rotaBarbearia}`}><img src={Logo} alt="Logo"></img></Link>
 
       <nav>
 

@@ -34,9 +34,10 @@ function App() {
   useEffect(() => {
     if (barbeariaAll)
       setTema(theme2({
-        corPrimaria: barbeariaAll.temas.corPrimaria,
-        corSecundaria: barbeariaAll.temas.corSecundaria
+        corPrimaria: barbeariaAll.temas ? barbeariaAll.temas.corPrimaria : "#000",
+        corSecundaria: barbeariaAll.temas ? barbeariaAll.temas.corSecundaria : "#000"
       }))
+
   }, [barbeariaAll])
 
 

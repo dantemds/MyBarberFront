@@ -1,0 +1,115 @@
+{
+    "barbearias": [
+        {
+            "idBarbearia": "713204e4-91e4-4e93-99ed-e3b407d260e6",
+            "nomeBarbearia": "Cortes Cabral",
+            "ativa": true,
+            "landingPage": true,
+            "enderecos": {
+                "logradouro": "Av. Sen. Roberto Símonsen",
+                "numero": "1005",
+                "bairro": "Jardim Imperador",
+                "cidade": "Suzano",
+                "estado": "SP",
+                "cep": "08673-270"
+            },
+            "contatos": {
+                "celulares": [
+                    "(11) 91234 5678"
+                ],
+                "telefones": [
+                    ""
+                ],
+                "emails": [
+                    "email@email.com"
+                ],
+                "instagrams": [
+                    "@instagram"
+                ],
+                "outros": [
+                    "string"
+                ]
+            },
+            "horarioFuncionamento": {
+                "funcionamento": [
+                    "Ter. a sáb. das 08h às 18h",
+                    "Dom. das 09h às 13h"
+                ]
+            },
+            "servicos": [
+                {
+                    "idServico": "1r3r3",
+                    "nomeServico": "Corte Masculino",
+                    "duracao": "2022-10-07T01:00:00",
+                    "precoServico": "30",
+                    "servicoImagem": {
+                        "url": "https://i.pinimg.com/564x/bf/77/63/bf77635697fc6580ce4ef40eb3a2a736.jpg"
+                    }
+                },
+                {
+                    "idServico": "1r3r4",
+                    "nomeServico": "Corte Masculino e Relaxamento",
+                    "duracao": "2022-10-07T01:00:00",
+                    "precoServico": "30",
+                    "servicoImagem": {
+                        "url": "https://i.pinimg.com/564x/1b/e0/81/1be0817f704bcb7e6784023ae7879e9f.jpg"
+                    }
+                },
+                {
+                    "idServico": "1r3r5",
+                    "nomeServico": "Corte Masculino e Barba",
+                    "duracao": "2022-10-07T01:00:00",
+                    "precoServico": "45",
+                    "servicoImagem": {
+                        "url": "https://i.pinimg.com/564x/79/06/c6/7906c671a587c0c351b26dc1facea02a.jpg"
+                    }
+                },
+                {
+                    "idServico": "1r3r4",
+                    "nomeServico": "Pezinho",
+                    "duracao": "2022-10-07T01:00:00",
+                    "precoServico": "15",
+                    "servicoImagem": {
+                        "url": "https://i.pinimg.com/564x/5f/38/df/5f38df818ad33a16cb68fba6b2be54be.jpg"
+                    }
+                },
+                {
+                    "idServico": "1r3r4",
+                    "nomeServico": "Barba",
+                    "duracao": "2022-10-07T01:00:00",
+                    "precoServico": "25",
+                    "servicoImagem": {
+                        "url": "https://i.pinimg.com/564x/30/c9/9b/30c99b55d35054da0dfa08c7e3c04c03.jpg"
+                    }
+                },
+                {
+                    "idServico": "1r3r4",
+                    "nomeServico": "Barba",
+                    "duracao": "2022-10-07T01:00:00",
+                    "precoServico": "25",
+                    "servicoImagem": {
+                        "url": "https://i.pinimg.com/564x/30/c9/9b/30c99b55d35054da0dfa08c7e3c04c03.jpg"
+                    }
+                }
+            ],
+            "temas": {
+                "corPrimaria": "#B78860",
+                "corSecundaria": "#202020"
+            },
+            "barbeiros": [
+                {
+                    "nome": "Heitor",
+                    "foto": "https://i.pinimg.com/564x/e4/a1/6f/e4a16f34ba7d00d6c6db11045938b1d0.jpg"
+                },
+                {
+                    "nome": "Val",
+                    "foto": "https://i.pinimg.com/564x/e4/71/8f/e4718fb6a534405a92f4a14451a45f57.jpg"
+                },
+                {
+                    "nome": "Bigode",
+                    "foto": "https://i.pinimg.com/564x/0c/9a/c4/0c9ac443ed98cd7af69c581270da8ab4.jpg"
+                }
+            ]
+        }
+    ]
+}
