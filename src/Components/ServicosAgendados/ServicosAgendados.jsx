@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import AgendaConstroller from '../../Controllers/AgendaController'
-import { ServicosAgendados } from './style'
+import { ServicosAgendadosSC } from './style'
 import { DetalhesAgendamentoProvider } from '../../Contexts/DetalhesAgendamentoContext'
 import useDate from "../../Hooks/useDate"
 import { RequestsClientes } from '../../API/RequestsCliente'
+import Agenda from '../Agenda/Agenda'
 
 
-export default function ServicosAgendadosView() {
+export default function ServicosAgendados() {
 
   const dataAtual = useDate()
   const [dataSelecionada, setDataSelecionada] = useState(dataAtual)
@@ -20,32 +20,32 @@ export default function ServicosAgendadosView() {
     setBarbeiroSelecionado(JSON.parse(window.localStorage.getItem('usuario')))
   }, [0])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    RequestsClientes.getAgendamentosBarbeiro(barbeariaAll.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
-      .then(res => {
-        setListaAgendamentos(res)
-        console.log('LOG: Agendamentos recebidos com sucesso.')
-      })
-      .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
+  //   RequestsClientes.getAgendamentosBarbeiro(barbeariaAll.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
+  //     .then(res => {
+  //       setListaAgendamentos(res)
+  //       console.log('LOG: Agendamentos recebidos com sucesso.')
+  //     })
+  //     .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
 
-  }, [dataSelecionada, barbeiroSelecionado])
+  // }, [dataSelecionada, barbeiroSelecionado])
 
 
   return (
-    <ServicosAgendados>
+    <ServicosAgendadosSC>
       <h2>Agendamentos do dia</h2>
 
       <input type="date" value={dataSelecionada} onChange={event => setDataSelecionada(event.target.value)} />
 
       <select disabled>
-        <option value={barbeiroSelecionado.idBarbeiro}>{barbeiroSelecionado.nomeUsuario}</option>
+        {/* <option value={barbeiroSelecionado.idBarbeiro}>{barbeiroSelecionado.nomeUsuario}</option> */}
       </select>
 
       <DetalhesAgendamentoProvider>
-        <AgendaConstroller listaAgendamentos={listaAgendamentos} />
+        <Agenda listaAgendamentos={listaAgendamentos} />
       </DetalhesAgendamentoProvider>
 
-    </ServicosAgendados>
+    </ServicosAgendadosSC>
   )
 }
