@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Agenda = styled.div`
+export const AgendaSC = styled.div`
     width: 550px;
     min-height: 800px;
     display: flex;

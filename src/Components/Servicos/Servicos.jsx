@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import CardServicoController from '../../Controllers/CardServicoController'
-
-import { ServicosSC } from './style'
 
 import { BsArrowRightCircle } from 'react-icons/bs'
+import CardServico from '../CardServico/CardServico'
+
+import { ServicosSC } from './style'
 
 export default function Servicos() {
   const dadosBarbearia = window.localStorage.getItem('barbeariaAll')
@@ -28,7 +28,7 @@ export default function Servicos() {
             servicos.map(servico => {
               contador++
               if (contador <= 4)
-                return <CardServicoController key={servico.idServico} dadosServico={servico} />
+                return <CardServico key={servico.idServico} dadosServico={servico} />
             })
           }
         </ul>

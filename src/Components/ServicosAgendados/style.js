@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ServicosAgendados = styled.section`
+export const ServicosAgendadosSC = styled.section`
     min-height: 100vh;
     max-width: 1200px;
     display: flex;

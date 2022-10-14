@@ -4,7 +4,7 @@ import { RequestsClientes } from '../API/RequestsCliente';
 
 import Header from '../Components/Header/Header'
 import Rodape from '../Components/Rodape/Rodape';
-import ServicosAgendadosController from '../Controllers/ServicosAgendadosController'
+import ServicosAgendados from '../Components/ServicosAgendados/ServicosAgendados';
 
 
 export default function PainelBarbeiro() {
@@ -17,22 +17,22 @@ export default function PainelBarbeiro() {
         ['Sair', '#'],
     ]
 
-    useEffect(() => {
-        try {
-            RequestsClientes.getToken()
-            setUsuarioLogado(true)
-        }
-        catch {
-            setUsuarioLogado(false)
-            navigate('/login')
-        }
-    }, [0])
+    // useEffect(() => {
+    //     try {
+    //         RequestsClientes.getToken()
+    //         setUsuarioLogado(true)
+    //     }
+    //     catch {
+    //         setUsuarioLogado(false)
+    //         navigate('/login')
+    //     }
+    // }, [0])
 
     return (
-        usuarioLogado &&
+        // usuarioLogado &&
         <>
             <Header linkMenuDados={linkMenuDados} />
-            <ServicosAgendadosController />
+            <ServicosAgendados />
             <Rodape />
         </>
     )

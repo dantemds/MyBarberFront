@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import Header from '../Components/Header/Header';
-import ApresentacaoView from '../Views/Apresentacao/ApresentacaoView';
 import Mapa from '../Components/Mapa/Mapa';
 import Rodape from '../Components/Rodape/Rodape';
 import Sobre from '../Components/Sobre/Sobre';
@@ -10,6 +9,7 @@ import { RequestsClientes } from '../API/RequestsCliente';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ServicoContext } from '../Contexts/ServicoContext';
 import Servicos from '../Components/Servicos/Servicos';
+import Apresentacao from '../Components/Apresentacao/Apresentacao';
 
 export default function Inicio() {
     let navigate = useNavigate()
@@ -50,7 +50,7 @@ export default function Inicio() {
         dadosBarbearia &&
         <>
             <Header linkMenuDados={linkMenuDados} />
-            <ApresentacaoView />
+            <Apresentacao />
             <Servicos />
             <Sobre />
             <Mapa />
