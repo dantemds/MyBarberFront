@@ -11,6 +11,7 @@ import CardAgendamento from '../CardAgendamento/CardAgendamento'
 import { CardAgendamentoModel } from '../../Models/CardAgendamentoModel'
 
 
+
 export default function Agenda(props) {
 
   const { exibirDetalhesAgendamento, exibirConfirmacaoCancelamento, idAgendamento } = React.useContext(DetalhesAgendamentoContext)
