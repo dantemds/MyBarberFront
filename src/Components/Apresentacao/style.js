@@ -3,7 +3,7 @@ import styled from "styled-components";
 import bannerApresentacaoDesktop from '../../Images/background-desktop-1500.jpeg'
 import bannerApresentacaoMobile from '../../Images/banner-inicio-mobile.jpg'
 
-export const Apresentacao = styled.section`
+export const ApresentacaoSC = styled.section`
 
     display: flex;
     margin: auto;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardServico = styled.li`
+export const CardServicoSC = styled.li`
         position: relative;
         background-color: rgb(255, 255, 255);
         display: flex;

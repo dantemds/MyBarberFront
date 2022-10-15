@@ -11,12 +11,13 @@ export const FormsAgendamento = styled.section`
 
     h2 {
         width: 100%;
-        height: 54px;
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 400;
-        font-size: 22pt;
-        text-transform: uppercase;
-        border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
+        height: auto;
+        font-size: 2.5rem;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 900;
+        text-align: center;
+        padding: 0 24px;
+        color: #202020;
     }
 
     form {
@@ -29,33 +30,35 @@ export const FormsAgendamento = styled.section`
         input, label, select {
             height: 2.5rem;
             width: 400px;
-            border-radius: 5px;
-            border: 1px solid ${({ theme }) => theme.cores.secundaria};
-            font-size: 1.2rem;
-            font-family: 'Outfit', sans-serif;
+            /* border-radius: 5px; */
+            border: none;
+            border-bottom: 1px solid ${({ theme }) => theme.cores.secundaria};
+            font-size: 1rem;
+            background-color: transparent;
         }
 
         label {
             border: none;
+            height: 1.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
         }
 
         select {
-            background-color: #fff;
             margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
         }
 
         option {
-            background-color: #fff;
+            /* background-color: #fff; */
         }
 
         input {
             margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
             padding: ${({ theme }) => theme.espacamento[2]}px;
-            border-style: solid;
         }
 
         input:focus, select:focus {
-            box-shadow: ${({ theme }) => theme.sombras.componentes} ${({ theme }) => theme.cores.secundaria};
+            background-color: rgba(20, 20, 20, .05);
             outline: 0;
         }
 
@@ -180,15 +183,16 @@ export const FormsAgendamento = styled.section`
         
         input[type=submit] {
             height: auto;
-            padding: ${({ theme }) => theme.espacamento[3]}px;
+            padding: 1rem 4rem;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             font-size: 1.5rem;
             background-color: #00c943;
             text-decoration: none;
             text-shadow: ${({ theme }) => theme.sombras.texto};
             text-transform: uppercase;
+            font-weight: 400;
             box-shadow: 0 0 10px rgba(0, 0, 0, .4);
             cursor: pointer;
         }
@@ -204,9 +208,10 @@ export const FormsAgendamento = styled.section`
         padding: 16px;
 
         h2 {
-            height: 45px;
+            /* height: 45px;
             font-size: 1.5rem;
-            text-align: center;
+            text-align: center; */
+            font-size: 2rem;
         }
 
         form {
@@ -220,7 +225,7 @@ export const FormsAgendamento = styled.section`
             input, label, select, .WrapListaHorarios, .WrapCalendario {
                 width: 100%;
                 max-width: 400px;
-                font-size: 1rem;
+                /* font-size: 1rem; */
             }
 
         }
@@ -230,9 +235,11 @@ export const FormsAgendamento = styled.section`
         padding: 16px;
 
         h2 {
-            height: 35px;
-            font-size: 1.2rem;
+            /* height: 35px;
+            font-size: 1.2rem; */
         }
+
+        
 
         form {
             margin-top: ${({ theme }) => theme.espacamento[6]}px;
@@ -244,6 +251,15 @@ export const FormsAgendamento = styled.section`
                     }
                 }
             } 
+
+            label {
+                /* font-size: 1.2rem; */
+            }
+
+            input, select {
+                /* font-size: 1rem; */
+                color: rgba(20, 20, 20, .7)
+            }
         }
     }
 `

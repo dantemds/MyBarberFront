@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Apresentacao } from './style'
+import { ApresentacaoSC } from './style'
 
 import { ServicoContext } from '../../Contexts/ServicoContext'
 
 import { BsInstagram, BsWhatsapp, BsTelephone } from 'react-icons/bs'
 
 
-export default function ApresentacaoView() {
+export default function Apresentacao() {
 
   const { setServicoSelecionado } = React.useContext(ServicoContext)
   const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
 
   return (
-    <Apresentacao id='Apresentacao'>
+    <ApresentacaoSC id='Apresentacao'>
         <div>
             
             <div>
@@ -32,6 +32,6 @@ export default function ApresentacaoView() {
             </div>
 
         </div>
-    </Apresentacao>
+    </ApresentacaoSC>
   )
 }
