@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-import bannerApresentacaoDesktop from '../../Images/background-desktop-1500.jpeg'
-import bannerApresentacaoMobile from '../../Images/banner-inicio-mobile.jpg'
-
 export const ApresentacaoSC = styled.section`
 
     display: flex;
@@ -10,8 +7,7 @@ export const ApresentacaoSC = styled.section`
     height: 70vh;
     width: 100%;
     
-    background-image: url(${bannerApresentacaoDesktop});
-    background-image: url('https://d1kvv1nz6mzy5a.cloudfront.net/images/Background-reuniao-Muralis-6anos-3.png');
+    background-image: url(${(props) => props.urlBannerDesktop});
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -93,7 +89,7 @@ export const ApresentacaoSC = styled.section`
 
     @media (max-width: 768px) {
         height: calc(80vh - 50px);
-        background-image: url(${bannerApresentacaoMobile});
+        background-image: url(${(props) => props.urlBannerMobile});
 
         > div {
             padding: 4rem 24px;
