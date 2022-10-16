@@ -35,7 +35,7 @@ jobs:
           aws-region: us-east-1
       
       - name: copy files to s3
-        run: aws s3 sync ./build s3://minha-barbearia.online
+        run: aws s3 sync ./build s3://cdn-mybarber
 
       - name: Invalidate cache
         run: |
