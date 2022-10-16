@@ -10,7 +10,8 @@ const Api = () => {
 export const Temporario = () => {
     return axios.create({
         // baseURL: 'http://apibarber.vps-kinghost.net:443'
-        baseURL: 'http://75.101.213.247:443'
+        //https://api.minha-barbearia.online
+        baseURL: 'https://api.minha-barbearia.online'
     })
 }
 
