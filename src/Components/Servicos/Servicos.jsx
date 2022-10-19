@@ -14,7 +14,6 @@ export default function Servicos() {
 
   useEffect(() => {
     setServicos(JSON.parse(dadosBarbearia).servicos)
-   
   }, [0])
 
   return (

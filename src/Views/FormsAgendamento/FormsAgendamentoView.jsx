@@ -34,7 +34,7 @@ export default function FormsAgendamentoView(props) {
     let diasDaSemana = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"]
 
     const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
-    console.log(barbeariaAll)
+    // console.log(barbeariaAll)
 
     ///// Variárveis de Estado /////
     const [fotoVisivel, setFotovisivel] = useState(false)
@@ -188,7 +188,7 @@ export default function FormsAgendamentoView(props) {
                     <label >Barbeiro:</label>
                     <select disabled={idServicoSelecionado === '0' || idServicoSelecionado === '' ? true : false} name="barbeirosId" id="barbeiro" {...register('barbeirosId')} onChange={handleBarbeiro}>
                         <option value="0" key='0'>Selecionar</option>
-                        {ListarBarbeiros(props.barbeiros, parseInt(idServicoSelecionado))}
+                        {ListarBarbeiros(props.servicos, idServicoSelecionado)}
                     </select>
                     <p className="mensagem-erro">{errors.barbeirosId?.message}</p>
                     {

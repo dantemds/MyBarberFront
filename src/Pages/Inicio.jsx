@@ -26,13 +26,13 @@ export default function Inicio() {
             behavior: 'smooth'
         })
 
-        RequestsClientes.getAll(barbearia)
-            .then(res => {
-                setRotaBarbearia(barbearia)
-                setDadosBarbearia(res)
-                setIdBarbearia(res.idBarbearia)
-            })
-            .catch(() => navigate('/login'))
+        // RequestsClientes.getAll(barbearia)
+        //     .then(res => {
+        //         setRotaBarbearia(barbearia)
+        //         setDadosBarbearia(res)
+        //         setIdBarbearia(res.idBarbearia)
+        //     })
+        //     .catch(() => navigate('/login'))
         // }
             
 
@@ -47,7 +47,7 @@ export default function Inicio() {
 
     return (
 
-        dadosBarbearia &&
+        true &&
         <>
             <Header linkMenuDados={linkMenuDados} />
             <Apresentacao />

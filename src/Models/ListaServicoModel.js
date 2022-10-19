@@ -2,7 +2,6 @@ export class ListaServicoModel {
 
     constructor(listaServicos) {
         this.servicos = []
-        this.barbeiros = []
         this.GeraLista(listaServicos)
     }
 
@@ -13,10 +12,10 @@ export class ListaServicoModel {
                 id: servico.idServico,
                 nome: servico.nomeServico,
                 duracao: servico.tempoServico,
-                preco: servico.precoServico
+                preco: servico.precoServico,
+                listaBarbeiros: servico.servicosBarbeiros ? servico.servicosBarbeiros : []
             }
 
-            this.barbeiros.push([servico.idServico, servico.servicosBarbeiros])
             this.servicos.push(objServico)
         })
     }

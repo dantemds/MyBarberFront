@@ -14,6 +14,7 @@ export default function FormsAgendamentoController() {
     const listaHorarios = []
     // ------------------------------------------------------------------------------------------------------------------------------------
 
+    const dadosBarbearia = JSON.parse(window.localStorage.getItem('barbeariaAll'))
 
 
     ///// DATA /////
@@ -27,18 +28,20 @@ export default function FormsAgendamentoController() {
 
     useEffect(() => {
 
-        const dadosBarbearia = JSON.parse(window.localStorage.getItem('barbeariaAll'))
 
         setServicos(new ListaServicoModel(dadosBarbearia.servicos))
 
         setCarregou(true)
     }, [0])
 
+    // useEffect(() => { 
+    //     console.log(servicos)
+    // }, [servicos])
 
     ///// Gerenciar estado /////
     const [carregou, setCarregou] = useState(false)
     const { ServicoSelecionado } = React.useContext(ServicoContext)
-    
+
     return (
         carregou &&
         <>
