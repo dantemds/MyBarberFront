@@ -14,8 +14,8 @@ export default function Apresentacao() {
   const { setServicoSelecionado } = React.useContext(ServicoContext)
   const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
 
-  const bannerDesktop = barbeariaAll.banner.find(banner => banner.mobile === false)
-  const bannerMobile = barbeariaAll.banner.find(banner => banner.mobile === true)
+  const bannerDesktop = barbeariaAll.banner ? barbeariaAll.banner.find(banner => banner.mobile === false) : ''
+  const bannerMobile = barbeariaAll.banner ? barbeariaAll.banner.find(banner => banner.mobile === true) : ''
 
   const dominio = "https://minha-barbearia.online/"
 
