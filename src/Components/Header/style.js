@@ -32,7 +32,7 @@ export const HeaderSC = styled.header`
         list-style: none;
         font-size: 1.4rem;
         font-weight: 600;
-        font-family: 'nunito', sans-serif !important;
+        /* font-family: 'nunito', sans-serif !important; */
     }
 
     li {

@@ -36,7 +36,7 @@ export const ApresentacaoSC = styled.section`
         color: #fff;
         transform: rotate(-20deg) translateX(-12px);
         z-index: 100;
-        font-family: 'Lobster', sans-serif;
+        font-family: 'Lobster', sans-serif !important;
     }
 
     .Wrap-Medias-Sociais {

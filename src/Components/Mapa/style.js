@@ -25,7 +25,7 @@ export const MapaSC = styled.section`
             height: auto !important;
             font-weight: 200;
             font-size: 2rem !important;
-            font-family: 'Nunito', sans-serif;
+            /* font-family: 'Nunito', sans-serif; */
             font-weight: 900;
             text-align: center;
             padding: 0 24px;

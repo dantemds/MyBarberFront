@@ -5,7 +5,13 @@ export function useLocalStorage(key, initialValue = '') {
         try {
             const storedValue = localStorage.getItem(key)
 
-            return storedValue ? JSON.parse(storedValue) : initialValue
+            if (storedValue) {
+                return JSON.parse(storedValue)
+            }
+            else {
+                localStorage.setItem(key, JSON.stringify(initialValue))
+                return initialValue
+            }
         }
         catch {
             return initialValue
@@ -13,7 +19,6 @@ export function useLocalStorage(key, initialValue = '') {
     })
 
     const setValue = useCallback((value) => {
-        console.log('IIIIIIIIIIIIIIIIIIIIIIIIIIHA')
         try {
             setState(value)
             localStorage.setItem(key, JSON.stringify(value))
