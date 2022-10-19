@@ -64,7 +64,7 @@ const getHorariosDisponiveis = async (filtro) => {
 }
 
 const postAutenticacao = async (credencial) => {
-    return await Api().post('/aut', credencial)
+    return await Api().post('/api/v1/aut', credencial)
         .then(res => {
             window.localStorage.setItem('usuario', JSON.stringify(res.data))
             console.log('LOG: Autenticação realizada com sucesso.')
