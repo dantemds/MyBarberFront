@@ -26,14 +26,15 @@ export function ListarPrecoServico(listaServicos, idServicoSelecionado) {
 
 }
 
-export function ListarBarbeiros(listaBarbeiros, idServicoSelecionado) {
+export function ListarBarbeiros(listaServicos, idServicoSelecionado) {
+    const servicoSelecionado = listaServicos.find(servico => servico.id === idServicoSelecionado)
 
-    return listaBarbeiros.map(servico => {
-        if (servico[0] === idServicoSelecionado)
-            return servico[1].map(barbeiro => {
-                return <option key={`${barbeiro.idBarbeiro}${barbeiro.barbeiros.nameBarbeiro}`} value={barbeiro.barbeiros.idBarbeiro}>{barbeiro.barbeiros.nameBarbeiro}</option>
-            })
-    })
+    // return servicoSelecionado.listaBarbeiros.map(barbeiro => {
+    //     return <option
+    //         key={`${barbeiro.idBarbeiro}${barbeiro.barbeiros.nameBarbeiro}`}
+    //         value={barbeiro.barbeiros.idBarbeiro}>{barbeiro.barbeiros.nameBarbeiro}
+    //     </option>
+    // })
 }
 
 export function ListarHorariosDisponiveis(listaHorarios) {

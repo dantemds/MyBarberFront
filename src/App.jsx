@@ -9,6 +9,7 @@ import theme from './Styles/tema';
 import theme2 from './Styles/tema copy';
 import { useEffect } from 'react';
 import { useContext } from 'react';
+import { GlobalProvider } from './Contexts/GlobalContext';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
   }, 700)
 
   useEffect(() => {
-    window.localStorage.clear()
+    // window.localStorage.clear()
   }, [0])
 
   useEffect(() => { myTimeout() }, [idBarbearia])
@@ -46,9 +47,11 @@ function App() {
     <>
       <GlobalStyle />
       <ThemeProvider theme={tema}>
-        <ServicoProvider>
-          <Rotas />
-        </ServicoProvider>
+        <GlobalProvider>
+          <ServicoProvider>
+            <Rotas />
+          </ServicoProvider>
+        </GlobalProvider>
       </ThemeProvider>
     </>
   );

@@ -6,6 +6,7 @@ import { ApresentacaoSC } from './style'
 import { ServicoContext } from '../../Contexts/ServicoContext'
 
 import { BsInstagram, BsWhatsapp, BsTelephone } from 'react-icons/bs'
+import { useLocalStorage } from '../../Hooks/useLocalStorage'
 
 
 export default function Apresentacao() {
@@ -24,6 +25,13 @@ export default function Apresentacao() {
     else
       return ""
   }
+
+  
+  const [teste, setTeste] = useLocalStorage("KeyTeste", 5)
+
+  console.log(teste)
+
+  
 
   return (
     <ApresentacaoSC

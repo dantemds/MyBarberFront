@@ -7,7 +7,7 @@ import { ServicoContext } from '../../Contexts/ServicoContext'
 export default function CardServico(props) {
 
     const Card = new CardServicoModel(props.dadosServico)
-
+    
     const { setServicoSelecionado } = React.useContext(ServicoContext)
 
     const valTamanhoNomeServico = titulo => {
