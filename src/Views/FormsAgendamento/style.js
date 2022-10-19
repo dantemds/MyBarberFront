@@ -13,7 +13,7 @@ export const FormsAgendamento = styled.section`
         width: 100%;
         height: auto;
         font-size: 2.5rem;
-        font-family: 'Nunito', sans-serif;
+        /* font-family: 'Nunito', sans-serif; */
         font-weight: 900;
         text-align: center;
         padding: 0 24px;

@@ -3,6 +3,7 @@ import { CardServicoModel } from '../../Models/CardServicoModel'
 import { Link } from 'react-router-dom'
 import { CardServicoSC } from './style'
 import { ServicoContext } from '../../Contexts/ServicoContext'
+import { useLocalStorage } from '../../Hooks/useLocalStorage'
 
 export default function CardServico(props) {
 

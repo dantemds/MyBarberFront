@@ -14,7 +14,6 @@ export const ServicosSC = styled.section`
         height: 54px;
         font-weight: 200;
         font-size: 2.5rem;
-        font-family: 'Nunito', sans-serif;
         font-weight: 900;
         text-align: center;
         color: #202020;

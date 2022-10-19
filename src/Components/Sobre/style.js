@@ -19,7 +19,7 @@ export const SobreSC = styled.section`
             width: 100%;
             height: auto;
             font-size: 2.5rem;
-            font-family: 'Nunito', sans-serif;
+            /* font-family: 'Nunito', sans-serif; */
             font-weight: 900;
             padding: 0 24px;
             color: #fff;
@@ -30,6 +30,10 @@ export const SobreSC = styled.section`
             margin-top: 64px;
         }
 
+        .h3Barbeiros {
+            margin-top: 48px;
+        }
+
         p, a {
             color: #fff;
             font-size: 1rem;
@@ -37,6 +41,14 @@ export const SobreSC = styled.section`
             margin: 0;
             margin-top: 1em;
             text-decoration: underline ${({ theme }) => theme.cores.secundaria};
+        }
+
+        .pHorarioFuncionamento {
+            margin-top: 0;
+        }
+
+        .pHorarioFuncionamento:nth-child(1) {
+            margin-top: 1em;
         }
 
         a {
