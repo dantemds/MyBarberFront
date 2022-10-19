@@ -6,7 +6,6 @@ import { ApresentacaoSC } from './style'
 import { ServicoContext } from '../../Contexts/ServicoContext'
 
 import { BsInstagram, BsWhatsapp, BsTelephone } from 'react-icons/bs'
-import { useLocalStorage } from '../../Hooks/useLocalStorage'
 
 
 export default function Apresentacao() {
@@ -20,18 +19,12 @@ export default function Apresentacao() {
   const dominio = "https://minha-barbearia.online/"
 
   const getUrlBanner = banner => {
+
     if (banner)
       return dominio + banner.url
     else
       return ""
   }
-
-  
-  const [teste, setTeste] = useLocalStorage("KeyTeste", 5)
-
-  console.log(teste)
-
-  
 
   return (
     <ApresentacaoSC
@@ -54,7 +47,6 @@ export default function Apresentacao() {
         <div className='Wrap-btn-agendar'>
           <Link to='/forms-agendamento' id='btn-agendar' onClick={() => setServicoSelecionado(null)}><span>Agendar</span></Link>
         </div>
-
       </div>
     </ApresentacaoSC>
   )

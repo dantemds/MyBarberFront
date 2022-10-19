@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import { BsArrowRightCircle } from 'react-icons/bs'
+import { useLocalStorage } from '../../Hooks/useLocalStorage'
 import CardServico from '../CardServico/CardServico'
 
 import { ServicosSC } from './style'
