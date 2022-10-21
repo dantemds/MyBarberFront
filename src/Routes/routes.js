@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import React from 'react'
 import Inicio from '../Pages/Inicio/Inicio'
-import FormsAgendamento from '../Pages/FormsAgendamento'
+import FormsAgendamento from '../Pages/FormsAgendamento/FormsAgendamento'
 import ConfirmacaoAgendamento from '../Pages/ConfirmacaoAgendamento'
 import PainelBarbeiro from '../Pages/PainelBarbeiro/PainelBarbeiro'
 import Login from '../Pages/Login' 

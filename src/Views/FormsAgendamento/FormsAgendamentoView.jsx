@@ -20,7 +20,7 @@ import { FiltroHorariosDisponiveisModel } from '../../Models/FiltroHorariosDispo
 
 import { Oval } from 'react-loading-icons'
 
-import Carregando from '../../Components/Carregando/Carregando'
+import Carregando from '../../Pages/FormsAgendamento/Components/Carregando/Carregando'
 import { GlobalContext } from '../../Contexts/GlobalContext'
 
 

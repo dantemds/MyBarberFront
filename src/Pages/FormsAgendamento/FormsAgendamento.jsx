@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import FormsAgendamentoController from '../Controllers/FormsAgendamentoController';
+import FormsAgendamentoController from '../../Controllers/FormsAgendamentoController';
 
-import Header from '../Components/Header/Header'
-import Rodape from '../Components/Rodape/Rodape';
+import Header from '../../Components/Header/Header'
+import Rodape from '../../Components/Rodape/Rodape';
+import FormAgendamento from './Components/Form/FormAgendamento';
 
 
 export default function FormsAgendamento() {
@@ -21,7 +22,8 @@ export default function FormsAgendamento() {
     return (
         <>
             <Header linkMenuDados={linkMenuDados} />
-            <FormsAgendamentoController />
+            {/* <FormsAgendamentoController /> */}
+            <FormAgendamento/>
             <Rodape />
         </>
     )
