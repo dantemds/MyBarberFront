@@ -3,39 +3,25 @@ import { Link } from 'react-router-dom'
 
 import { ApresentacaoSC } from './style'
 
-import { ServicoContext } from '../../Contexts/ServicoContext'
-
 import { BsInstagram, BsWhatsapp, BsTelephone } from 'react-icons/bs'
-
+import { GlobalContext } from '../../Contexts/GlobalContext'
+import { findBanner, getUrlBanner } from '../../Utils/functions'
 
 export default function Apresentacao() {
 
-  const { setServicoSelecionado } = React.useContext(ServicoContext)
-  const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
+  const { dadosTenantBarbearia, setServicoSelecionado } = React.useContext(GlobalContext)
 
-  const bannerDesktop = barbeariaAll.banner ? barbeariaAll.banner.find(banner => banner.mobile === false) : ''
-  const bannerMobile = barbeariaAll.banner ? barbeariaAll.banner.find(banner => banner.mobile === true) : ''
-
-  const dominio = "https://minha-barbearia.online/"
-
-  const getUrlBanner = banner => {
-
-    if (banner)
-      return dominio + banner.url
-    else
-      return ""
-  }
+  const bannerDesktop = findBanner(dadosTenantBarbearia.banner, false)
+  const bannerMobile = findBanner(dadosTenantBarbearia.banner, true)
 
   return (
     <ApresentacaoSC
       id='Apresentacao'
       urlBannerDesktop={getUrlBanner(bannerDesktop)}
-      urlBannerMobile={getUrlBanner(bannerMobile)}
-    >
+      urlBannerMobile={getUrlBanner(bannerMobile)}>
       <div>
-
         <div>
-          <h1>{barbeariaAll.nomeBarbearia}</h1>
+          <h1>{dadosTenantBarbearia.nomeBarbearia}</h1>
         </div>
 
         <div className='Wrap-Medias-Sociais'>
@@ -45,7 +31,12 @@ export default function Apresentacao() {
         </div>
 
         <div className='Wrap-btn-agendar'>
-          <Link to='/forms-agendamento' id='btn-agendar' onClick={() => setServicoSelecionado(null)}><span>Agendar</span></Link>
+          <Link
+            to='/forms-agendamento'
+            id='btn-agendar'
+            onClick={() => setServicoSelecionado(null)}>
+            <span>Agendar</span>
+          </Link>
         </div>
       </div>
     </ApresentacaoSC>

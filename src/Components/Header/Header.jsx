@@ -15,8 +15,6 @@ export default function Header(props) {
   
   const linksMenu = props.linkMenuDados
 
-  const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
-
   const EncerrarSessao = () => {
     window.localStorage.clear()
     window.location.reload()

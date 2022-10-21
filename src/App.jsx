@@ -1,57 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 
-import { ServicoContext, ServicoProvider } from "./Contexts/ServicoContext";
+import { ServicoProvider } from "./Contexts/ServicoContext";
+import { GlobalContext } from './Contexts/GlobalContext';
+
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from './Styles/global'
+import temaDefault from './Styles/temaDefault';
+
 import Rotas from "./Routes/routes";
 
-import GlobalStyle from './Styles/global'
-import { ThemeProvider } from 'styled-components';
-import theme from './Styles/tema';
-import theme2 from './Styles/tema copy';
-import { useEffect } from 'react';
-// import { useContext } from 'react';
-// import { GlobalProvider } from './Contexts/GlobalContext';
-
+import { isExist } from './Utils/functions';
+import { applyTema } from './Styles/applyTema';
 
 function App() {
-
-  const { idBarbearia } = React.useContext(ServicoContext)
-
-  const [barbeariaAll, setBarbeariaAll] = useState(null)
-  const [tema, setTema] = useState(theme)
-
-
-  const myTimeout = () => setTimeout(() => {
-    // console.log(JSON.parse(window.localStorage.getItem('barbeariaAll')))
-
-    setBarbeariaAll(JSON.parse(window.localStorage.getItem('barbeariaAll')))
-  }, 700)
+  const { dadosTenantBarbearia, tema, setTema } = React.useContext(GlobalContext)
 
   useEffect(() => {
     window.localStorage.clear()
   }, [0])
 
-  useEffect(() => { myTimeout() }, [idBarbearia])
-
   useEffect(() => {
-    if (barbeariaAll)
-      setTema(theme2({
-        corPrimaria: barbeariaAll.temas ? barbeariaAll.temas.corPrimaria : "#000",
-        corSecundaria: barbeariaAll.temas ? barbeariaAll.temas.corSecundaria : "#000"
-      }))
-
-  }, [barbeariaAll])
-
+    setTema(applyTema(dadosTenantBarbearia))
+  }, [dadosTenantBarbearia])
 
   return (
-
     <>
       <GlobalStyle />
-      <ThemeProvider theme={tema}>
-        {/* <GlobalProvider> */}
-          <ServicoProvider>
-            <Rotas />
-          </ServicoProvider>
-        {/* </GlobalProvider> */}
+      <ThemeProvider theme={isExist(tema, temaDefault)}>
+        <ServicoProvider>
+          <Rotas />
+        </ServicoProvider>
       </ThemeProvider>
     </>
   );

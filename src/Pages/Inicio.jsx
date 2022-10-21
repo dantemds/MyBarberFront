@@ -10,11 +10,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ServicoContext } from '../Contexts/ServicoContext';
 import Servicos from '../Components/Servicos/Servicos';
 import Apresentacao from '../Components/Apresentacao/Apresentacao';
+import { GlobalContext } from '../Contexts/GlobalContext';
 
 export default function Inicio() {
     let navigate = useNavigate()
 
     const { setIdBarbearia, setRotaBarbearia } = React.useContext(ServicoContext)
+    const {dadosTenantBarbearia, setDadosTenantBarbearia} = React.useContext(GlobalContext)
 
     const [dadosBarbearia, setDadosBarbearia] = useState()
     const { barbearia } = useParams()
@@ -31,11 +33,10 @@ export default function Inicio() {
                 setRotaBarbearia(barbearia)
                 setDadosBarbearia(res)
                 setIdBarbearia(res.idBarbearia)
+                setDadosTenantBarbearia(res)
             })
             .catch(() => navigate('/login'))
         
-            
-
     }, [0])
 
     const linkMenuDados = [

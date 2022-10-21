@@ -18,15 +18,15 @@ export default function Sobre() {
 
     const imagensLandingPage = barbeariaAll.landingPageImages ? objImageOrdemNumerica(barbeariaAll.landingPageImages) : []
 
-    useEffect(() => {
-        window.document.getElementById('teste').scroll(100, 0)
-    }, [0])
+    // useEffect(() => {
+    //     window.document.getElementById().scroll(100, 0)
+    // }, [0])
 
     return (
         <SobreSC id='Sobre'>
             <div className='content-sobre'>
                 <h2>Conheça nosso espaço</h2>
-                <div className="scroll-horizontal fotos-barbearia" id='teste'>
+                <div className="scroll-horizontal fotos-barbearia">
                     {imagensLandingPage.map(imagem => {
                         return <picture key={imagem.idLandingPageImage}>
                             <img src={"https://minha-barbearia.online/" + imagem.url} alt={imagem.posicao + imagem.numeroImagem}></img>
