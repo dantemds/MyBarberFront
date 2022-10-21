@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 
-import { ServicoProvider } from "./Contexts/ServicoContext";
 import { GlobalContext } from './Contexts/GlobalContext';
 
 import { ThemeProvider } from 'styled-components';
@@ -27,9 +26,7 @@ function App() {
     <>
       <GlobalStyle />
       <ThemeProvider theme={isExist(tema, temaDefault)}>
-        <ServicoProvider>
           <Rotas />
-        </ServicoProvider>
       </ThemeProvider>
     </>
   );

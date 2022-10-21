@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
-import Header from '../Components/Header/Header';
-import Mapa from '../Components/Mapa/Mapa';
-import Rodape from '../Components/Rodape/Rodape';
-import Sobre from '../Components/Sobre/Sobre';
+import Header from '../../Components/Header/Header';
+import Mapa from './Components/Mapa/Mapa';
+import Rodape from '../../Components/Rodape/Rodape';
+import Sobre from './Components/Sobre/Sobre';
 
-import { RequestsClientes } from '../API/RequestsCliente';
+import { RequestsClientes } from '../../API/RequestsCliente';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ServicoContext } from '../Contexts/ServicoContext';
-import Servicos from '../Components/Servicos/Servicos';
-import Apresentacao from '../Components/Apresentacao/Apresentacao';
-import { GlobalContext } from '../Contexts/GlobalContext';
-
+import Servicos from './Components/Servicos/Servicos';
+import Apresentacao from './Components/Apresentacao/Apresentacao';
+import { GlobalContext } from '../../Contexts/GlobalContext'
 export default function Inicio() {
     let navigate = useNavigate()
 
-    const { setIdBarbearia, setRotaBarbearia } = React.useContext(ServicoContext)
     const {dadosTenantBarbearia, setDadosTenantBarbearia} = React.useContext(GlobalContext)
 
-    const [dadosBarbearia, setDadosBarbearia] = useState()
     const { barbearia } = useParams()
     
 
@@ -30,9 +26,7 @@ export default function Inicio() {
 
         RequestsClientes.getAll(barbearia)
             .then(res => {
-                setRotaBarbearia(barbearia)
-                setDadosBarbearia(res)
-                setIdBarbearia(res.idBarbearia)
+                localStorage.setItem('rota-barbearia', barbearia)
                 setDadosTenantBarbearia(res)
             })
             .catch(() => navigate('/login'))
@@ -48,7 +42,7 @@ export default function Inicio() {
 
     return (
 
-        dadosBarbearia &&
+        dadosTenantBarbearia &&
         <>
             <Header linkMenuDados={linkMenuDados} />
             <Apresentacao />

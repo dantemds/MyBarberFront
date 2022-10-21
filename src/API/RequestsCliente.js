@@ -8,7 +8,6 @@ const getAll = async (barbearia) => {
     // await Api().get(`http://localhost:5000/barbearias`)
         .then(res => {
             resApi = res.data
-            window.localStorage.setItem('barbeariaAll', JSON.stringify(res.data))
         })
         .catch(()=> console.log('AAAAAAAAAAAAAA'))
 

@@ -2,20 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { ListaServicoModel } from '../Models/ListaServicoModel'
 import FormsAgendamentoView from '../Views/FormsAgendamento/FormsAgendamentoView'
 
-import { ServicoContext } from '../Contexts/ServicoContext'
+import { GlobalContext } from '../Contexts/GlobalContext'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function FormsAgendamentoController() {
+    const { dadosTenantBarbearia } = React.useContext(GlobalContext)
 
-    // ------------------------------------------------------------------------------------------------------------------------------------
-    ///// Simulação de dados da API /////
-
-    // const listaHorarios = ['08:00', '09:00', '08:00', '09:00', '08:00', '09:00', '08:00', '09:00']
     const listaHorarios = []
-    // ------------------------------------------------------------------------------------------------------------------------------------
-
-    const dadosBarbearia = JSON.parse(window.localStorage.getItem('barbeariaAll'))
-
 
     ///// DATA /////
     let dataMin = new Date()
@@ -26,12 +20,16 @@ export default function FormsAgendamentoController() {
     ///// Dados da barbearia /////
     const [servicos, setServicos] = useState([])
 
+    let navigate = useNavigate()
+
     useEffect(() => {
-
-
-        setServicos(new ListaServicoModel(dadosBarbearia.servicos))
-
-        setCarregou(true)
+        if (!dadosTenantBarbearia) {
+            navigate(-1)
+        }
+        else {
+            setServicos(new ListaServicoModel(dadosTenantBarbearia.servicos))
+            setCarregou(true)
+        }
     }, [0])
 
     // useEffect(() => { 
@@ -40,7 +38,7 @@ export default function FormsAgendamentoController() {
 
     ///// Gerenciar estado /////
     const [carregou, setCarregou] = useState(false)
-    const { ServicoSelecionado } = React.useContext(ServicoContext)
+    const { ServicoSelecionado } = React.useContext(GlobalContext)
 
     return (
         carregou &&

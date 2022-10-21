@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DetalhesAgendamentoContext } from '../../Contexts/DetalhesAgendamentoContext'
+import { DetalhesAgendamentoContext } from '../../../../Contexts/DetalhesAgendamentoContext'
 
 import { CardAgendamentoStyle } from './style'
 

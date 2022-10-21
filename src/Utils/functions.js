@@ -18,3 +18,11 @@ export const getUrlBanner = banner => {
     else
         return ""
 }
+
+
+export const ordenarImagens = (lista) => {
+    if (lista)
+        return lista.sort((x, y) => x.numeroImagem - y.numeroImagem)
+    else
+        return []
+}

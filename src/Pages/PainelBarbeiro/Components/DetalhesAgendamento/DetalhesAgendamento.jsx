@@ -1,7 +1,7 @@
 import React from 'react'
 import { DetalhesAgendamentoSC } from './style'
-import { DetalhesAgendamentoContext } from '../../Contexts/DetalhesAgendamentoContext'
-import { CardAgendamentoModel } from '../../Models/CardAgendamentoModel'
+import { DetalhesAgendamentoContext } from '../../../../Contexts/DetalhesAgendamentoContext'
+import { CardAgendamentoModel } from '../../../../Models/CardAgendamentoModel'
 
 export default function DetalhesAgendamento(props) {
 

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { ApresentacaoSC } from './style'
 
 import { BsInstagram, BsWhatsapp, BsTelephone } from 'react-icons/bs'
-import { GlobalContext } from '../../Contexts/GlobalContext'
-import { findBanner, getUrlBanner } from '../../Utils/functions'
+import { GlobalContext } from '../../../../Contexts/GlobalContext'
+import { findBanner, getUrlBanner } from '../../../../Utils/functions'
 
 export default function Apresentacao() {
 
