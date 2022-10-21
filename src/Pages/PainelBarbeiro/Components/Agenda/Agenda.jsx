@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 
 import DetalhesAgendamento from '../DetalhesAgendamento/DetalhesAgendamento'
-import ModalConfirmacao from '../ModalConfirmacao/ModalConfirmacao'
+import ModalConfirmacao from '../../../../Components/ModalConfirmacao/ModalConfirmacao'
 
-import { DetalhesAgendamentoContext } from '../../Contexts/DetalhesAgendamentoContext'
-import { RequestsClientes } from '../../API/RequestsCliente'
+import { DetalhesAgendamentoContext } from '../../../../Contexts/DetalhesAgendamentoContext'
+import { RequestsClientes } from '../../../../API/RequestsCliente'
 
 import { AgendaSC } from './style'
 import CardAgendamento from '../CardAgendamento/CardAgendamento'
-import { CardAgendamentoModel } from '../../Models/CardAgendamentoModel'
+import { CardAgendamentoModel } from '../../../../Models/CardAgendamentoModel'
 
 
 

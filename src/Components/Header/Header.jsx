@@ -3,19 +3,15 @@ import { HeaderSC } from './style'
 
 import Logo from '../../Images/Logo/Logo.png'
 import { Link } from 'react-router-dom'
-import { ServicoContext } from '../../Contexts/ServicoContext'
-import { HeaderModel } from '../../Models/HeaderModel'
 import { MenuModel } from '../../Models/MenuModel'
 
 export default function Header(props) {
 
-  const { rotaBarbearia } = React.useContext(ServicoContext)
+  const rotaBarbearia = localStorage.getItem('rota-barbearia')
 
   const [estadoMenu, setEstadoMenu] = useState(false)
-  
-  const linksMenu = props.linkMenuDados
 
-  const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
+  const linksMenu = props.linkMenuDados
 
   const EncerrarSessao = () => {
     window.localStorage.clear()

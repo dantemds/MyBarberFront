@@ -1,15 +1,14 @@
 import React from 'react'
-import { CardServicoModel } from '../../Models/CardServicoModel'
+import { CardServicoModel } from '../../../../Models/CardServicoModel'
 import { Link } from 'react-router-dom'
 import { CardServicoSC } from './style'
-import { ServicoContext } from '../../Contexts/ServicoContext'
-import { useLocalStorage } from '../../Hooks/useLocalStorage'
+import { GlobalContext } from '../../../../Contexts/GlobalContext'
 
 export default function CardServico(props) {
 
     const Card = new CardServicoModel(props.dadosServico)
     
-    const { setServicoSelecionado } = React.useContext(ServicoContext)
+    const { setServicoSelecionado } = React.useContext(GlobalContext)
 
     const valTamanhoNomeServico = titulo => {
         if (titulo.length > 16)

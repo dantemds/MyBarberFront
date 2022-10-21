@@ -2,19 +2,20 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import { BsArrowRightCircle } from 'react-icons/bs'
-import { useLocalStorage } from '../../Hooks/useLocalStorage'
+import { GlobalContext } from '../../../../Contexts/GlobalContext'
 import CardServico from '../CardServico/CardServico'
 
 import { ServicosSC } from './style'
 
 export default function Servicos() {
-  const dadosBarbearia = window.localStorage.getItem('barbeariaAll')
+  const { dadosTenantBarbearia } = React.useContext(GlobalContext)
+
   const [servicos, setServicos] = useState()
 
   let contador = 0
 
   useEffect(() => {
-    setServicos(JSON.parse(dadosBarbearia).servicos)
+    setServicos(dadosTenantBarbearia.servicos)
   }, [0])
 
   return (

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { RequestsClientes } from '../API/RequestsCliente';
+import { RequestsClientes } from '../../API/RequestsCliente';
 
-import Header from '../Components/Header/Header'
-import Rodape from '../Components/Rodape/Rodape';
-import ServicosAgendados from '../Components/ServicosAgendados/ServicosAgendados';
+import Header from '../../Components/Header/Header'
+import Rodape from '../../Components/Rodape/Rodape';
+import ServicosAgendados from '../PainelBarbeiro/Components/ServicosAgendados/ServicosAgendados';
 
 
 export default function PainelBarbeiro() {

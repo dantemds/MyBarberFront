@@ -3,30 +3,28 @@ import React, { useEffect } from 'react'
 import { SobreSC } from './style.js'
 
 import { BsInstagram, BsWhatsapp, BsTelephone, BsEnvelope } from 'react-icons/bs'
+import { GlobalContext } from '../../../../Contexts/GlobalContext'
+import { ordenarImagens } from '../../../../Utils/functions'
 
 export default function Sobre() {
+    const { dadosTenantBarbearia } = React.useContext(GlobalContext)
 
-    const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
-    const enderecos = barbeariaAll.enderecos
-    const contatos = barbeariaAll.contatos
-    const horarioFuncionamento = barbeariaAll.horarioFuncionamento && barbeariaAll.horarioFuncionamento.funcionamento
-    const barbeiros = barbeariaAll.barbeiros
+    const enderecos = dadosTenantBarbearia.enderecos
+    const contatos = dadosTenantBarbearia.contatos
+    const horarioFuncionamento = dadosTenantBarbearia.horarioFuncionamento && dadosTenantBarbearia.horarioFuncionamento.funcionamento
+    const barbeiros = dadosTenantBarbearia.barbeiros
+    const imagensLandingPage = ordenarImagens(dadosTenantBarbearia.landingPageImages)
 
-    const objImageOrdemNumerica = (lista) => {
-        return lista.sort((x, y) => x.numeroImagem - y.numeroImagem)
-    }
 
-    const imagensLandingPage = barbeariaAll.landingPageImages ? objImageOrdemNumerica(barbeariaAll.landingPageImages) : []
-
-    useEffect(() => {
-        window.document.getElementById('teste').scroll(100, 0)
-    }, [0])
+    // useEffect(() => {
+    //     window.document.getElementById().scroll(100, 0)
+    // }, [0])
 
     return (
         <SobreSC id='Sobre'>
             <div className='content-sobre'>
                 <h2>Conheça nosso espaço</h2>
-                <div className="scroll-horizontal fotos-barbearia" id='teste'>
+                <div className="scroll-horizontal fotos-barbearia">
                     {imagensLandingPage.map(imagem => {
                         return <picture key={imagem.idLandingPageImage}>
                             <img src={"https://minha-barbearia.online/" + imagem.url} alt={imagem.posicao + imagem.numeroImagem}></img>

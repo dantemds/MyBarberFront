@@ -3,12 +3,11 @@ import Api, { Temporario } from "./ApiConfig"
 
 const getAll = async (barbearia) => {
     let resApi
-    
+
     await Api().get(`/api/v1/barbearias/${barbearia}/`)
     // await Api().get(`http://localhost:5000/barbearias`)
         .then(res => {
             resApi = res.data
-            window.localStorage.setItem('barbeariaAll', JSON.stringify(res.data))
         })
         .catch(()=> console.log('AAAAAAAAAAAAAA'))
 

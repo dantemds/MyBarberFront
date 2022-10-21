@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { ServicosAgendadosSC } from './style'
-import { DetalhesAgendamentoProvider } from '../../Contexts/DetalhesAgendamentoContext'
-import useDate from "../../Hooks/useDate"
-import { RequestsClientes } from '../../API/RequestsCliente'
+import { DetalhesAgendamentoProvider } from '../../../../Contexts/DetalhesAgendamentoContext'
+import { RequestsClientes } from '../../../../API/RequestsCliente'
 import Agenda from '../Agenda/Agenda'
+import useDate from '../../../../Hooks/useDate'
+import { GlobalContext } from '../../../../Contexts/GlobalContext'
 
 
 export default function ServicosAgendados() {
@@ -13,23 +14,24 @@ export default function ServicosAgendados() {
   const [barbeiroSelecionado, setBarbeiroSelecionado] = useState('')
   const [listaAgendamentos, setListaAgendamentos] = useState([])
 
-  const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
+  const { dadosTenantBarbearia } = React.useContext(GlobalContext)
+
 
 
   useEffect(() => {
     setBarbeiroSelecionado(JSON.parse(window.localStorage.getItem('usuario')))
   }, [0])
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   RequestsClientes.getAgendamentosBarbeiro(barbeariaAll.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
-  //     .then(res => {
-  //       setListaAgendamentos(res)
-  //       console.log('LOG: Agendamentos recebidos com sucesso.')
-  //     })
-  //     .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
+    RequestsClientes.getAgendamentosBarbeiro(dadosTenantBarbearia.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
+      .then(res => {
+        setListaAgendamentos(res)
+        console.log('LOG: Agendamentos recebidos com sucesso.')
+      })
+      .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
 
-  // }, [dataSelecionada, barbeiroSelecionado])
+  }, [dataSelecionada, barbeiroSelecionado])
 
 
   return (
@@ -39,7 +41,7 @@ export default function ServicosAgendados() {
       <input type="date" value={dataSelecionada} onChange={event => setDataSelecionada(event.target.value)} />
 
       <select disabled>
-        {/* <option value={barbeiroSelecionado.idBarbeiro}>{barbeiroSelecionado.nomeUsuario}</option> */}
+        <option value={barbeiroSelecionado.idBarbeiro}>{barbeiroSelecionado.nomeUsuario}</option>
       </select>
 
       <DetalhesAgendamentoProvider>

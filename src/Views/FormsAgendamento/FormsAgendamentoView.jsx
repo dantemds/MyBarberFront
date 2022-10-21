@@ -21,18 +21,15 @@ import { FiltroHorariosDisponiveisModel } from '../../Models/FiltroHorariosDispo
 import { Oval } from 'react-loading-icons'
 
 import Carregando from '../../Components/Carregando/Carregando'
-import { ServicoContext } from '../../Contexts/ServicoContext'
+import { GlobalContext } from '../../Contexts/GlobalContext'
 
 
 export default function FormsAgendamentoView(props) {
+    const { dadosTenantBarbearia } = React.useContext(GlobalContext)
+
     let navigate = useNavigate()
 
-    const { idBarbearia } = React.useContext(ServicoContext)
-    
     let diasDaSemana = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"]
-
-    const barbeariaAll = JSON.parse(window.localStorage.getItem('barbeariaAll'))
-    // console.log(barbeariaAll)
 
     ///// Variárveis de Estado /////
     const [fotoVisivel, setFotovisivel] = useState(false)
@@ -99,7 +96,7 @@ export default function FormsAgendamentoView(props) {
 
     ///// Request /////
     const addAgendamento = dados => {
-        let agendamento = new AgendamentoModel(idBarbearia, dados, dataSelecionada, horaSelecionada)
+        let agendamento = new AgendamentoModel(dadosTenantBarbearia.idBarbearia, dados, dataSelecionada, horaSelecionada)
         console.log(agendamento)
         setStatusAgendamento({ ...statusAgendamento, carregando: true })
 
@@ -150,7 +147,7 @@ export default function FormsAgendamentoView(props) {
             setListaHorariosDisponiveis([])
             setListarHorariosIsLoading(true)
             RequestsClientes
-                .getHorariosDisponiveis(new FiltroHorariosDisponiveisModel(barbeariaAll.idBarbearia, idBarbeiroSelecionado, idServicoSelecionado, dataSelecionada, diaDaSemanaSelecionado))
+                .getHorariosDisponiveis(new FiltroHorariosDisponiveisModel(dadosTenantBarbearia.idBarbearia, idBarbeiroSelecionado, idServicoSelecionado, dataSelecionada, diaDaSemanaSelecionado))
                 .then(res => {
                     setListaHorariosDisponiveis(res)
                     setListarHorariosIsLoading(false)
@@ -209,7 +206,7 @@ export default function FormsAgendamentoView(props) {
                                 listaHorariosDisponiveis.length > 0 && ListarHorariosDisponiveis(listaHorariosDisponiveis)
                             }
                             {
-                                listarHorariosIsLoading && <Oval stroke={barbeariaAll.temas.corSecundaria} speed={.75} />
+                                listarHorariosIsLoading && <Oval stroke={dadosTenantBarbearia.temas.corSecundaria} speed={.75} />
                             }
                             {
                                 !listarHorariosIsLoading && listaHorariosDisponiveis.length <= 0 && <div><p>Nenhum horário disponível.</p></div>

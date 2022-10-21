@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ServicoContext } from '../../Contexts/ServicoContext'
 
 import { ConfirmacaoAgendamento } from './style'
 
 export default function ConfirmacaoAgendamentoView() {
 
-    const { rotaBarbearia} = React.useContext(ServicoContext)
+    const rotaBarbearia= localStorage.getItem('rota-barbearia')
 
     return (
         <ConfirmacaoAgendamento>
