@@ -34,7 +34,8 @@ export default function Apresentacao() {
           <Link
             to='/forms-agendamento'
             id='btn-agendar'
-            onClick={() => setServicoSelecionado(null)}>
+            // onClick={() => setServicoSelecionado(null)}>
+            >
             <span>Agendar</span>
           </Link>
         </div>

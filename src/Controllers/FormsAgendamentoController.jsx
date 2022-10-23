@@ -5,22 +5,18 @@ import FormsAgendamentoView from '../Views/FormsAgendamento/FormsAgendamentoView
 import { GlobalContext } from '../Contexts/GlobalContext'
 import { useNavigate } from 'react-router-dom'
 
-
 export default function FormsAgendamentoController() {
-    const { dadosTenantBarbearia } = React.useContext(GlobalContext)
+    const { dadosTenantBarbearia, servicoSelecionado } = React.useContext(GlobalContext)
+    const [carregou, setCarregou] = useState(false)
+    const [servicos, setServicos] = useState([])
 
     const listaHorarios = []
 
-    ///// DATA /////
+    let navigate = useNavigate()
+
     let dataMin = new Date()
     let dataMax = new Date()
     dataMax.setMonth((dataMin.getMonth() + 1))
-
-
-    ///// Dados da barbearia /////
-    const [servicos, setServicos] = useState([])
-
-    let navigate = useNavigate()
 
     useEffect(() => {
         if (!dadosTenantBarbearia) {
@@ -32,21 +28,18 @@ export default function FormsAgendamentoController() {
         }
     }, [0])
 
-    // useEffect(() => { 
-    //     console.log(servicos)
-    // }, [servicos])
+    useEffect(() => { 
+        console.log(servicoSelecionado)
+    }, [servicoSelecionado])
 
-    ///// Gerenciar estado /////
-    const [carregou, setCarregou] = useState(false)
-    const { ServicoSelecionado } = React.useContext(GlobalContext)
 
     return (
         carregou &&
         <>
             <FormsAgendamentoView
                 servicos={servicos.servicos}
-                servicoSelecionado={ServicoSelecionado ? ServicoSelecionado.id : ''}
-                precoServico={ServicoSelecionado ? ServicoSelecionado.preco : '00'}
+                servicoSelecionado={servicoSelecionado ? servicoSelecionado.id : ''}
+                precoServico={servicoSelecionado ? servicoSelecionado.preco : '00'}
                 barbeiros={servicos.barbeiros}
                 dataMin={dataMin}
                 dataMax={dataMax}

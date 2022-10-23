@@ -19,7 +19,7 @@ const postAgendamento = async (agendamento) => {
     let AgendamentoValido = PostAgendamentoValidations(agendamento)
 
     if (AgendamentoValido) {
-        return await Api().post('/agendamentos/', agendamento)
+        return await Api().post('/api/v1/agendamentos/', agendamento)
             .then(() => {
                 console.log('LOG: Agendamento realizado.')
                 return true
@@ -55,7 +55,7 @@ const getAgendamentosBarbeiro = async (idBarbearia ,idBarbeiro, data) => {
 }
 
 const getHorariosDisponiveis = async (filtro) => {
-    return await Api().get(`/agendas/tenant/${filtro.idBarbearia}?idBarbeiro=${filtro.idBarbeiro}&data=${filtro.data}&dia=${filtro.diaSemana}&idServico=${filtro.idServico}`)
+    return await Api().get(`/api/v1/agendas/tenant/${filtro.idBarbearia}?idBarbeiro=${filtro.idBarbeiro}&data=${filtro.data}&dia=${filtro.diaSemana}&idServico=${filtro.idServico}`)
         .then(res => {
             return res.data
         })

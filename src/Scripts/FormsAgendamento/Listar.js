@@ -29,12 +29,13 @@ export function ListarPrecoServico(listaServicos, idServicoSelecionado) {
 export function ListarBarbeiros(listaServicos, idServicoSelecionado) {
     const servicoSelecionado = listaServicos.find(servico => servico.id === idServicoSelecionado)
 
-    // return servicoSelecionado.listaBarbeiros.map(barbeiro => {
-    //     return <option
-    //         key={`${barbeiro.idBarbeiro}${barbeiro.barbeiros.nameBarbeiro}`}
-    //         value={barbeiro.barbeiros.idBarbeiro}>{barbeiro.barbeiros.nameBarbeiro}
-    //     </option>
-    // })
+    if (servicoSelecionado != undefined)
+        return servicoSelecionado.listaBarbeiros.map(barbeiro => {
+            return <option
+                key={`${barbeiro.idBarbeiro}${barbeiro.barbeiros.nameBarbeiro}`}
+                value={barbeiro.barbeiros.idBarbeiro}>{barbeiro.barbeiros.nameBarbeiro}
+            </option>
+        })
 }
 
 export function ListarHorariosDisponiveis(listaHorarios) {
