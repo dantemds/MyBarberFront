@@ -10,10 +10,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Servicos from './Components/Servicos/Servicos';
 import Apresentacao from './Components/Apresentacao/Apresentacao';
 import { GlobalContext } from '../../Contexts/GlobalContext'
+import { CardServicoModel } from '../../Models/CardServicoModel';
 export default function Inicio() {
     let navigate = useNavigate()
 
-    const {dadosTenantBarbearia, setDadosTenantBarbearia} = React.useContext(GlobalContext)
+    const {dadosTenantBarbearia, setDadosTenantBarbearia, setServicoSelecionado} = React.useContext(GlobalContext)
 
     const { barbearia } = useParams()
     
@@ -23,6 +24,8 @@ export default function Inicio() {
             top: 0,
             behavior: 'smooth'
         })
+
+        setServicoSelecionado(new CardServicoModel()) // Resetar o serviço selecionado caso usuário volte para o Início
 
         RequestsClientes.getAll(barbearia)
             .then(res => {

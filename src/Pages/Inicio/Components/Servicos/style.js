@@ -30,10 +30,10 @@ export const ServicosSC = styled.section`
 
     .Wrap-mais-servicos {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 4px;
         margin-top: 1rem;
-        padding: 0 17.3rem;
+        padding: 0 8.3rem;
     }
 
     .Wrap-mais-servicos svg {

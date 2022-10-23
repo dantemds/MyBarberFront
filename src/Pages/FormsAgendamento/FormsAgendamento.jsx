@@ -4,6 +4,7 @@ import FormsAgendamentoController from '../../Controllers/FormsAgendamentoContro
 import Header from '../../Components/Header/Header'
 import Rodape from '../../Components/Rodape/Rodape';
 import FormAgendamento from './Components/Form/FormAgendamento';
+import { useMemo } from 'react';
 
 
 export default function FormsAgendamento() {
@@ -19,9 +20,11 @@ export default function FormsAgendamento() {
         })
     }, [0])
 
+    const HeaderMemo = useMemo(() => <Header linkMenuDados={linkMenuDados} />, [0])
+
     return (
         <>
-            <Header linkMenuDados={linkMenuDados} />
+            {HeaderMemo}
             {/* <FormsAgendamentoController /> */}
             <FormAgendamento/>
             <Rodape />

@@ -24,12 +24,12 @@ export default function ServicosAgendados() {
 
   useEffect(() => {
 
-    RequestsClientes.getAgendamentosBarbeiro(dadosTenantBarbearia.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
-      .then(res => {
-        setListaAgendamentos(res)
-        console.log('LOG: Agendamentos recebidos com sucesso.')
-      })
-      .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
+    // RequestsClientes.getAgendamentosBarbeiro(dadosTenantBarbearia.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
+    //   .then(res => {
+    //     setListaAgendamentos(res)
+    //     console.log('LOG: Agendamentos recebidos com sucesso.')
+    //   })
+    //   .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
 
   }, [dataSelecionada, barbeiroSelecionado])
 
@@ -41,7 +41,7 @@ export default function ServicosAgendados() {
       <input type="date" value={dataSelecionada} onChange={event => setDataSelecionada(event.target.value)} />
 
       <select disabled>
-        <option value={barbeiroSelecionado.idBarbeiro}>{barbeiroSelecionado.nomeUsuario}</option>
+        {/* <option value={barbeiroSelecionado.idBarbeiro}>{barbeiroSelecionado.nomeUsuario}</option> */}
       </select>
 
       <DetalhesAgendamentoProvider>

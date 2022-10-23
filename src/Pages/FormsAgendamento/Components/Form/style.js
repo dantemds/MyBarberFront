@@ -34,10 +34,12 @@ export const FormsAgendamento = styled.section`
             border: none;
             border-bottom: 1px solid ${({ theme }) => theme.cores.secundaria};
             font-size: 1rem;
-            background-color: transparent;
+            /* background-color: transparent; */
+
         }
 
         label {
+            color: #202020 !important;
             border: none;
             height: 1.5rem;
             font-weight: 600;

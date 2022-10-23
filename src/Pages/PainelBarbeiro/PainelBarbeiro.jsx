@@ -4,7 +4,7 @@ import { RequestsClientes } from '../../API/RequestsCliente';
 
 import Header from '../../Components/Header/Header'
 import Rodape from '../../Components/Rodape/Rodape';
-import ServicosAgendados from '../PainelBarbeiro/Components/ServicosAgendados/ServicosAgendados';
+import ServicosAgendados from './Components/ServicosAgendados/ServicosAgendados';
 
 
 export default function PainelBarbeiro() {

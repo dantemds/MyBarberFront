@@ -32,13 +32,25 @@ export default function FormAgendamento(props) {
 
     let navigate = useNavigate()
 
-    let diasDaSemana = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"]
+    let dataMin = new Date()
+    let dataMax = new Date()
+    dataMax.setMonth((dataMin.getMonth() + 1))
 
-    const [listaServicos, setListaServico] = useState(null)
-    const [statusAgendamento, setStatusAgendamento] = useState({ carregando: true, erroAgendamento: false })
     const [carregou, setCarregou] = useState(false)
+    // const [listaServicos, setListaServico] = useState(null)
+    const [listaServicos, setListaServico] = useState(null)
+    const [exibirCalendario, setExibirCalendario] = useState(true)
+    const [idBarbeiroSelecionado, setIdBarbeiroSelecionado] = useState('0')
+    const [statusAgendamento, setStatusAgendamento] = useState({
+        carregando: true,
+        erroAgendamento: false
+    })
+    const [horariosDisponiveis, setHorariosDisponiveis] = useState({
+        listaHorarios: [],
+        carregando: false
+    })
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm({
         // resolver: yupResolver(validacaoAgendamento)
     })
 
@@ -48,10 +60,11 @@ export default function FormAgendamento(props) {
             navigate(-1)
         }
         else {
+            setValue('barbeariasId', dadosTenantBarbearia.idBarbearia)
             setCarregou(true)
             setListaServico(new ListaServicoModel(dadosTenantBarbearia.servicos).servicos)
         }
-    }, [])
+    }, [0])
 
     ///// ---------------------------------- /////
     const listarServicos = () => {
@@ -72,20 +85,93 @@ export default function FormAgendamento(props) {
         })
     }
 
+    const listarHorariosDisponiveis = () => {
+        if (horariosDisponiveis.listaHorarios.length === 0 && horariosDisponiveis.carregando === false)
+            return <div><p>Nenhum horário disponível.</p></div>
+
+        else if (horariosDisponiveis.carregando === true)
+            return <Oval stroke={dadosTenantBarbearia.temas.corPrimaria} speed={1} />
+
+        else
+            return horariosDisponiveis.listaHorarios.map(horario => {
+                horario = horario.toString() + ':00'
+                horario = horario.toString().replace('.5:00', ':30')
+
+                if (horario.length === 4)
+                    horario = '0' + horario
+
+                return <li key={horario}><button type='button' onClick={() => setValue('horario', getValues('horario') + 'T' + horario + ':00')}>{horario}</button></li>
+            })
+    }
+
     ///// ---------------------------------- /////
     const handleServico = event => {
+        setExibirCalendario(false) // Garantir que o calendário não seja renderizado após trocar de serviço
+        setIdBarbeiroSelecionado('0') // Garantir que o barbeiro não fique selecionado após trocar de serviço
+
         if (event.target.value === '0')
             setServicoSelecionado(new CardServicoModel())
         else
             setServicoSelecionado(listaServicos.find(servico => servico.id === event.target.value))
     }
 
+    const handleBarbeiro = event => {
+        setValue('barbeirosId', event.target.value)
+        setExibirCalendario(true)
+        getHorariosDisponiveis(formatar.toDate(new Date()))
+    }
 
+    const handleData = event => {
+        const objData = formatar.toDate(event)
+
+        setValue('horario', objData[0])
+        getHorariosDisponiveis(objData)
+    }
 
     ///// ---------------------------------- /////
     const addAgendamento = dadosAgendamento => {
         console.log(dadosAgendamento)
+        RequestsClientes.postAgendamento(dadosAgendamento)
     }
+
+    const getHorariosDisponiveis = (data) => {
+        let filtroHorariosDisponiveis = new FiltroHorariosDisponiveisModel(
+            dadosTenantBarbearia.idBarbearia,
+            getValues('barbeirosId'),
+            getValues('servicosId'),
+            data[0],
+            data[1]
+        )
+
+        setHorariosDisponiveis({ ...horariosDisponiveis, carregando: true })
+
+        RequestsClientes.getHorariosDisponiveis(filtroHorariosDisponiveis)
+            .then(resData => setHorariosDisponiveis({
+                carregando: false,
+                listaHorarios: resData
+            }))
+    }
+
+    ///// ---------------------------------- /////
+    const calendarioMemo = useMemo(() => {
+        return <Calendar
+            className="Calendario"
+            minDate={dataMin}
+            maxDate={dataMax}
+            onChange={handleData}
+            defaultValue={new Date()}
+        />
+    }, [0])
+
+    useEffect(() => {
+        if (idBarbeiroSelecionado === '0')
+            setExibirCalendario(false)
+        else {
+            getHorariosDisponiveis(formatar.toDate(new Date()))
+        }
+    }, [idBarbeiroSelecionado])
+
+    console.log('Renderizou')
 
     return (
         carregou &&
@@ -100,19 +186,44 @@ export default function FormAgendamento(props) {
                         {...register("servicosId")}
                         onChange={handleServico}
                     >
-                        <option value="0" key='0'>Selecione o Serviço</option>
+                        <option value="0" key='0'>Selecionar serviço</option>
                         {dadosTenantBarbearia.servicos && listarServicos()}
                     </select>
 
                     <input type="text" value={'Preço: ' + servicoSelecionado.preco + ',00 R$'} disabled></input>
 
                     <select
-                        disabled={servicoSelecionado.preco === '00'}
+                        name='barbeiro'
                         {...register("barbeirosId")}
+                        onChange={handleBarbeiro}
+                        disabled={servicoSelecionado.preco === '00'}
                     >
-                        <option value='0' key='0'>Selecione o Barbeiro</option>
+                        <option value='0' key='0'>Selecionar barbeiro</option>
                         {servicoSelecionado.preco !== '00' && listarBarbeiros()}
                     </select>
+
+                    {
+                        exibirCalendario && <>
+                            <label >Escolha uma data:</label>
+                            <div className="WrapCalendario">
+                                {calendarioMemo}
+                            </div>
+                        </>
+                    }
+
+                    <label htmlFor="">Selecione um horário:</label>
+                    <ul className="WrapListaHorarios">
+                        <div>
+                            {listarHorariosDisponiveis()}
+                        </div>
+                    </ul>
+                    <p className="mensagem-erro">{errors.horario?.message}</p>
+
+                    <input type="text" name='name' placeholder='Nome completo' {...register('name')} maxLength={20} minLength={3}></input>
+
+                    <input type="email" name='email' placeholder='E-mail' {...register('email')} maxLength={30} minLength={3}></input>
+
+                    <input type="tel" name='contato' placeholder='Telefone' {...register('contato')} maxLength={11} minLength={3}></input>
 
                     <button type='submit'>Agendar</button>
                 </form>
