@@ -42,7 +42,7 @@ export default function FormAgendamento(props) {
     const [exibirCalendario, setExibirCalendario] = useState(true)
     const [idBarbeiroSelecionado, setIdBarbeiroSelecionado] = useState('0')
     const [statusAgendamento, setStatusAgendamento] = useState({
-        carregando: true,
+        carregando: false,
         erroAgendamento: false
     })
     const [horariosDisponiveis, setHorariosDisponiveis] = useState({
@@ -50,13 +50,13 @@ export default function FormAgendamento(props) {
         carregando: false
     })
 
-    const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm({
-        // resolver: yupResolver(validacaoAgendamento)
+    const { register, handleSubmit, formState: { errors }, setValue, getValues, clearErrors } = useForm({
+        resolver: yupResolver(validacaoAgendamento)
     })
 
 
     useEffect(() => {
-        if (!dadosTenantBarbearia) {
+        if (!dadosTenantBarbearia || localStorage.getItem('infoAgendamento')) {
             navigate(-1)
         }
         else {
@@ -100,7 +100,10 @@ export default function FormAgendamento(props) {
                 if (horario.length === 4)
                     horario = '0' + horario
 
-                return <li key={horario}><button type='button' onClick={() => setValue('horario', getValues('horario') + 'T' + horario + ':00')}>{horario}</button></li>
+                return <li key={horario}><button type='button' onClick={() => {
+                    setValue('horario', getValues('horario').substring(0, 10) + 'T' + horario + ':00')
+                    clearErrors('horario')
+                }}>{horario}</button></li>
             })
     }
 
@@ -110,15 +113,16 @@ export default function FormAgendamento(props) {
         setIdBarbeiroSelecionado('0') // Garantir que o barbeiro não fique selecionado após trocar de serviço
 
         if (event.target.value === '0')
-            setServicoSelecionado(new CardServicoModel())
-        else
+            setServicoSelecionado(new CardServicoModel()) // Para resetar os dados do serviço selecionado caso volte para "Selecionar serviço"
+        else {
+            clearErrors('servicosId')
             setServicoSelecionado(listaServicos.find(servico => servico.id === event.target.value))
+        }
     }
 
     const handleBarbeiro = event => {
         setValue('barbeirosId', event.target.value)
-        setExibirCalendario(true)
-        getHorariosDisponiveis(formatar.toDate(new Date()))
+        setIdBarbeiroSelecionado(event.target.value)
     }
 
     const handleData = event => {
@@ -131,7 +135,16 @@ export default function FormAgendamento(props) {
     ///// ---------------------------------- /////
     const addAgendamento = dadosAgendamento => {
         console.log(dadosAgendamento)
+        setStatusAgendamento({ ...statusAgendamento, carregando: true })
         RequestsClientes.postAgendamento(dadosAgendamento)
+            .then(() => {
+                setStatusAgendamento({ ...statusAgendamento, carregando: false })
+                navigate('/confirmacao-agendamento')
+            })
+            .catch(()=> {
+                setStatusAgendamento({ erroAgendamento: true, carregando: false })
+
+            })
     }
 
     const getHorariosDisponiveis = (data) => {
@@ -146,10 +159,12 @@ export default function FormAgendamento(props) {
         setHorariosDisponiveis({ ...horariosDisponiveis, carregando: true })
 
         RequestsClientes.getHorariosDisponiveis(filtroHorariosDisponiveis)
-            .then(resData => setHorariosDisponiveis({
-                carregando: false,
-                listaHorarios: resData
-            }))
+            .then(resData => {
+                setHorariosDisponiveis({
+                    carregando: false,
+                    listaHorarios: resData
+                })
+            })
     }
 
     ///// ---------------------------------- /////
@@ -164,14 +179,17 @@ export default function FormAgendamento(props) {
     }, [0])
 
     useEffect(() => {
-        if (idBarbeiroSelecionado === '0')
+        console.log(idBarbeiroSelecionado)
+        if (idBarbeiroSelecionado == "0")
             setExibirCalendario(false)
         else {
+            clearErrors('barbeirosId')
+            setExibirCalendario(true)
             getHorariosDisponiveis(formatar.toDate(new Date()))
         }
     }, [idBarbeiroSelecionado])
 
-    console.log('Renderizou')
+    // console.log('Renderizou')
 
     return (
         carregou &&
@@ -189,6 +207,7 @@ export default function FormAgendamento(props) {
                         <option value="0" key='0'>Selecionar serviço</option>
                         {dadosTenantBarbearia.servicos && listarServicos()}
                     </select>
+                    <p className="mensagem-erro">{errors.servicosId?.message}</p>
 
                     <input type="text" value={'Preço: ' + servicoSelecionado.preco + ',00 R$'} disabled></input>
 
@@ -201,6 +220,7 @@ export default function FormAgendamento(props) {
                         <option value='0' key='0'>Selecionar barbeiro</option>
                         {servicoSelecionado.preco !== '00' && listarBarbeiros()}
                     </select>
+                    <p className="mensagem-erro">{errors.barbeirosId?.message}</p>
 
                     {
                         exibirCalendario && <>
@@ -211,21 +231,33 @@ export default function FormAgendamento(props) {
                         </>
                     }
 
-                    <label htmlFor="">Selecione um horário:</label>
-                    <ul className="WrapListaHorarios">
-                        <div>
-                            {listarHorariosDisponiveis()}
-                        </div>
-                    </ul>
-                    <p className="mensagem-erro">{errors.horario?.message}</p>
+                    {
+                        exibirCalendario && <>
+                            <label htmlFor="">Selecione um horário:</label>
+                            <ul className="WrapListaHorarios">
+                                <div>
+                                    {listarHorariosDisponiveis()}
+                                </div>
+                            </ul>
+                            <p className="mensagem-erro">{errors.horario?.message}</p>
+                        </>
+                    }
 
                     <input type="text" name='name' placeholder='Nome completo' {...register('name')} maxLength={20} minLength={3}></input>
+                    <p className="mensagem-erro">{errors.name?.message}</p>
 
                     <input type="email" name='email' placeholder='E-mail' {...register('email')} maxLength={30} minLength={3}></input>
+                    <p className="mensagem-erro">{errors.email?.message}</p>
 
                     <input type="tel" name='contato' placeholder='Telefone' {...register('contato')} maxLength={11} minLength={3}></input>
+                    <p className="mensagem-erro">{errors.contato?.message}</p>
 
-                    <button type='submit'>Agendar</button>
+                    <button
+                        type='submit'
+                        className={statusAgendamento.carregando || statusAgendamento.erroAgendamento ? 'Btn-disabled' : ''}
+                        disabled={statusAgendamento.carregando || statusAgendamento.erroAgendamento}                    >
+                        {statusAgendamento.carregando ? 'Carregando...' : 'Agendar'}
+                    </button>
                 </form>
             </FormsAgendamento>
 
