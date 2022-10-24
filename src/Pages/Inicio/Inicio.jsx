@@ -18,12 +18,13 @@ export default function Inicio() {
 
     const { barbearia } = useParams()
     
-
     useEffect(() => {
         window.scroll({
             top: 0,
             behavior: 'smooth'
         })
+        
+        window.localStorage.clear()
 
         setServicoSelecionado(new CardServicoModel()) // Resetar o serviço selecionado caso usuário volte para o Início
 
