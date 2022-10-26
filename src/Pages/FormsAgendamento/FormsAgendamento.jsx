@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import FormsAgendamentoController from '../../Controllers/FormsAgendamentoController';
 
 import Header from '../../Components/Header/Header'
 import Rodape from '../../Components/Rodape/Rodape';
@@ -25,7 +24,6 @@ export default function FormsAgendamento() {
     return (
         <>
             {HeaderMemo}
-            {/* <FormsAgendamentoController /> */}
             <FormAgendamento/>
             <Rodape />
         </>

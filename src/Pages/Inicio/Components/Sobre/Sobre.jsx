@@ -15,7 +15,7 @@ export default function Sobre() {
     const barbeiros = dadosTenantBarbearia.barbeiros
     const imagensLandingPage = ordenarImagens(dadosTenantBarbearia.landingPageImages)
 
-
+    console.log(dadosTenantBarbearia)
     // useEffect(() => {
     //     window.document.getElementById().scroll(100, 0)
     // }, [0])

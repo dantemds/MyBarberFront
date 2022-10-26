@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const FormsAgendamento = styled.section`
+export const FormAgendamentoSC = styled.section`
+
+
     min-height: 100vh;
     max-width: 1200px;
     display: flex;
@@ -13,7 +15,6 @@ export const FormsAgendamento = styled.section`
         width: 100%;
         height: auto;
         font-size: 2.5rem;
-        /* font-family: 'Nunito', sans-serif; */
         font-weight: 900;
         text-align: center;
         padding: 0 24px;
@@ -27,96 +28,70 @@ export const FormsAgendamento = styled.section`
         align-items: center;
         margin: ${({ theme }) => theme.espacamento[5]}px;
 
-        input, label, select {
-            height: 2.5rem;
+        input, select {
             width: 400px;
-            /* border-radius: 5px; */
+            height: 2.5rem;
+            font-size: .9rem;
+            padding: 0 12px;
+            margin-bottom: 2.5rem;
             border: none;
             border-bottom: 1px solid ${({ theme }) => theme.cores.secundaria};
-            font-size: 1rem;
-            /* background-color: transparent; */
-
-        }
-
-        label {
-            color: #202020 !important;
-            border: none;
-            height: 1.5rem;
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-
-        select {
-            margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
-        }
-
-        option {
-            /* background-color: #fff; */
-        }
-
-        input {
-            margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
-            padding: ${({ theme }) => theme.espacamento[2]}px;
+            background-color: #fafafa;
         }
 
         input:focus, select:focus {
-            background-color: rgba(20, 20, 20, .05);
             outline: 0;
+            box-shadow: 0 0 10px rgba(20, 20, 20, .3);
+            border-bottom: 3px solid ${({ theme }) => theme.cores.secundaria};
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active{
+            -webkit-transition: background-color 9999s ease-out;
+        }
+
+        .select-barbeiro {
+            margin-bottom: 1.5rem;
         }
 
         .mensagem-erro {
             width: 400px;
             color: red;
-            margin-top: -56px;
-            margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
             text-align: left;
+            font-size: .8rem;
+            margin-top: -2.2rem;
+            margin-bottom: 2.5rem;
         }
 
-        .WrapFotoBarbeiro {
-            width: auto;
-            height: auto;
-            background-color: ${({ theme }) => theme.cores.secundaria};
-            border: 4px solid ${({ theme }) => theme.cores.secundaria};
-            box-shadow: 0 0 10px ${({ theme }) => theme.cores.secundaria};
-            margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
-            border-radius: 50%;
-            overflow: hidden;
-
-            div {
-                width: 200px;
-                height: 200px;
-                
-                img {
-                    width: auto;
-                    height: auto;
-                }
-            }
+        h3 {
+            width: 400px;
+            text-align: start;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: .5rem;
         }
 
         .WrapCalendario {
             width: 400px;
             height: auto;
-            margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
+            margin-bottom: 2.5rem;
+            
+            .Calendario {
+                width: 100%;
+                height: 100%;
+                border: 1px solid ${({ theme }) => theme.cores.secundaria};
 
-        }
+                abbr {
+                    text-decoration: none;
+                    font-size: .8rem;
+                }
 
-        .Calendario {
-            width: 100%;
-            height: 100%;
-            margin-top: 8px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 0 10px ${({ theme }) => theme.cores.secundaria};
-            font-family: 'Outfit', sans-serif;
-        }
-
-        abbr {
-            text-decoration: none;
-            font-size: .8rem;
-        }
-
-        .react-calendar__navigation__label__labelText{
-            font-size: .8rem;
+                .react-calendar__navigation__label__labelText{
+                    font-size: .8rem;
+                }
+            }
         }
 
         .WrapListaHorarios {
@@ -126,12 +101,12 @@ export const FormsAgendamento = styled.section`
             flex-wrap: wrap;
             align-items: center;
             font-weight: 500;
-            border-radius: 5px;
             border: 1px solid ${({ theme }) => theme.cores.secundaria};
             box-shadow: 0 0 10px rgba(0, 0, 0, .2) inset;
             list-style: none;
             padding: 16px;
-            margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
+            margin-bottom: 2.5rem;
+            background-color: #e9e9e9;
             
             
             div {
@@ -142,110 +117,82 @@ export const FormsAgendamento = styled.section`
                 gap: 16px;
                 justify-content: space-evenly;
                 margin: auto;
-
+                
                 li {
                     height: 40px;
                     width: 70px;
-                    padding: 8px;
-                    text-align: center;
-                    border: 2px solid ${({ theme }) => theme.cores.secundaria};
-                    border-radius: 5px;
-                    font-weight: 500;
-                    font-size: 1rem;
-                    text-shadow: ${({ theme }) => theme.sombras.texto};
-                    color: #fff;
-                    padding: ${({ theme }) => theme.espacamento[2]}px;
-                    background-color: ${({ theme }) => theme.cores.secundaria};
-                    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-                    transition: all .3s;
-                    cursor: pointer;
-                }
-    
-                li:hover, .liSelecionado {
-                    background-color: #fff;
-                    color: ${({ theme }) => theme.cores.secundaria};
-                }
-    
-                div {
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    padding: 8px;
-    
-                    p {
+                    background-color: transparent;
+                    
+                    button {
                         width: 100%;
-                        text-align: center;
-                        vertical-align: middle;
+                        height: 100%;
+                        padding: 8px;
+                        border: 1px solid ${({ theme }) => theme.cores.secundaria};
+                        font-weight: 500;
+                        font-size: .9rem;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+                        transition: all .3s;
+                        background-color: transparent;
+                        background-color: #fafafa;
                     }
-                } 
+                }
+                
+                button:hover, .liSelecionado {
+                    background-color: ${({ theme }) => theme.cores.secundaria};
+                    color: #fff;
+                }
             }
 
-            
         }
         
         button[type=submit] {
-            height: auto;
-            padding: 1rem 4rem;
+            height: 3rem;
+            width: 100%;
+            max-width: 400px;
             color: #fff;
             border: none;
             border-radius: 50px;
             font-size: 1.5rem;
-            background-color: #00c943;
             text-decoration: none;
             text-shadow: ${({ theme }) => theme.sombras.texto};
             text-transform: uppercase;
             font-weight: 400;
             box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+            background-color: ${({ theme }) => theme.cores.secundaria};
             cursor: pointer;
         }
         
-        input[type=submit].Btn-disabled {
+        .Btn-disabled {
             background-color: rgba(0, 0, 0, .4);
             cursor: default;
         }
-        
     }
 
     @media (max-width: 800px) {
         padding: 16px;
 
         h2 {
-            /* height: 45px;
-            font-size: 1.5rem;
-            text-align: center; */
             font-size: 2rem;
         }
 
         form {
-            margin: 0;
-            margin-top: ${({ theme }) => theme.espacamento[7]}px;
+            margin-top: 1rem 0 2rem 0;
 
             .mensagem-erro {
                 width: 100%;
             }
 
-            input, label, select, .WrapListaHorarios, .WrapCalendario {
+            input, label, select, .WrapListaHorarios, .WrapCalendario, h3 {
                 width: 100%;
                 max-width: 400px;
-                /* font-size: 1rem; */
             }
-
         }
     }
 
     @media (max-width: 400px) {
         padding: 16px;
 
-        h2 {
-            /* height: 35px;
-            font-size: 1.2rem; */
-        }
-
-        
-
         form {
-            margin-top: ${({ theme }) => theme.espacamento[6]}px;
-
             .WrapListaHorarios{
                 li {
                     button {
@@ -253,15 +200,6 @@ export const FormsAgendamento = styled.section`
                     }
                 }
             } 
-
-            label {
-                /* font-size: 1.2rem; */
-            }
-
-            input, select {
-                /* font-size: 1rem; */
-                color: rgba(20, 20, 20, .7)
-            }
         }
     }
 `

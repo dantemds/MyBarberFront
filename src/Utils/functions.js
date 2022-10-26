@@ -20,9 +20,19 @@ export const getUrlBanner = banner => {
 }
 
 
-export const ordenarImagens = (lista) => {
+export const ordenarImagens = lista => {
     if (lista)
         return lista.sort((x, y) => x.numeroImagem - y.numeroImagem)
     else
         return []
+}
+
+export const formatarHorario = horario => {
+    horario = horario.toString() + ':00'
+    horario = horario.toString().replace('.5:00', ':30')
+
+    if (horario.length === 4)
+        horario = '0' + horario
+
+    return horario
 }
