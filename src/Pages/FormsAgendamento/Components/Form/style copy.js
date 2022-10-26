@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormsAgendamento = styled.section`
+export const FormAgendamentoSC = styled.section`
     min-height: 100vh;
     max-width: 1200px;
     display: flex;
@@ -13,7 +13,6 @@ export const FormsAgendamento = styled.section`
         width: 100%;
         height: auto;
         font-size: 2.5rem;
-        /* font-family: 'Nunito', sans-serif; */
         font-weight: 900;
         text-align: center;
         padding: 0 24px;
@@ -34,10 +33,12 @@ export const FormsAgendamento = styled.section`
             border: none;
             border-bottom: 1px solid ${({ theme }) => theme.cores.secundaria};
             font-size: 1rem;
-            background-color: transparent;
+            /* background-color: transparent; */
+
         }
 
         label {
+            color: #202020 !important;
             border: none;
             height: 1.5rem;
             font-weight: 600;
@@ -46,6 +47,10 @@ export const FormsAgendamento = styled.section`
 
         select {
             margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
+        }
+
+        .select-barbeiro {
+            margin-bottom: 2rem !important;
         }
 
         option {
@@ -95,7 +100,6 @@ export const FormsAgendamento = styled.section`
             width: 400px;
             height: auto;
             margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
-
         }
 
         .Calendario {
@@ -177,11 +181,9 @@ export const FormsAgendamento = styled.section`
                     }
                 } 
             }
-
-            
         }
         
-        input[type=submit] {
+        button[type=submit] {
             height: auto;
             padding: 1rem 4rem;
             color: #fff;

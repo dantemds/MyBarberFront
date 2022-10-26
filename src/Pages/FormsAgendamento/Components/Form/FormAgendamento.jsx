@@ -1,12 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import ListarServicos, { ListarPrecoServico, ListarBarbeiros } from '../../../../Scripts/FormsAgendamento/Listar'
-
-import { FormsAgendamento } from '../../../../Views/FormsAgendamento/style'
+import { FormAgendamentoSC } from './style'
 
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
-
-import ExibirFotoBarbeiro from '../../../../Scripts/FormsAgendamento/Exibir'
 
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -14,18 +10,16 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { validacaoAgendamento } from '../../../../Validations/AgendamentoValidation'
 
 import { formatar } from '../../../../Scripts/FormsAgendamento/Formatar'
-import { AgendamentoModel } from '../../../../Models/AgendamentoModel'
 import { RequestsClientes } from '../../../../API/RequestsCliente'
 import { FiltroHorariosDisponiveisModel } from '../../../../Models/FiltroHorariosDisponiveis.model'
 
-import { Oval } from 'react-loading-icons'
 
-import Carregando from '../Carregando/Carregando'
 import { GlobalContext } from '../../../../Contexts/GlobalContext'
-import { isExist } from '../../../../Utils/functions'
 import { ListaServicoModel } from '../../../../Models/ListaServicoModel'
 import { CardServicoModel } from '../../../../Models/CardServicoModel'
-
+import FotoBarbeiro from '../../../../Components/FotoBarbeiro/FotoBarbeiro'
+import { formatarHorario } from '../../../../Utils/functions'
+import Oval from 'react-loading-icons/dist/esm/components/oval'
 
 export default function FormAgendamento(props) {
     const { dadosTenantBarbearia, servicoSelecionado, setServicoSelecionado } = React.useContext(GlobalContext)
@@ -37,10 +31,10 @@ export default function FormAgendamento(props) {
     dataMax.setMonth((dataMin.getMonth() + 1))
 
     const [carregou, setCarregou] = useState(false)
-    // const [listaServicos, setListaServico] = useState(null)
     const [listaServicos, setListaServico] = useState(null)
     const [exibirCalendario, setExibirCalendario] = useState(true)
     const [idBarbeiroSelecionado, setIdBarbeiroSelecionado] = useState('0')
+    const [horaSelecionada, setHoraSelecionada] = useState('')
     const [statusAgendamento, setStatusAgendamento] = useState({
         carregando: false,
         erroAgendamento: false
@@ -61,6 +55,7 @@ export default function FormAgendamento(props) {
         }
         else {
             setValue('barbeariasId', dadosTenantBarbearia.idBarbearia)
+            setValue('horario', formatar.toDate(new Date())[0])
             setCarregou(true)
             setListaServico(new ListaServicoModel(dadosTenantBarbearia.servicos).servicos)
         }
@@ -92,19 +87,25 @@ export default function FormAgendamento(props) {
         else if (horariosDisponiveis.carregando === true)
             return <Oval stroke={dadosTenantBarbearia.temas.corPrimaria} speed={1} />
 
-        else
+        else {
+
             return horariosDisponiveis.listaHorarios.map(horario => {
-                horario = horario.toString() + ':00'
-                horario = horario.toString().replace('.5:00', ':30')
+                horario = formatarHorario(horario)
 
-                if (horario.length === 4)
-                    horario = '0' + horario
-
-                return <li key={horario}><button type='button' onClick={() => {
-                    setValue('horario', getValues('horario').substring(0, 10) + 'T' + horario + ':00')
-                    clearErrors('horario')
-                }}>{horario}</button></li>
+                return <li key={horario}>
+                    <button
+                        className={horaSelecionada === horario ? 'liSelecionado' : ''}
+                        type='button'
+                        onClick={() => {
+                            setHoraSelecionada(horario)
+                            setValue('horario', getValues('horario').substring(0, 10) + 'T' + horario + ':00')
+                            clearErrors('horario')
+                        }}>
+                        {horario}
+                    </button>
+                </li>
             })
+        }
     }
 
     ///// ---------------------------------- /////
@@ -141,9 +142,8 @@ export default function FormAgendamento(props) {
                 setStatusAgendamento({ ...statusAgendamento, carregando: false })
                 navigate('/confirmacao-agendamento')
             })
-            .catch(()=> {
+            .catch(() => {
                 setStatusAgendamento({ erroAgendamento: true, carregando: false })
-
             })
     }
 
@@ -157,6 +157,7 @@ export default function FormAgendamento(props) {
         )
 
         setHorariosDisponiveis({ ...horariosDisponiveis, carregando: true })
+        setHoraSelecionada('') // Garantir que o botão não venha selecionado caso receba uma nola lista de horários
 
         RequestsClientes.getHorariosDisponiveis(filtroHorariosDisponiveis)
             .then(resData => {
@@ -191,14 +192,14 @@ export default function FormAgendamento(props) {
 
     // console.log('Renderizou')
 
+
     return (
         carregou &&
         <>
 
-            <FormsAgendamento>
+            <FormAgendamentoSC>
                 <h2>Preencha as informações</h2>
                 <form onSubmit={handleSubmit(addAgendamento)}>
-                    {/* <labell >Serviços:</labell> */}
                     <select
                         name='servico'
                         {...register("servicosId")}
@@ -212,6 +213,7 @@ export default function FormAgendamento(props) {
                     <input type="text" value={'Preço: ' + servicoSelecionado.preco + ',00 R$'} disabled></input>
 
                     <select
+                        className={idBarbeiroSelecionado !== '0' ? 'select-barbeiro' : ''}
                         name='barbeiro'
                         {...register("barbeirosId")}
                         onChange={handleBarbeiro}
@@ -223,8 +225,16 @@ export default function FormAgendamento(props) {
                     <p className="mensagem-erro">{errors.barbeirosId?.message}</p>
 
                     {
+                        idBarbeiroSelecionado !== '0' &&
+                        <FotoBarbeiro
+                            listaBarbeiros={servicoSelecionado.listaBarbeiros}
+                            idBarbeiro={idBarbeiroSelecionado}
+                        />
+                    }
+
+                    {
                         exibirCalendario && <>
-                            <label >Escolha uma data:</label>
+                            <h3 >Escolha uma data:</h3>
                             <div className="WrapCalendario">
                                 {calendarioMemo}
                             </div>
@@ -233,7 +243,7 @@ export default function FormAgendamento(props) {
 
                     {
                         exibirCalendario && <>
-                            <label htmlFor="">Selecione um horário:</label>
+                            <h3 htmlFor="">Selecione um horário:</h3>
                             <ul className="WrapListaHorarios">
                                 <div>
                                     {listarHorariosDisponiveis()}
@@ -259,7 +269,7 @@ export default function FormAgendamento(props) {
                         {statusAgendamento.carregando ? 'Carregando...' : 'Agendar'}
                     </button>
                 </form>
-            </FormsAgendamento>
+            </FormAgendamentoSC>
 
         </>
     )
