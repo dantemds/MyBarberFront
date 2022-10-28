@@ -8,11 +8,12 @@ export const GlobalProvider = (props) => {
     const [tema, setTema] = useState(null)
     const [dadosTenantBarbearia, setDadosTenantBarbearia] = useState(null)
     const [servicoSelecionado, setServicoSelecionado] = useState(new CardServicoModel())
-
+    const [agendamentoRealizado, setAgendamentoRealizado] = useState(false)
 
 
     return (
         <GlobalContext.Provider value={{
+            agendamentoRealizado, setAgendamentoRealizado,
             dadosTenantBarbearia, setDadosTenantBarbearia,
             servicoSelecionado, setServicoSelecionado,
             tema, setTema,
