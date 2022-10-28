@@ -17,19 +17,19 @@ export default function PainelBarbeiro() {
         ['Sair', '#'],
     ]
 
-    // useEffect(() => {
-    //     try {
-    //         RequestsClientes.getToken()
-    //         setUsuarioLogado(true)
-    //     }
-    //     catch {
-    //         setUsuarioLogado(false)
-    //         navigate('/login')
-    //     }
-    // }, [0])
+    useEffect(() => {
+        try {
+            RequestsClientes.getToken()
+            setUsuarioLogado(true)
+        }
+        catch {
+            setUsuarioLogado(false)
+            navigate('/login')
+        }
+    }, [0])
 
     return (
-        // usuarioLogado &&
+        usuarioLogado &&
         <>
             <Header linkMenuDados={linkMenuDados} />
             <ServicosAgendados />
