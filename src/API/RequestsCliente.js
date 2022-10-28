@@ -1,11 +1,10 @@
 import { PostAgendamentoValidations } from "../Validations/PostAgendamentoValidation"
-import Api, { Temporario } from "./ApiConfig"
+import Api from "./ApiConfig"
 
 const getAll = async (barbearia) => {
     let resApi
 
     await Api().get(`/api/v1/barbearias/${barbearia}/`)
-        // await Api().get(`http://localhost:5000/barbearias`)
         .then(res => {
             resApi = res.data
         })
@@ -43,7 +42,7 @@ const postAgendamento = async (agendamento) => {
 
 const deleteAgendamento = async (id) => {
 
-    await Api().delete(`/agendamentos/${id}`)
+    await Api().delete(`api/v1/agendamentos/${id}`)
         .then(() => {
             console.log("LOG: Agendamento cancelado.")
             window.location.reload()
@@ -53,7 +52,7 @@ const deleteAgendamento = async (id) => {
 
 const getAgendamentosBarbeiro = async (idBarbearia, idBarbeiro, data) => {
 
-    return await Temporario().get(`/agendamentos/barbeiro/${idBarbearia}?data=${data}&idBarbeiro=${idBarbeiro}`)
+    return await Api().get(`api/v1/agendamentos/barbeiro/${idBarbearia}?data=${data}&idBarbeiro=${idBarbeiro}`)
         .then(res => {
             return res.data
         })

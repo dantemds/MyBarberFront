@@ -8,14 +8,17 @@ export default function Autenticacao() {
     const [autenticacaoFalhou, setAutenticacaoFalhou] = useState(false)
 
     const navigate = useNavigate()
-
+  
     const logar = event => {
         event.preventDefault()
 
         RequestsClientes.postAutenticacao(credencial)
             .then(res => {
-                
-                if (res){
+
+                if (res) {
+                    // const encryptor = require('simple-encryptor')(process.env.REACT_APP_ENCRYPTOR_KEY)
+                    // localStorage.setItem('usuario', encryptor.encrypt(JSON.stringify(res)))
+
                     setAutenticacaoFalhou(false)
                     navigate('/painel-barbeiro')
                 }

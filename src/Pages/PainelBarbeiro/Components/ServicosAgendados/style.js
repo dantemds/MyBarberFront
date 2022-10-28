@@ -8,68 +8,52 @@ export const ServicosAgendadosSC = styled.section`
     align-items: center;
     margin: auto;
     margin-top: 50px;
-    padding: ${({ theme }) => theme.espacamento[7]}px 0px;
+    padding: 3rem 0px;
+    color: #202020;
 
     h2 {
         width: 100%;
-        height: 54px;
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 400;
-        font-size: 22pt;
-        text-transform: uppercase;
-        border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
-        margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
+        height: auto;
+        font-size: 2.5rem;
+        font-weight: 900;
+        text-align: center;
+        padding: 0 24px;
+        margin-bottom: 2.5rem;
     }
 
     input, label, select {
+        width: 217px;
         height: 2.5rem;
-        width: 200px;
-        border-radius: 5px;
-        border: 1px solid ${({ theme }) => theme.cores.secundaria};
-        font-size: 1.2rem;
-        font-family: 'Outfit', sans-serif;
-    }
-
-    label {
+        font-size: .9rem;
+        padding: 0 12px;
+        margin-bottom: 2.5rem;
         border: none;
-    }
-
-    select {
-        background-color: #fff;
-        margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
+        border-bottom: 1px solid #202020;
+        background-color: #fafafa;
     }
 
     option {
-        background-color: #fff;
+        background-color: #fafafa;
     }
 
-    input {
-        margin-bottom: ${({ theme }) => theme.espacamento[7]}px;
-        padding: ${({ theme }) => theme.espacamento[2]}px;
-        border-style: solid;
-    }
 
     input:focus, select:focus {
-        box-shadow: ${({ theme }) => theme.sombras.componentes} ${({ theme }) => theme.cores.secundaria};
         outline: 0;
+        box-shadow: 0 0 10px rgba(20, 20, 20, .3);
+        border-bottom: 3px solid #202020;
     }
-
-
 
     @media (max-width: 800px) {
         padding: 16px;
 
         h2 {
-            height: 45px;
-            font-size: 1.5rem;
-            text-align: center;
+            font-size: 2rem;
         }
     }
 
     @media (max-width: 400px) {
         h2 {
-            height: 35px;
-            font-size: 1.2rem;
+            width: 80%
         }
     }
 `

@@ -4,8 +4,6 @@ import { DetalhesAgendamentoProvider } from '../../../../Contexts/DetalhesAgenda
 import { RequestsClientes } from '../../../../API/RequestsCliente'
 import Agenda from '../Agenda/Agenda'
 import useDate from '../../../../Hooks/useDate'
-import { GlobalContext } from '../../../../Contexts/GlobalContext'
-
 
 export default function ServicosAgendados() {
 
@@ -14,9 +12,7 @@ export default function ServicosAgendados() {
   const [barbeiroSelecionado, setBarbeiroSelecionado] = useState('')
   const [listaAgendamentos, setListaAgendamentos] = useState([])
 
-  const { dadosTenantBarbearia } = React.useContext(GlobalContext)
-
-
+  const usuario = JSON.parse(localStorage.getItem('usuario'))
 
   useEffect(() => {
     setBarbeiroSelecionado(JSON.parse(window.localStorage.getItem('usuario')))
@@ -24,12 +20,12 @@ export default function ServicosAgendados() {
 
   useEffect(() => {
 
-    // RequestsClientes.getAgendamentosBarbeiro(dadosTenantBarbearia.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
-    //   .then(res => {
-    //     setListaAgendamentos(res)
-    //     console.log('LOG: Agendamentos recebidos com sucesso.')
-    //   })
-    //   .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
+    RequestsClientes.getAgendamentosBarbeiro(usuario.idBarbearia, usuario.idBarbeiro, dataSelecionada)
+      .then(res => {
+        setListaAgendamentos(res)
+        console.log('LOG: Agendamentos recebidos com sucesso.')
+      })
+      .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
 
   }, [dataSelecionada, barbeiroSelecionado])
 
@@ -41,7 +37,7 @@ export default function ServicosAgendados() {
       <input type="date" value={dataSelecionada} onChange={event => setDataSelecionada(event.target.value)} />
 
       <select disabled>
-        {/* <option value={barbeiroSelecionado.idBarbeiro}>{barbeiroSelecionado.nomeUsuario}</option> */}
+        <option value={usuario.idBarbeiro}>{usuario.nomeUsuario}</option>
       </select>
 
       <DetalhesAgendamentoProvider>
