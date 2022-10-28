@@ -5,11 +5,11 @@ const getAll = async (barbearia) => {
     let resApi
 
     await Api().get(`/api/v1/barbearias/${barbearia}/`)
-    // await Api().get(`http://localhost:5000/barbearias`)
+        // await Api().get(`http://localhost:5000/barbearias`)
         .then(res => {
             resApi = res.data
         })
-        .catch(()=> console.log('AAAAAAAAAAAAAA'))
+        .catch(() => console.log('AAAAAAAAAAAAAA'))
 
     return resApi
 }
@@ -20,9 +20,15 @@ const postAgendamento = async (agendamento) => {
 
     if (AgendamentoValido) {
         return await Api().post('/api/v1/agendamentos/', agendamento)
-            .then(() => {
-                console.log('LOG: Agendamento realizado.')
-                return true
+            .then((res) => {
+                console.log(res)
+                if (res.status === 201) {
+                    console.log('LOG: Agendamento realizado.')
+                    return true
+                }
+                else {
+                    return false
+                }
             })
             .catch(() => {
                 console.log('LOG: Dados inválidos.')
@@ -45,8 +51,8 @@ const deleteAgendamento = async (id) => {
         .catch(() => console.log("LOG: Falha ao cancelar o agendamento."))
 }
 
-const getAgendamentosBarbeiro = async (idBarbearia ,idBarbeiro, data) => {
-  
+const getAgendamentosBarbeiro = async (idBarbearia, idBarbeiro, data) => {
+
     return await Temporario().get(`/agendamentos/barbeiro/${idBarbearia}?data=${data}&idBarbeiro=${idBarbeiro}`)
         .then(res => {
             return res.data

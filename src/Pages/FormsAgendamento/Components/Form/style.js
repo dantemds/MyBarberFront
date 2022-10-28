@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FormAgendamentoSC = styled.section`
 
 
-    min-height: 100vh;
+    min-height: 90vh;
     max-width: 1200px;
     display: flex;
     flex-direction: column;
@@ -169,7 +169,6 @@ export const FormAgendamentoSC = styled.section`
     }
 
     @media (max-width: 800px) {
-        padding: 16px;
 
         h2 {
             font-size: 2rem;
@@ -190,7 +189,6 @@ export const FormAgendamentoSC = styled.section`
     }
 
     @media (max-width: 400px) {
-        padding: 16px;
 
         form {
             .WrapListaHorarios{

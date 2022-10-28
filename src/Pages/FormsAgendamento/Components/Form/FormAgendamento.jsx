@@ -22,7 +22,7 @@ import { formatarHorario } from '../../../../Utils/functions'
 import Oval from 'react-loading-icons/dist/esm/components/oval'
 
 export default function FormAgendamento(props) {
-    const { dadosTenantBarbearia, servicoSelecionado, setServicoSelecionado } = React.useContext(GlobalContext)
+    const { dadosTenantBarbearia, servicoSelecionado, setServicoSelecionado, setAgendamentoRealizado } = React.useContext(GlobalContext)
 
     let navigate = useNavigate()
 
@@ -112,6 +112,7 @@ export default function FormAgendamento(props) {
     const handleServico = event => {
         setExibirCalendario(false) // Garantir que o calendário não seja renderizado após trocar de serviço
         setIdBarbeiroSelecionado('0') // Garantir que o barbeiro não fique selecionado após trocar de serviço
+        setValue('barbeirosId', '0') // Garantir que os dados do formulário estejam atualizados, sem isso a validação não funciona corretamente
 
         if (event.target.value === '0')
             setServicoSelecionado(new CardServicoModel()) // Para resetar os dados do serviço selecionado caso volte para "Selecionar serviço"
@@ -139,6 +140,7 @@ export default function FormAgendamento(props) {
         setStatusAgendamento({ ...statusAgendamento, carregando: true })
         RequestsClientes.postAgendamento(dadosAgendamento)
             .then(() => {
+                setAgendamentoRealizado(true)
                 setStatusAgendamento({ ...statusAgendamento, carregando: false })
                 navigate('/confirmacao-agendamento')
             })
@@ -213,11 +215,12 @@ export default function FormAgendamento(props) {
                     <input type="text" value={'Preço: ' + servicoSelecionado.preco + ',00 R$'} disabled></input>
 
                     <select
-                        className={idBarbeiroSelecionado !== '0' ? 'select-barbeiro' : ''}
+                        value={idBarbeiroSelecionado}
                         name='barbeiro'
                         {...register("barbeirosId")}
                         onChange={handleBarbeiro}
                         disabled={servicoSelecionado.preco === '00'}
+                        className={idBarbeiroSelecionado !== '0' ? 'select-barbeiro' : ''}
                     >
                         <option value='0' key='0'>Selecionar barbeiro</option>
                         {servicoSelecionado.preco !== '00' && listarBarbeiros()}
@@ -253,7 +256,7 @@ export default function FormAgendamento(props) {
                         </>
                     }
 
-                    <input type="text" name='name' placeholder='Nome completo' {...register('name')} maxLength={20} minLength={3}></input>
+                    <input type="text" name='name' placeholder='Nome completo' {...register('name')} maxLength={30} minLength={3}></input>
                     <p className="mensagem-erro">{errors.name?.message}</p>
 
                     <input type="email" name='email' placeholder='E-mail' {...register('email')} maxLength={30} minLength={3}></input>
