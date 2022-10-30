@@ -11,7 +11,7 @@ export const ServicosSC = styled.section`
 
     > h1 {
         width: 100%;
-        height: 54px;
+        height: auto;
         font-weight: 200;
         font-size: 2.5rem;
         font-weight: 900;
@@ -29,29 +29,32 @@ export const ServicosSC = styled.section`
     }
 
     .Wrap-mais-servicos {
+        height: auto;
+        width: 300px;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 4px;
         margin-top: 1rem;
-        padding: 0 8.3rem;
+        padding: 0 0 0 8rem;
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    
+        a {
+            font-size: .8rem;
+            color: #202020;
+        }
     }
 
-    .Wrap-mais-servicos svg {
-        width: 12px;
-    }
-
-    .Wrap-mais-servicos a {
-        font-size: .8rem;
-        color: #202020;
-    }
 
 
     @media (max-width: 800px) {
         padding: ${({ theme }) => theme.espacamento[7]}px ${({ theme }) => theme.espacamento[4]}px;
 
         > h1 {
-            width: 50%;
-            height: 45px;
+            width: 100%;
             word-wrap: break-word;
             
         }
@@ -69,6 +72,19 @@ export const ServicosSC = styled.section`
        
     }
 
+    @media (max-width: 663px) {
+        .Wrap-mais-servicos {
+            margin: 1.5rem auto 0 auto;
+        }
+    }
+
+    @media (max-width: 450px) {
+        .Wrap-mais-servicos {
+            width: 250px;
+            margin: 1.5rem auto 0 auto;
+        }
+    }
+
     @media (max-width: 400px) {
         padding: ${({ theme }) => theme.espacamento[7]}px ${({ theme }) => theme.espacamento[0]}px;
         
@@ -82,11 +98,6 @@ export const ServicosSC = styled.section`
         ul {
             justify-content: center;
             padding: 0;
-        }
-
-        .Wrap-mais-servicos {
-            width: 250px;
-            margin: 1.5rem auto 0 auto;
         }
     }
 `

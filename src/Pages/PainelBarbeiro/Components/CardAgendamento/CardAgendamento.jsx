@@ -16,15 +16,12 @@ export default function CardAgendamento(props) {
             setIdAgendamento(props.agendamento.id)
         }}>
             <div>
-                <h3>Hora</h3>
                 <div><p>{hora}</p></div>
             </div>
             <div>
-                <h3>Cliente</h3>
                 <div><p>{props.agendamento.nomeCliente}</p></div>
             </div>
             <div>
-                <h3>Serviço</h3>
                 <div><p>{props.agendamento.nomeServico}</p></div>
             </div>
         </CardAgendamentoStyle>

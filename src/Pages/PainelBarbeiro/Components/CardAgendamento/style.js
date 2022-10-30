@@ -11,7 +11,7 @@ export const CardAgendamentoStyle = styled.div`
     gap: 16px;
     padding: 8px;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
     transition: all .2s;
 
     :hover {
@@ -28,28 +28,36 @@ export const CardAgendamentoStyle = styled.div`
         justify-content: space-evenly;
         font-size: 1rem;
         text-align: center;
+        padding: 8px;
         
-        h3 {
-            color: #222;
-            text-align: center;
-        }
-
         div {
             display: flex;
             align-items: center;
             justify-content: center;
             word-break: keep-all;   
+
+            p {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #3871C1;
+            }
         }
     }
 
     > div:nth-child(2) {
-        border-left: 1px dotted #555;
-        border-right: 1px dotted #555;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
     }
 
     @media (max-width: 800px) {
         > div {
             font-size: .8rem;
+
+            div {
+                p {
+                    font-size: 1rem;
+                }
+            }
         }
     }
 `

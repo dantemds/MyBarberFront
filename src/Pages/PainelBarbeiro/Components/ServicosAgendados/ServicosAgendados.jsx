@@ -41,6 +41,11 @@ export default function ServicosAgendados() {
       </select>
 
       <DetalhesAgendamentoProvider>
+        <header>
+          <div>Hora</div>
+          <div>Cliente</div>
+          <div>Serviço</div>
+        </header>
         <Agenda listaAgendamentos={listaAgendamentos} />
       </DetalhesAgendamentoProvider>
 

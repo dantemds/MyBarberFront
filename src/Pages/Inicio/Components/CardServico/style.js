@@ -67,10 +67,11 @@ export const CardServicoSC = styled.li`
         height: auto;
         padding: .5em 0;
         font-size: 1rem;
-        font-weight: 600;
+        font-weight: 400;
         text-align: center;
         text-transform: uppercase;
         text-decoration: none;
+        text-shadow: ${({ theme }) => theme.sombras.texto};
         transition: all .2s;
         border-radius: 50px;
         border: 2px solid ${({ theme }) => theme.cores.secundaria};
