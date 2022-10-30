@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import { BsArrowRightCircle } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 import { GlobalContext } from '../../../../Contexts/GlobalContext'
 import CardServico from '../CardServico/CardServico'
 
@@ -34,10 +35,10 @@ export default function Servicos() {
           }
         </ul>
 
-        <div className='Wrap-mais-servicos'>
+        <Link to='/forms-agendamento' className='Wrap-mais-servicos'>
           <a href="">Ver mais serviços</a>
           <BsArrowRightCircle />
-        </div>
+        </Link>
       </div>
 
     </ServicosSC>

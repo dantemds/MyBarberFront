@@ -28,7 +28,7 @@ export const ServicosAgendadosSC = styled.section`
         padding: 0 12px;
         margin-bottom: 2.5rem;
         border: none;
-        border-bottom: 1px solid #202020;
+        border-bottom: 1px solid #3871C1;
         background-color: #fafafa;
     }
 
@@ -40,11 +40,37 @@ export const ServicosAgendadosSC = styled.section`
     input:focus, select:focus {
         outline: 0;
         box-shadow: 0 0 10px rgba(20, 20, 20, .3);
-        border-bottom: 3px solid #202020;
+        border-bottom: 3px solid #3871C1;
+    }
+
+    header {
+        width: 550px;
+        display: flex;
+        padding: 1rem .5rem;
+        border-radius: 5px 5px 0 0;
+        background-color: #3871C1;
+
+        div {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
     }
 
     @media (max-width: 800px) {
         padding: 16px;
+
+        header {
+            width: 100%;
+            min-width: 350px;
+
+            div {
+                font-size: 1.2rem;
+            }
+        }
 
         h2 {
             font-size: 2rem;

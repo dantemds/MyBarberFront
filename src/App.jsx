@@ -15,10 +15,6 @@ function App() {
   const { dadosTenantBarbearia, tema, setTema } = React.useContext(GlobalContext)
 
   useEffect(() => {
-    window.localStorage.clear()
-  }, [0])
-
-  useEffect(() => {
     setTema(applyTema(dadosTenantBarbearia))
   }, [dadosTenantBarbearia])
 

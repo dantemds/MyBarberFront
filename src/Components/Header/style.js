@@ -13,6 +13,10 @@ export const HeaderSC = styled.header`
     z-index: 1000;
     border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
 
+    .HeaderPainelBarbeiro {
+     border-bottom: 2px solid #3871C1;
+    }
+
     .Cabecalho-Logo {
         display: flex;
         align-items: center;

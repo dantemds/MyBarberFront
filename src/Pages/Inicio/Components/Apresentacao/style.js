@@ -75,7 +75,7 @@ export const ApresentacaoSC = styled.section`
         border-radius: 50px;
         font-size: 1.5rem;
         line-height: 1.5rem;
-        background-color: #00c943;
+        background-color: ${({ theme }) => theme.cores.secundaria};
         text-decoration: none;
         text-shadow: ${({ theme }) => theme.sombras.texto};
         text-transform: uppercase;

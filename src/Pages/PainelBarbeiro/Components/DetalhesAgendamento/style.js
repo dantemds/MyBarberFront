@@ -11,6 +11,7 @@ export const DetalhesAgendamentoSC = styled.div`
     align-items: center;
     
     > div {
+        color: #202020;
         width: 400px;
         height: auto;
         padding: 16px;
@@ -27,26 +28,26 @@ export const DetalhesAgendamentoSC = styled.div`
             align-items: flex-end;
 
             > button {
-                color: #555;
+                color: #202020;
                 width: 32px;
                 height: 32px;
                 border: none;
                 border-radius: 50%;
-                margin-right: -38px;
+                margin-right: -22px;
                 cursor: pointer;
                 font-weight: 900;
-                box-shadow: 0 0 5px rgba(0, 0, 0, .1);
                 background-color: #ddd;
             }
 
             > h3 {
-                width: 100%;
-                padding: 8px;
+                width: 80%;
+                color: #202020;
+                padding: 8px 0 0 0;
                 text-align: center;
-                font-weight: 400;
-                font-size: 1.4em;
-                font-family: 'Quicksand', sans-serif;
-                border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
+                font-weight: 900em;
+                font-size: 1.5rem;
+                word-break: keep-all;
+                margin: auto;
             }
 
         }
@@ -55,12 +56,12 @@ export const DetalhesAgendamentoSC = styled.div`
             padding: 32px 0;
 
             a {
-                color: #333;
+                color: #202020;
             }
 
             table, td {
-                color: #333;
-                border: 1px solid #999;
+                color: #202020;
+                border-bottom: 1px solid #ddd;
                 border-collapse: collapse;
             }
 
@@ -68,6 +69,7 @@ export const DetalhesAgendamentoSC = styled.div`
                 /* text-align: center; */
 
                 td:nth-child(1) {
+                    color: #3871C1;
                     font-weight: 900;
                     text-transform: uppercase;
                 }
@@ -93,7 +95,7 @@ export const DetalhesAgendamentoSC = styled.div`
             font-weight: 600;
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, .1);
-            background-color: ${({ theme }) => theme.cores.secundaria};
+            background-color: #3871C1;
 
         }
     }
