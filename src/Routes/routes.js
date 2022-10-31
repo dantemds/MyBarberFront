@@ -5,7 +5,7 @@ import Inicio from '../Pages/Inicio/Inicio'
 import FormsAgendamento from '../Pages/FormsAgendamento/FormsAgendamento'
 import ConfirmacaoAgendamento from '../Pages/ConfirmacaoAgendamento'
 import PainelBarbeiro from '../Pages/PainelBarbeiro/PainelBarbeiro'
-import Login from '../Pages/Login' 
+import Login from '../Pages/Login/Login' 
 
 export default function Rotas() {
     return (

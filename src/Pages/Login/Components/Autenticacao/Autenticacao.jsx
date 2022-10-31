@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { RequestsClientes } from '../../API/RequestsCliente'
+import { RequestsClientes } from '../../../../API/RequestsCliente'
 import { AutenticaxaoSC } from './style'
 
 export default function Autenticacao() {
@@ -8,7 +8,7 @@ export default function Autenticacao() {
     const [autenticacaoFalhou, setAutenticacaoFalhou] = useState(false)
 
     const navigate = useNavigate()
-  
+
     const logar = event => {
         event.preventDefault()
 
@@ -54,6 +54,11 @@ export default function Autenticacao() {
                     <button type='submit'>Entrar</button>
                 </form>
             </div>
+            
+            <picture>
+                <source media='(max-width: 800px)' srcSet='https://minha-barbearia.online/images/static/Background-mobile.jpg' />
+                <img src="https://minha-barbearia.online/images/static/Background-desktop.jpg" alt="" />
+            </picture>
         </AutenticaxaoSC>
     )
 }

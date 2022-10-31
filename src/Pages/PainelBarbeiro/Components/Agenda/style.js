@@ -8,6 +8,7 @@ export const AgendaSC = styled.div`
     align-items: center;
     gap: 8px;
     padding: 8px;
+    margin: auto;
     border-radius: 0 0 5px 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, .4) inset;
     color: #202020;
@@ -17,6 +18,5 @@ export const AgendaSC = styled.div`
 
     @media (max-width: 800px) {
         width: 100%;
-        min-width: 350px;
     }
 `

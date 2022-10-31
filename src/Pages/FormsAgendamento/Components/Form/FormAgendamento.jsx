@@ -64,10 +64,7 @@ export default function FormAgendamento(props) {
     ///// ---------------------------------- /////
     const listarServicos = () => {
         return listaServicos.map(servico => {
-            if (servicoSelecionado.id === servico.id)
-                return <option key={servico.id} value={servico.id} selected >{servico.nome}</option>
-            else
-                return <option key={servico.id} value={servico.id}>{servico.nome}</option>
+            return <option key={servico.id} value={servico.id}>{servico.nome}</option>
         })
     }
 
@@ -136,7 +133,7 @@ export default function FormAgendamento(props) {
 
     ///// ---------------------------------- /////
     const addAgendamento = dadosAgendamento => {
-        console.log(dadosAgendamento)
+        // console.log(dadosAgendamento)
         setStatusAgendamento({ ...statusAgendamento, carregando: true })
         RequestsClientes.postAgendamento(dadosAgendamento)
             .then(() => {
@@ -182,7 +179,6 @@ export default function FormAgendamento(props) {
     }, [0])
 
     useEffect(() => {
-        console.log(idBarbeiroSelecionado)
         if (idBarbeiroSelecionado == "0")
             setExibirCalendario(false)
         else {
@@ -206,6 +202,7 @@ export default function FormAgendamento(props) {
                         name='servico'
                         {...register("servicosId")}
                         onChange={handleServico}
+                        defaultValue={servicoSelecionado.id}
                     >
                         <option value="0" key='0'>Selecionar serviço</option>
                         {dadosTenantBarbearia.servicos && listarServicos()}

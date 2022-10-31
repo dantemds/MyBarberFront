@@ -12,7 +12,7 @@ export const findBanner = (banner, conditionalState) => {
         return ''
 }
 
-export const getUrlBanner = banner => {
+export const getUrImagem = banner => {
     if (banner)
         return process.env.REACT_APP_DOMAIN_FRONT + banner.url
     else
@@ -35,4 +35,31 @@ export const formatarHorario = horario => {
         horario = '0' + horario
 
     return horario
+}
+
+export const criarListaBarbeiros = listaServicos => {
+    let listaIdBarbeiros = []
+    let listaDadosBarbeiroCompleto = []
+
+    // Gera uma lista com os IDs dos barbeiros, porém pode vir repetidos
+    listaServicos.map(servico => {
+        servico.servicosBarbeiros.map(barbeiro => {
+            listaIdBarbeiros.push(barbeiro.barbeiros.idBarbeiro)
+            listaDadosBarbeiroCompleto.push(barbeiro.barbeiros)
+        })
+    })
+
+    // Converte a lista de IDs repetidos em um dicionário sem repetidos
+    var dicionario = {};
+    for (var i = 0; i < listaIdBarbeiros.length; i++) {
+        dicionario[listaIdBarbeiros[i]] = listaDadosBarbeiroCompleto[i];
+    }
+
+    // Converte o dicionário em uma lista
+    var listaSemRepetidos = [];
+    for (var chave in dicionario) {
+        listaSemRepetidos.push(dicionario[chave]);
+    }
+
+    return listaSemRepetidos
 }

@@ -23,6 +23,7 @@ export const DetalhesAgendamentoSC = styled.div`
         align-items: center;
 
         div:nth-child(1) {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
@@ -33,7 +34,7 @@ export const DetalhesAgendamentoSC = styled.div`
                 height: 32px;
                 border: none;
                 border-radius: 50%;
-                margin-right: -22px;
+                margin-right: 0;
                 cursor: pointer;
                 font-weight: 900;
                 background-color: #ddd;
@@ -100,4 +101,11 @@ export const DetalhesAgendamentoSC = styled.div`
         }
     }
     
+    @media (max-width: 500px){
+        > div {
+            width: 100%;
+            margin: 0 1rem;
+        }
+    }
+
 `
