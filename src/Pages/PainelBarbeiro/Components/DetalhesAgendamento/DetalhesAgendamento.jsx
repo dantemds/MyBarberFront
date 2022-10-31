@@ -56,7 +56,11 @@ export default function DetalhesAgendamento(props) {
                             </table>
                         </div>
 
-                        <button className='btn-Cancelar' onClick={()=> CalcelarAgendamento()}>Cancelar Agendamento</button>
+                        {
+                            new Date(Agendamento.horarioServico) < new Date()
+                                ? ''
+                                : <button className='btn-Cancelar' onClick={() => CalcelarAgendamento()}>Cancelar Agendamento</button>
+                        }
 
                     </div>
                 </DetalhesAgendamentoSC>

@@ -38,11 +38,12 @@ export const ServicosSC = styled.section`
         padding: 0 0 0 8rem;
 
         svg {
+            color: #202020;
             width: 12px;
             height: 12px;
         }
     
-        a {
+        span {
             font-size: .8rem;
             color: #202020;
         }

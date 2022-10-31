@@ -71,13 +71,41 @@ export const SobreSC = styled.section`
             flex-direction: column;
         }
 
+        .btnScroll {
+            height: 2rem;
+            width: 2rem;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 4px;
+            background-color: transparent;
+            border: 1px solid ${({ theme }) => theme.cores.secundaria};
+            cursor: pointer;
+
+            svg {
+                color: ${({ theme }) => theme.cores.secundaria};
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .btnScrollLeft {
+            left: 0;
+            padding-left: 2px;
+        }
+
+        .btnScrollRight {
+            right: 0;
+            padding-right: 2px;
+            margin-left: 2rem;
+        }
+
         .scroll-horizontal {
             width: 100%;
             display: flex;
             flex-direction: row;
             justify-content: start;
             gap: 2rem;
-            padding: 16px 0 ;
+            padding: 16px 0 0 0;
             overflow-x: auto;
             overscroll-behavior-inline: contain;
 
@@ -97,11 +125,23 @@ export const SobreSC = styled.section`
             -ms-overflow-style: none; 
         }
 
+        .nomeBarbeiro {
+            text-decoration: none;
+        }
+
+        .fotos-barbearia {
+            position: relative;
+        }
+
         .fotos-barbearia img {
             max-height: 320px;
             border: 1px solid ${({ theme }) => theme.cores.secundaria};
             border-radius: .5rem;
             box-shadow: .3em .3em 1em rgba(0, 0, 0, 0.4);
+        }
+
+        .fotos-barbeiro {
+            justify-content: center;
         }
 
         .fotos-barbeiro div {
@@ -133,13 +173,18 @@ export const SobreSC = styled.section`
 
             p {
                 font-weight: 300;
+                margin-bottom: 1rem;
             }
         }
     }
     
     @media (max-width: 800px) {
         .content-sobre {
-        
+
+            .btnScroll {
+                display: none;
+            }
+
             .wrap-infos-texto {
                 flex-direction: column;
                 margin: 0;

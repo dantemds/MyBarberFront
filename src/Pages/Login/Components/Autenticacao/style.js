@@ -1,12 +1,9 @@
 import styled from "styled-components"
 
-import imageDesktop from '../../Images/Login/Login-background-desktop.jpg'
-import imageMobile from '../../Images/Login/Login-background-mobile.jpg'
-
 export const AutenticaxaoSC = styled.section`
     width: 100vw;
-    height: calc(100vh - 80px);
-    background-image: url(${imageDesktop});
+    height: calc(100vh - 82px);
+    background-image: url('');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -17,6 +14,15 @@ export const AutenticaxaoSC = styled.section`
         height: 100%;
         display: flex;
         background-color: rgba(0, 0, 0, .5);
+        z-index: 10;
+    }
+    
+    img {
+        z-index: 0;
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: calc(100vh - 82px) ;
     }
 
     form {
@@ -33,6 +39,7 @@ export const AutenticaxaoSC = styled.section`
         font-family: 'Outfit', sans-serif;
         box-shadow: 0 0 20px rgba(0, 0, 0, .9);
         background-color: rgba(33, 33, 33, .9);
+        z-index: 100;
 
         h1 {
             width: 300px;
@@ -85,15 +92,13 @@ export const AutenticaxaoSC = styled.section`
     }
 
     @media (max-width: 800px) {
-        background-image: url(${imageMobile});
-
         > div {
             padding: 0 16px;
         }
 
         form {
             width: 100%;
-            min-width: 320px;
+            /* min-width: 320px; */
             font-size: 1.1rem;
         }
     }
@@ -101,6 +106,10 @@ export const AutenticaxaoSC = styled.section`
     @media (max-width: 400px) {
         form {
             font-size: 1rem;
+
+            input, label, h1, button {
+                width: 100%;
+            }
         }
     }
 `

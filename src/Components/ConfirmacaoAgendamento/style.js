@@ -1,30 +1,24 @@
 import styled from "styled-components";
 
-import imageDesktop from '../../Images/Login/Login-background-desktop.jpg'
-import imageMobile from '../../Images/Login/Login-background-mobile.jpg'
 
 export const ConfirmacaoAgendamento = styled.section`
     width: 100vw;
     height: 100vh;
-    
+    color: #202020;
+
+    img {
+        z-index: 0;
+        position: absolute; 
+        top: 0;
+        width: 100vw;
+        height:100vh;
+    }
     > div {
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        /* background-image: linear-gradient(to top left, rgb(0, 0, 0), #444444); */
-        
-        img {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background-image: url(${imageDesktop});
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            overflow: hidden;
-        }
 
         > div {
             display: flex;
@@ -54,16 +48,20 @@ export const ConfirmacaoAgendamento = styled.section`
                 font-size: 1.5rem;
                 font-weight: 300;
                 text-align: center;
+
+                span {
+                    font-weight: 600;
+                }
             }
 
             button {
                 color: #fff;
                 background-color: ${({ theme }) => theme.cores.secundaria};
                 border: 2px solid transparent;
-                border-radius: 5px;
-                padding: 8px;
+                border-radius: 50px;
+                padding: 1rem 2rem;
                 margin-top: 32px;
-                font-weight: 600;
+                font-weight: 400;
                 cursor: pointer;
                 box-shadow: 0 0 10px rgba(0, 0, 0, .4);
             }
@@ -73,10 +71,6 @@ export const ConfirmacaoAgendamento = styled.section`
     @media (max-width: 768px) {
 
         > div {
-
-            img {
-                background-image: url(${imageMobile});
-            }
 
             > div {
                 width: 100%;

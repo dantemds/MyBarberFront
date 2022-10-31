@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 
 import { SobreSC } from './style.js'
 
-import { BsInstagram, BsWhatsapp, BsTelephone, BsEnvelope } from 'react-icons/bs'
+import { BsInstagram, BsWhatsapp, BsTelephone, BsEnvelope, BsChevronRight, BsChevronLeft } from 'react-icons/bs'
 import { GlobalContext } from '../../../../Contexts/GlobalContext'
-import { ordenarImagens } from '../../../../Utils/functions'
+import { criarListaBarbeiros, getUrImagem, ordenarImagens } from '../../../../Utils/functions'
 
 export default function Sobre() {
     const { dadosTenantBarbearia } = React.useContext(GlobalContext)
@@ -12,40 +12,67 @@ export default function Sobre() {
     const enderecos = dadosTenantBarbearia.enderecos
     const contatos = dadosTenantBarbearia.contatos
     const horarioFuncionamento = dadosTenantBarbearia.horarioFuncionamento && dadosTenantBarbearia.horarioFuncionamento.funcionamento
-    const barbeiros = dadosTenantBarbearia.barbeiros
+    const barbeiros = criarListaBarbeiros(dadosTenantBarbearia.servicos)
     const imagensLandingPage = ordenarImagens(dadosTenantBarbearia.landingPageImages)
 
-    console.log(dadosTenantBarbearia)
-    // useEffect(() => {
-    //     window.document.getElementById().scroll(100, 0)
-    // }, [0])
+    useEffect(() => {
+        // window.document.getElementById().scroll(100, 0)
+        // console.log(dadosTenantBarbearia)
+        // console.log(barbeiros)
+    }, [0])
+
+    const btnScroll = (direcao, id) => {
+        window.document.getElementById(id).scrollLeft += direcao
+    }
 
     return (
         <SobreSC id='Sobre'>
             <div className='content-sobre'>
                 <h2>Conheça nosso espaço</h2>
-                <div className="scroll-horizontal fotos-barbearia">
+                <div id="scroll-fotos-barbearia" className="scroll-horizontal fotos-barbearia">
+
                     {imagensLandingPage.map(imagem => {
                         return <picture key={imagem.idLandingPageImage}>
-                            <img src={"https://minha-barbearia.online/" + imagem.url} alt={imagem.posicao + imagem.numeroImagem}></img>
+                            <img src={process.env.REACT_APP_DOMAIN_FRONT + imagem.url} alt={imagem.posicao + imagem.numeroImagem}></img>
                         </picture>
                     })}
+                </div>
+                <div>
+                    <button className="btnScroll btnScrollLeft" onClick={() => btnScroll(-100, 'scroll-fotos-barbearia')}>
+                        <BsChevronLeft />
+                    </button>
+                    <button className="btnScroll btnScrollRight" onClick={() => btnScroll(100, 'scroll-fotos-barbearia')}>
+                        <BsChevronRight />
+                    </button>
                 </div>
 
                 <h3 className='h3Barbeiros'>Nossos barbeiros</h3>
                 {
                     barbeiros &&
-                    <div className="scroll-horizontal fotos-barbeiro">
+                    <div id="scroll-fotos-barbeiros" className="scroll-horizontal fotos-barbeiro">
                         {
                             barbeiros.map(barbeiro => {
-                                return <div>
+                                return <div key={barbeiro.idBarbeiro}>
                                     <picture>
-                                        <img src={barbeiro.foto} alt={barbeiro.nome} />
+                                        <img
+                                            src={getUrImagem(barbeiro.barbeiroImagem)}
+                                            alt={barbeiro.nameBarbeiro} />
                                     </picture>
-                                    <p style={{ "text-decoration": "none" }}>{barbeiro.nome}</p>
+                                    <p className='nomeBarbeiro'>{barbeiro.nameBarbeiro}</p>
                                 </div>
                             })
                         }
+                    </div>
+                }
+                {
+                    barbeiros.length > 9 &&
+                    <div>
+                        <button className="btnScroll btnScrollLeft" onClick={() => btnScroll(-100, 'scroll-fotos-barbeiros')}>
+                            <BsChevronLeft />
+                        </button>
+                        <button className="btnScroll btnScrollRight" onClick={() => btnScroll(100, 'scroll-fotos-barbeiros')}>
+                            <BsChevronRight />
+                        </button>
                     </div>
                 }
 

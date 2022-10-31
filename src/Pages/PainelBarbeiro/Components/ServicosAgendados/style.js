@@ -46,6 +46,7 @@ export const ServicosAgendadosSC = styled.section`
     header {
         width: 550px;
         display: flex;
+        margin: auto;
         padding: 1rem .5rem;
         border-radius: 5px 5px 0 0;
         background-color: #3871C1;
@@ -65,7 +66,7 @@ export const ServicosAgendadosSC = styled.section`
 
         header {
             width: 100%;
-            min-width: 350px;
+            /* min-width: 310px; */
 
             div {
                 font-size: 1.2rem;
@@ -74,12 +75,6 @@ export const ServicosAgendadosSC = styled.section`
 
         h2 {
             font-size: 2rem;
-        }
-    }
-
-    @media (max-width: 400px) {
-        h2 {
-            width: 80%
         }
     }
 `

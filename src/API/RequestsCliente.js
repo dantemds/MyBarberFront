@@ -8,7 +8,7 @@ const getAll = async (barbearia) => {
         .then(res => {
             resApi = res.data
         })
-        .catch(() => console.log('AAAAAAAAAAAAAA'))
+        // .catch(() => console.log('AAAAAAAAAAAAAA'))
 
     return resApi
 }
@@ -20,7 +20,7 @@ const postAgendamento = async (agendamento) => {
     if (AgendamentoValido) {
         return await Api().post('/api/v1/agendamentos/', agendamento)
             .then((res) => {
-                console.log(res)
+                // console.log(res)
                 if (res.status === 201) {
                     console.log('LOG: Agendamento realizado.')
                     return true

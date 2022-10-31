@@ -1,7 +1,7 @@
 import React from 'react'
-import Autenticacao from '../Components/Autenticacao/Autenticacao'
+import Autenticacao from './Components/Autenticacao/Autenticacao'
 
-import Rodape from '../Components/Rodape/Rodape'
+import Rodape from '../../Components/Rodape/Rodape'
 
 export default function Login() {
 
