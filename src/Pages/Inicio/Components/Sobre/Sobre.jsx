@@ -109,7 +109,7 @@ export default function Sobre() {
                             <>
                                 {
                                     contatos.instagrams.length > 0
-                                        ? <a href={contatos.instagrams[1]} target="_blank">
+                                        ? <a href={`https://www.instagram.com/${contatos.instagrams[0]}`} target="_blank">
                                             <BsInstagram />
                                             <span>@{contatos.instagrams[0]}</span>
                                         </a>

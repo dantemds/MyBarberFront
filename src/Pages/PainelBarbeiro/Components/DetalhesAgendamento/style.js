@@ -3,13 +3,16 @@ import styled from "styled-components"
 export const DetalhesAgendamentoSC = styled.div`
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    /* min-height: 700px; */
     background-color: rgba(0, 0, 0, .2);
-    margin-top: -64px;
+    margin-top: -50px;
+    padding: 4rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    overflow-y: auto;
+
     > div {
         color: #202020;
         width: 400px;
@@ -104,6 +107,15 @@ export const DetalhesAgendamentoSC = styled.div`
     @media (max-width: 500px){
         > div {
             width: 100%;
+            margin: 0 1rem;
+        }
+    }
+
+    @media (max-width: 350px){
+        > div {
+            width: 100%;
+            height: 400px;
+            overflow: auto;
             margin: 0 1rem;
         }
     }
