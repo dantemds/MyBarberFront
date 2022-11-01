@@ -5,6 +5,7 @@ export const ApresentacaoSC = styled.section`
     display: flex;
     margin: auto;
     height: 70vh;
+    min-height: 400px;
     width: 100%;
     
     background-image: url(${(props) => props.urlBannerDesktop});

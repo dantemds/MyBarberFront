@@ -36,6 +36,7 @@ export const ServicosSC = styled.section`
         gap: 4px;
         margin-top: 1rem;
         padding: 0 0 0 8rem;
+        text-decoration: none;
 
         svg {
             color: #202020;

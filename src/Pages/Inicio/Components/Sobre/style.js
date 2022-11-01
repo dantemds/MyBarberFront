@@ -111,6 +111,10 @@ export const SobreSC = styled.section`
 
             scroll-snap-type: inline mandatory;
             scroll-snap-align: start;
+
+            > picture {
+                padding-bottom: 1rem;
+            }
         }
 
         .scroll-horizontal::-webkit-scrollbar {
