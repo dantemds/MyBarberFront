@@ -36,13 +36,17 @@ export default function Apresentacao() {
         }
 
         <div className='Wrap-btn-agendar'>
-          <Link
-            to='/forms-agendamento'
-            id='btn-agendar'
-          // onClick={() => setServicoSelecionado(null)}>
-          >
-            <span>Agendar</span>
-          </Link>
+          {
+            dadosTenantBarbearia.funcaoAgendamento
+              ? <Link to='/forms-agendamento' className='btn-agendar'>
+                <span>Agendar</span>
+              </Link>
+
+              : <a href='#Sobre' className='btn-agendar'>
+                <span>Conhecer</span>
+              </a>
+          }
+
         </div>
       </div>
     </ApresentacaoSC>

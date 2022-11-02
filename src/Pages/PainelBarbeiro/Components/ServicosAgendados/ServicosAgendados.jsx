@@ -4,6 +4,7 @@ import { DetalhesAgendamentoProvider } from '../../../../Contexts/DetalhesAgenda
 import { RequestsClientes } from '../../../../API/RequestsCliente'
 import Agenda from '../Agenda/Agenda'
 import useDate from '../../../../Hooks/useDate'
+import PermisssionGate from '../../../../Validations/PermissionGate'
 
 export default function ServicosAgendados() {
 
@@ -11,24 +12,48 @@ export default function ServicosAgendados() {
   const [dataSelecionada, setDataSelecionada] = useState(dataAtual)
   const [barbeiroSelecionado, setBarbeiroSelecionado] = useState('')
   const [listaAgendamentos, setListaAgendamentos] = useState([])
+  const [listaBarbeiros, setListaBarbeiros] = useState([])
 
   const usuario = JSON.parse(localStorage.getItem('usuario'))
 
   useEffect(() => {
-    setBarbeiroSelecionado(JSON.parse(window.localStorage.getItem('usuario')))
+    setBarbeiroSelecionado(JSON.parse(localStorage.getItem('usuario')))
+
+    RequestsClientes.getBarbeiros(usuario.idBarbearia)
+      .then(res => setListaBarbeiros(res))
   }, [0])
 
   useEffect(() => {
-
-    RequestsClientes.getAgendamentosBarbeiro(usuario.idBarbearia, usuario.idBarbeiro, dataSelecionada)
-      .then(res => {
-        setListaAgendamentos(res)
-        console.log('LOG: Agendamentos recebidos com sucesso.')
-      })
-      .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
+    if (barbeiroSelecionado)
+      getAgendamentos()
 
   }, [dataSelecionada, barbeiroSelecionado])
 
+
+  /* ----------------------------------------------------------------------------------------------------------------------- */
+  const getAgendamentos = () => {
+    RequestsClientes.getAgendamentosBarbeiro(usuario.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
+      .then(res => {
+        setListaAgendamentos(res)
+        // console.log('LOG: Agendamentos recebidos com sucesso.')
+      })
+      .catch(() => console.log('LOG: Falha, agendamentos não foram recebidos.'))
+  }
+
+  /* ----------------------------------------------------------------------------------------------------------------------- */
+  const listarBarbeiros = () => {
+    return listaBarbeiros.map(barbeiro => {
+      return <option
+        key={`${barbeiro.idBarbeiro}${barbeiro.nameBarbeiro}`}
+        value={JSON.stringify(barbeiro)}>{barbeiro.nameBarbeiro}
+      </option>
+    })
+  }
+
+  /* ----------------------------------------------------------------------------------------------------------------------- */
+  const handleBarbeiro = event => {
+    setBarbeiroSelecionado(JSON.parse(event.target.value))
+  }
 
   return (
     <ServicosAgendadosSC>
@@ -36,18 +61,33 @@ export default function ServicosAgendados() {
 
       <input type="date" value={dataSelecionada} onChange={event => setDataSelecionada(event.target.value)} />
 
-      <select disabled>
-        <option value={usuario.idBarbeiro}>{usuario.nomeUsuario}</option>
-      </select>
+      <PermisssionGate
+        permissions={[
+          'Supervisor'
+        ]}
+        user={{ permissions: usuario.role }}
+      >
+        <select onChange={handleBarbeiro}        >
+          {listarBarbeiros()}
+        </select>
+      </PermisssionGate>
 
-      <DetalhesAgendamentoProvider>
-        <header>
-          <div>Hora</div>
-          <div>Cliente</div>
-          <div>Serviço</div>
-        </header>
-        <Agenda listaAgendamentos={listaAgendamentos} />
-      </DetalhesAgendamentoProvider>
+      <PermisssionGate
+        permissions={[
+          'Supervisor',
+          'Barbeiro'
+        ]}
+        user={{ permissions: usuario.role }}
+      >
+        <DetalhesAgendamentoProvider>
+          <header>
+            <div>Hora</div>
+            <div>Cliente</div>
+            <div>Serviço</div>
+          </header>
+          <Agenda listaAgendamentos={listaAgendamentos} />
+        </DetalhesAgendamentoProvider>
+      </PermisssionGate>
 
     </ServicosAgendadosSC>
   )

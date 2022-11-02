@@ -35,10 +35,13 @@ export default function Servicos() {
           }
         </ul>
 
-        <Link to='/forms-agendamento' className='Wrap-mais-servicos'>
-          <span>Ver mais serviços</span>
-          <BsArrowRightCircle />
-        </Link>
+        {
+          dadosTenantBarbearia.funcaoAgendamento &&
+          <Link to='/forms-agendamento' className='Wrap-mais-servicos'>
+            <span>Ver mais serviços</span>
+            <BsArrowRightCircle />
+          </Link>
+        }
       </div>
 
     </ServicosSC>

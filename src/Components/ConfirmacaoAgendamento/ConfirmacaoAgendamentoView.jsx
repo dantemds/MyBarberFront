@@ -19,10 +19,10 @@ export default function ConfirmacaoAgendamentoView() {
                     <Link to={`/${rotaBarbearia}`}><button>Voltar ao início</button></Link>
                 </div>
             </div>
-                <picture>
-                    <source media='(max-width: 800px)' srcSet='https://minha-barbearia.online/images/static/Background-mobile.jpg' />
-                    <img src="https://minha-barbearia.online/images/static/Background-desktop.jpg" alt="" />
-                </picture>
+            <picture>
+                <source media='(max-width: 800px)' srcSet='https://minha-barbearia.online/images/static/Background-mobile.jpg' />
+                <img src="https://minha-barbearia.online/images/static/Background-desktop.jpg" alt="" />
+            </picture>
         </ConfirmacaoAgendamento>
     )
 }

@@ -18,8 +18,9 @@ export const ServicosAgendadosSC = styled.section`
         font-weight: 900;
         text-align: center;
         padding: 0 24px;
-        margin-bottom: 2.5rem;
+        margin: 2.5rem 0;
     }
+
 
     input, label, select {
         width: 217px;

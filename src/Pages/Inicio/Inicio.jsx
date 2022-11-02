@@ -11,19 +11,20 @@ import Servicos from './Components/Servicos/Servicos';
 import Apresentacao from './Components/Apresentacao/Apresentacao';
 import { GlobalContext } from '../../Contexts/GlobalContext'
 import { CardServicoModel } from '../../Models/CardServicoModel';
+import PermisssionGate from '../../Validations/PermissionGate';
 export default function Inicio() {
     let navigate = useNavigate()
 
-    const {dadosTenantBarbearia, setDadosTenantBarbearia, setServicoSelecionado} = React.useContext(GlobalContext)
+    const { dadosTenantBarbearia, setDadosTenantBarbearia, setServicoSelecionado } = React.useContext(GlobalContext)
 
     const { barbearia } = useParams()
-    
+
     useEffect(() => {
         window.scroll({
             top: 0,
             behavior: 'smooth'
         })
-        
+
         window.localStorage.clear()
 
         setServicoSelecionado(new CardServicoModel()) // Resetar o serviço selecionado caso usuário volte para o Início
@@ -34,21 +35,34 @@ export default function Inicio() {
                 setDadosTenantBarbearia(res)
             })
             .catch(() => navigate('/login'))
-        
+
     }, [0])
 
-    const linkMenuDados = [
+    useEffect(() => {
+        if (dadosTenantBarbearia && dadosTenantBarbearia.ativa === false) {
+            navigate('/ops')
+            setDadosTenantBarbearia(null)
+        }
+
+    }, [dadosTenantBarbearia])
+
+    const linkMenuDadosAgendamento = [
         ['Início', '#Apresentacao'],
         ['Serviços', '#Servico'],
         ['Sobre', '#Sobre'],
-        ['Endereço', '#Mapa-Section'],
+        ['Mapa', '#Mapa'],
         ['Agendar', '/forms-agendamento']]
 
-    return (
+    const linkMenuDadosSemAgendamento = [
+        ['Início', '#Apresentacao'],
+        ['Serviços', '#Servico'],
+        ['Sobre', '#Sobre'],
+        ['Mapa', '#Mapa']]
 
-        dadosTenantBarbearia &&
+    return (
+        (dadosTenantBarbearia && dadosTenantBarbearia.ativa === true) &&
         <>
-            <Header linkMenuDados={linkMenuDados} />
+            <Header linkMenuDados={dadosTenantBarbearia.funcaoAgendamento ? linkMenuDadosAgendamento : linkMenuDadosSemAgendamento} />
             <Apresentacao />
             <Servicos />
             <Sobre />
