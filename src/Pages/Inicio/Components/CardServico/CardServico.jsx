@@ -7,8 +7,8 @@ import { GlobalContext } from '../../../../Contexts/GlobalContext'
 export default function CardServico(props) {
 
     const Card = new CardServicoModel(props.dadosServico)
-    
-    const { setServicoSelecionado } = React.useContext(GlobalContext)
+
+    const { dadosTenantBarbearia, setServicoSelecionado } = React.useContext(GlobalContext)
 
     const valTamanhoNomeServico = titulo => {
         if (titulo.length > 16)
@@ -24,7 +24,16 @@ export default function CardServico(props) {
             <div>
                 {valTamanhoNomeServico(Card.titulo)}
                 <p><span className='spanPreco'>Preço:</span> {Card.preco},00 R$</p>
-                <Link id='btnCardServico' to="/forms-agendamento" onClick={() => setServicoSelecionado(Card)}>Agendar</Link>
+                {
+                    dadosTenantBarbearia.funcaoAgendamento
+                        ? <Link to='/forms-agendamento' className='btnCardServico' onClick={() => setServicoSelecionado(Card)}>
+                            <span>Agendar</span>
+                        </Link>
+
+                        : <a href='#Sobre' className='btnCardServico'>
+                            <span>Conhecer</span>
+                        </a>
+                }
             </div>
         </CardServicoSC>
     )

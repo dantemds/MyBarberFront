@@ -56,7 +56,14 @@ const getAgendamentosBarbeiro = async (idBarbearia, idBarbeiro, data) => {
         .then(res => {
             return res.data
         })
+}
 
+const getBarbeiros = async (idBarbearia) => {
+
+    return await Api().get(`api/v1/barbeiros/barbearia/${idBarbearia}`)
+        .then(res => {
+            return res.data
+        })
 }
 
 const getHorariosDisponiveis = async (filtro) => {
@@ -90,6 +97,7 @@ export const RequestsClientes = {
     postAgendamento,
     deleteAgendamento,
     getAgendamentosBarbeiro,
+    getBarbeiros,
     getHorariosDisponiveis,
     postAutenticacao,
     getToken,

@@ -6,7 +6,7 @@ export default function Mapa() {
     const { dadosTenantBarbearia } = React.useContext(GlobalContext)
 
     return (
-        <MapaSC id="Mapa-Section">
+        <MapaSC id="Mapa">
             <h1>Estamos aqui!</h1>
             {
                 dadosTenantBarbearia.enderecos &&

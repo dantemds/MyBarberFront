@@ -20,6 +20,7 @@ export const ApresentacaoSC = styled.section`
         padding: 4.5rem;
         flex-direction: column;
         width: 100%;
+        min-height: 400px;
         height: inherit;
         background-color: rgba(0, 0, 0, .1);
         box-shadow: 0 0 50px rgba(0,0,0,0.9) inset;
@@ -66,13 +67,15 @@ export const ApresentacaoSC = styled.section`
         margin: 0 auto;
     }
 
-    #btn-agendar {
+    .btn-agendar {
         display: flex;
         align-items: center;
         justify-content: center;
         height: auto;
+        margin: auto;
         padding: 1rem 4rem;
         color: #fff;
+        border: none;
         border-radius: 50px;
         font-size: 1.5rem;
         line-height: 1.5rem;

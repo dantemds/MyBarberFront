@@ -15,12 +15,6 @@ export default function Sobre() {
     const barbeiros = criarListaBarbeiros(dadosTenantBarbearia.servicos)
     const imagensLandingPage = ordenarImagens(dadosTenantBarbearia.landingPageImages)
 
-    useEffect(() => {
-        // window.document.getElementById().scroll(100, 0)
-        // console.log(dadosTenantBarbearia)
-        // console.log(barbeiros)
-    }, [0])
-
     const btnScroll = (direcao, id) => {
         window.document.getElementById(id).scrollLeft += direcao
     }
@@ -46,7 +40,7 @@ export default function Sobre() {
                     </button>
                 </div>
 
-                <h3 className='h3Barbeiros'>Nossos barbeiros</h3>
+                <h3 className='h3Barbeiros'>Nosso{barbeiros.length > 1 ? 's' : ''} profissiona{barbeiros.length > 1 ? 'is' : 'l'}</h3>
                 {
                     barbeiros &&
                     <div id="scroll-fotos-barbeiros" className="scroll-horizontal fotos-barbeiro">
@@ -65,7 +59,7 @@ export default function Sobre() {
                     </div>
                 }
                 {
-                    barbeiros.length > 9 &&
+                    barbeiros.length > 7 &&
                     <div>
                         <button className="btnScroll btnScrollLeft" onClick={() => btnScroll(-100, 'scroll-fotos-barbeiros')}>
                             <BsChevronLeft />

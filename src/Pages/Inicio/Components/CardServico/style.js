@@ -62,7 +62,7 @@ export const CardServicoSC = styled.li`
         font-size: 1.2rem;
     }
 
-    #btnCardServico {
+    .btnCardServico {
         width: 90%;
         height: auto;
         padding: .5em 0;
@@ -133,7 +133,7 @@ export const CardServicoSC = styled.li`
             font-size: 1rem;
         }
 
-        #btnCardServico {
+        .btnCardServico {
             font-size: .8rem;
         }
     }
