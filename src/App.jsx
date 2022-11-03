@@ -18,8 +18,10 @@ function App() {
   useEffect(() => {
     setTema(applyTema(dadosTenantBarbearia))
     document.title = dadosTenantBarbearia ? dadosTenantBarbearia.nomeBarbearia : 'Minha Barbearia Onlie'
-    
+
   }, [dadosTenantBarbearia])
+
+
 
   return (
     <>
