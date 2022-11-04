@@ -50,15 +50,20 @@ export default function FormAgendamento() {
 
 
     useEffect(() => {
-        if (!dadosTenantBarbearia || localStorage.getItem('infoAgendamento')) {
-            navigate(-1)
-        }
-        else {
-            setValue('barbeariasId', dadosTenantBarbearia.idBarbearia)
-            setValue('horario', formatar.toDate(new Date())[0])
-            setCarregou(true)
-            setListaServico(new ListaServicoModel(dadosTenantBarbearia.servicos).servicos)
-        }
+        // if (!dadosTenantBarbearia || localStorage.getItem('infoAgendamento')) {
+        //     navigate(-1)
+        // }
+        // else {
+        //     setValue('barbeariasId', dadosTenantBarbearia.idBarbearia)
+        //     setValue('horario', formatar.toDate(new Date())[0])
+        //     setCarregou(true)
+        //     setListaServico(new ListaServicoModel(dadosTenantBarbearia.servicos).servicos)
+        // }
+
+        setValue('barbeariasId', dadosTenantBarbearia.idBarbearia)
+        setValue('horario', formatar.toDate(new Date())[0])
+        setCarregou(true)
+        setListaServico(new ListaServicoModel(dadosTenantBarbearia.servicos).servicos)
     }, [0])
 
     ///// ---------------------------------- /////
