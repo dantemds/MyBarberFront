@@ -40,14 +40,20 @@ export default function Header(props) {
 
         <ul>
           {linksMenu.map(link => {
-            if (link[0] === 'Sair')
+            if (link[0] === 'Sair') // Para adicionar a função de encerrar sessão ao link
               return <li key={link[1]} onClick={() => EncerrarSessao()}>
                 <a href={link[1]}>
                   {link[0]}
                 </a>
               </li>
-            else
+            else if (link[0] === 'Agendar') // Para adicionar função de redirect com react-router-dom
               return <li key={link[1]}>
+                <Link to={link[1]}>
+                  {link[0]}
+                </Link>
+              </li>
+            else // Para itens de scroll na mesma página
+              return <li key={link[1]}> 
                 <a href={link[1]}>
                   {link[0]}
                 </a>
