@@ -63,3 +63,13 @@ export const criarListaBarbeiros = listaServicos => {
 
     return listaSemRepetidos
 }
+
+export const lockScroll = () => {
+    document.documentElement.style.overflow = 'hidden'
+    document.body.scroll = "no"
+}
+
+export const unlockScroll = () => {
+    document.documentElement.style.overflow = 'auto'
+    document.body.scroll = "yes"
+}

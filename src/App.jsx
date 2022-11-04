@@ -11,6 +11,7 @@ import Rotas from "./Routes/routes";
 import { isExist } from './Utils/functions';
 import { applyTema } from './Styles/applyTema';
 
+import CookieConsent from "react-cookie-consent"
 
 function App() {
   const { dadosTenantBarbearia, tema, setTema } = React.useContext(GlobalContext)
@@ -21,14 +22,22 @@ function App() {
 
   }, [dadosTenantBarbearia])
 
-
-
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={isExist(tema, temaDefault)}>
         <Rotas />
       </ThemeProvider>
+
+      <CookieConsent
+        location="bottom"
+        buttonText="Eu concordo!"
+        style={{ background: "#202020" }}
+        buttonStyle={{ color: "#202020", fontSize: "13px", backgroundColor: "#fafafa" }}
+        expires={150}
+      >
+        Este site utiliza cookies. Ao continuar navegando neste site, você concorda em utilizar cookies para melhorar sua navegação.
+      </CookieConsent>
     </>
   );
 }
