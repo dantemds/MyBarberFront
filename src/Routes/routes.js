@@ -12,14 +12,13 @@ import BarbeariaNaoEncontrada from '../Pages/BarbeariaNaoEncontrada/BarbeariaNao
 export default function Rotas() {
     const { dadosTenantBarbearia } = React.useContext(GlobalContext)
 
-
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/:barbearia" element={<Inicio />} />
-                {(dadosTenantBarbearia ? dadosTenantBarbearia.funcaoAgendamento : false) &&
+                {/* {(dadosTenantBarbearia ? dadosTenantBarbearia.funcaoAgendamento : false) && */}
                     <Route path="/forms-agendamento" element={<FormsAgendamento />} />
-                }
+                {/* } */}
                 <Route path="/confirmacao-agendamento" element={<ConfirmacaoAgendamento />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/painel-barbeiro" element={<PainelBarbeiro />} />
