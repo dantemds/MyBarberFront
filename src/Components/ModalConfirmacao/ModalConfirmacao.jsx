@@ -3,6 +3,8 @@ import React from 'react'
 import { ModalConfirmacaoSC } from './style'
 
 import { DetalhesAgendamentoContext } from '../../Contexts/DetalhesAgendamentoContext'
+import { useEffect } from 'react'
+import { lockScroll, unlockScroll } from '../../Utils/functions'
 
 
 export default function ModalConfirmacao(props) {
@@ -10,12 +12,18 @@ export default function ModalConfirmacao(props) {
     const { setExibirConfirmacaoCancelamento } = React.useContext(DetalhesAgendamentoContext)
 
 
+    useEffect(() => {
+        lockScroll()
+    }, [0])
+
     const ConfirmacaoSim = () => {
+        unlockScroll()
         setExibirConfirmacaoCancelamento(false)
         props.acao()
     }
 
     const ConfirmacaoNao = () => {
+        unlockScroll()
         setExibirConfirmacaoCancelamento(false)
     }
 

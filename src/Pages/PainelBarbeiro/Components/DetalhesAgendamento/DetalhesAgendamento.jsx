@@ -2,6 +2,8 @@ import React from 'react'
 import { DetalhesAgendamentoSC } from './style'
 import { DetalhesAgendamentoContext } from '../../../../Contexts/DetalhesAgendamentoContext'
 import { CardAgendamentoModel } from '../../../../Models/CardAgendamentoModel'
+import { useEffect } from 'react'
+import { lockScroll, unlockScroll } from '../../../../Utils/functions'
 
 export default function DetalhesAgendamento(props) {
 
@@ -12,6 +14,10 @@ export default function DetalhesAgendamento(props) {
         setExibirConfirmacaoCancelamento(true)
     }
 
+    useEffect(() => {
+        lockScroll()
+    }, [0])
+
     const ServicoSelecionado = () => {
         return props.listaAgendamentos.map(agendamento => {
             let Agendamento = new CardAgendamentoModel(agendamento)
@@ -21,7 +27,7 @@ export default function DetalhesAgendamento(props) {
                     <div>
 
                         <div>
-                            <button onClick={() => setExibirDetalhesAgendamento(!exibirDetalhesAgendamento)}>X</button>
+                            <button onClick={() => (setExibirDetalhesAgendamento(!exibirDetalhesAgendamento), unlockScroll())}>X</button>
                             <h3>Detalhes do Agendamento</h3>
                         </div>
 

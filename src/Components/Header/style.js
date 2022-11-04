@@ -14,7 +14,7 @@ export const HeaderSC = styled.header`
     border-bottom: 2px solid ${({ theme }) => theme.cores.secundaria};
 
     .HeaderPainelBarbeiro {
-     border-bottom: 2px solid #3871C1;
+        border-bottom: 2px solid #3871C1;
     }
 
     .Cabecalho-Logo {
@@ -61,6 +61,19 @@ export const HeaderSC = styled.header`
 
     button {
         display:none;
+    }
+
+    .background-pelicula {
+        position: absolute;
+        top: 50px;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(20, 20, 20, .3);
+        z-index: 0;
+    }
+
+    .background-pelicula-hide {
+        display: none;
     }
 
     @media (max-width: 768px) {

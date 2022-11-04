@@ -4,6 +4,8 @@ import { HeaderSC } from './style'
 import Logo from '../../Images/Logo/Logo.png'
 import { Link } from 'react-router-dom'
 import { MenuModel } from '../../Models/MenuModel'
+import { lockScroll, unlockScroll } from '../../Utils/functions'
+import { useEffect } from 'react'
 
 export default function Header(props) {
 
@@ -17,6 +19,13 @@ export default function Header(props) {
     window.localStorage.clear()
     window.location.reload()
   }
+
+  useEffect(() => {
+    if (estadoMenu)
+      lockScroll()
+    else
+      unlockScroll()
+  }, [estadoMenu])
 
   return (
     <HeaderSC menu={estadoMenu ? new MenuModel() : ''}>
@@ -46,6 +55,7 @@ export default function Header(props) {
           })}
         </ul>
       </nav>
+      <div className={estadoMenu ? "background-pelicula" : "background-pelicula-hide"}></div>
     </HeaderSC>
   )
 }
