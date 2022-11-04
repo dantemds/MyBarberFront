@@ -22,7 +22,7 @@ export default function Agenda(props) {
 
   const ListarAgendamentos = () => {
 
-    if (props.listaAgendamentos.length != 0) {
+    if (props.listaAgendamentos.length !== 0) {
 
       return props.listaAgendamentos.map(agendamento => {
 

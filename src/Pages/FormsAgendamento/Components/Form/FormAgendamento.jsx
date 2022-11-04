@@ -21,7 +21,7 @@ import FotoBarbeiro from '../../../../Components/FotoBarbeiro/FotoBarbeiro'
 import { formatarHorario } from '../../../../Utils/functions'
 import Oval from 'react-loading-icons/dist/esm/components/oval'
 
-export default function FormAgendamento(props) {
+export default function FormAgendamento() {
     const { dadosTenantBarbearia, servicoSelecionado, setServicoSelecionado, setAgendamentoRealizado } = React.useContext(GlobalContext)
 
     let navigate = useNavigate()
