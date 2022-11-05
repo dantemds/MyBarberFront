@@ -43,7 +43,13 @@ export default function Sobre() {
                 <h3 className='h3Barbeiros'>Nosso{barbeiros.length > 1 ? 's' : ''} profissiona{barbeiros.length > 1 ? 'is' : 'l'}</h3>
                 {
                     barbeiros &&
-                    <div id="scroll-fotos-barbeiros" className="scroll-horizontal fotos-barbeiro">
+                    <div id="scroll-fotos-barbeiros"
+                        className={
+                            barbeiros.length > 2
+                                ? "scroll-horizontal fotos-barbeiro fotos-barbeiro-start"
+                                : "scroll-horizontal fotos-barbeiro"
+                        }
+                    >
                         {
                             barbeiros.map(barbeiro => {
                                 return <div key={barbeiro.idBarbeiro}>
