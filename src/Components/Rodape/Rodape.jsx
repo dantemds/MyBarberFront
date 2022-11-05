@@ -9,7 +9,7 @@ export default function Rodape() {
 
     return (
         <RodapeSC>
-            <p>&copy; {dadosTenantBarbearia.nomeBarbearia} - Propriedade Minha Barbearia Online</p>
+            <p>&copy; {dadosTenantBarbearia && dadosTenantBarbearia.nomeBarbearia + ' -'} Propriedade Minha Barbearia Online</p>
         </RodapeSC>
     )
 }

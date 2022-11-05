@@ -145,8 +145,11 @@ export const SobreSC = styled.section`
         }
 
         .fotos-barbeiro {
+            /* padding: 1rem 4rem; */
             justify-content: center;
         }
+
+        
 
         .fotos-barbeiro div {
             width: auto;
@@ -156,6 +159,7 @@ export const SobreSC = styled.section`
             align-items: center;
             justify-content: center;
             gap: 1rem;
+
 
             picture {
                 width: 128px;
@@ -206,6 +210,10 @@ export const SobreSC = styled.section`
             h2 {
                 font-size: 2rem;
             }
+        }
+
+        .fotos-barbeiro-start {
+            justify-content: start !important;
         }
     }
 `
