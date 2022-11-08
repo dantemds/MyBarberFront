@@ -35,6 +35,7 @@ export default function FormAgendamento() {
     const [exibirCalendario, setExibirCalendario] = useState(true)
     const [idBarbeiroSelecionado, setIdBarbeiroSelecionado] = useState('0')
     const [horaSelecionada, setHoraSelecionada] = useState('')
+    const [dataSelecionada, setDataSelecionada] = useState(new Date())
     const [statusAgendamento, setStatusAgendamento] = useState({
         carregando: false,
         erroAgendamento: false
@@ -50,16 +51,6 @@ export default function FormAgendamento() {
 
 
     useEffect(() => {
-        // if (!dadosTenantBarbearia || localStorage.getItem('infoAgendamento')) {
-        //     navigate(-1)
-        // }
-        // else {
-        //     setValue('barbeariasId', dadosTenantBarbearia.idBarbearia)
-        //     setValue('horario', formatar.toDate(new Date())[0])
-        //     setCarregou(true)
-        //     setListaServico(new ListaServicoModel(dadosTenantBarbearia.servicos).servicos)
-        // }
-
         setValue('barbeariasId', dadosTenantBarbearia.idBarbearia)
         setValue('horario', formatar.toDate(new Date())[0])
         setCarregou(true)
@@ -125,6 +116,7 @@ export default function FormAgendamento() {
     }
 
     const handleBarbeiro = event => {
+        setDataSelecionada(new Date())
         setValue('barbeirosId', event.target.value)
         setIdBarbeiroSelecionado(event.target.value)
     }
@@ -132,6 +124,7 @@ export default function FormAgendamento() {
     const handleData = event => {
         const objData = formatar.toDate(event)
 
+        setDataSelecionada(event)
         setValue('horario', objData[0])
         getHorariosDisponiveis(objData)
     }
@@ -179,9 +172,10 @@ export default function FormAgendamento() {
             minDate={dataMin}
             maxDate={dataMax}
             onChange={handleData}
+            value={dataSelecionada}
             defaultValue={new Date()}
         />
-    }, [0])
+    }, [dataSelecionada])
 
     useEffect(() => {
         if (idBarbeiroSelecionado == "0")
@@ -194,7 +188,6 @@ export default function FormAgendamento() {
     }, [idBarbeiroSelecionado])
 
     // console.log('Renderizou')
-
 
     return (
         carregou &&

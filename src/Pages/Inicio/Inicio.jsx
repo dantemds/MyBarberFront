@@ -25,7 +25,9 @@ export default function Inicio() {
             behavior: 'smooth'
         })
 
-        window.localStorage.clear()
+        // window.localStorage.clear()
+        localStorage.removeItem('rota-barbearia')
+        localStorage.removeItem('infoAgendamento')
 
         setServicoSelecionado(new CardServicoModel()) // Resetar o serviço selecionado caso usuário volte para o Início
 

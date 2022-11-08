@@ -22,7 +22,7 @@ export const ServicosAgendadosSC = styled.section`
     }
 
 
-    input, label, select {
+    input, label, select, .btn-refresh {
         width: 217px;
         height: 2.5rem;
         font-size: .9rem;
@@ -42,6 +42,13 @@ export const ServicosAgendadosSC = styled.section`
         outline: 0;
         box-shadow: 0 0 10px rgba(20, 20, 20, .3);
         border-bottom: 3px solid #3871C1;
+    }
+
+    .btn-refresh {
+        color: #fff;
+        background-color: #3871C1;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(20, 20, 20, .4);
     }
 
     header {
