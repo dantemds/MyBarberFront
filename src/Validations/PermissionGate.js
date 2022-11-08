@@ -1,6 +1,6 @@
 const PermisssionGate = ({ children, permissions, user }) => {
     const userPermissions = user.permissions.map(role => role.name)
-    console.log(userPermissions)
+    // console.log(userPermissions)
     if (
         permissions
             .some(permission => {

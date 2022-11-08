@@ -11,16 +11,20 @@ export default function ServicosAgendados() {
   const dataAtual = useDate()
   const [dataSelecionada, setDataSelecionada] = useState(dataAtual)
   const [barbeiroSelecionado, setBarbeiroSelecionado] = useState('')
+  const [exibirBarbeiro, setExibirBarbeiro] = useState(false)
   const [listaAgendamentos, setListaAgendamentos] = useState([])
   const [listaBarbeiros, setListaBarbeiros] = useState([])
 
   const usuario = JSON.parse(localStorage.getItem('usuario'))
 
   useEffect(() => {
-    setBarbeiroSelecionado(JSON.parse(localStorage.getItem('usuario')))
+    setBarbeiroSelecionado(JSON.parse(localStorage.getItem('usuario')).idBarbeiro)
 
     RequestsClientes.getBarbeiros(usuario.idBarbearia)
-      .then(res => setListaBarbeiros(res))
+      .then(res => {
+        setListaBarbeiros(res)
+        setExibirBarbeiro(true)
+      })
   }, [0])
 
   useEffect(() => {
@@ -32,7 +36,7 @@ export default function ServicosAgendados() {
 
   /* ----------------------------------------------------------------------------------------------------------------------- */
   const getAgendamentos = () => {
-    RequestsClientes.getAgendamentosBarbeiro(usuario.idBarbearia, barbeiroSelecionado.idBarbeiro, dataSelecionada)
+    RequestsClientes.getAgendamentosBarbeiro(usuario.idBarbearia, barbeiroSelecionado, dataSelecionada)
       .then(res => {
         setListaAgendamentos(res)
         // console.log('LOG: Agendamentos recebidos com sucesso.')
@@ -45,15 +49,16 @@ export default function ServicosAgendados() {
     return listaBarbeiros.map(barbeiro => {
       return <option
         key={`${barbeiro.idBarbeiro}${barbeiro.nameBarbeiro}`}
-        value={JSON.stringify(barbeiro)}>{barbeiro.nameBarbeiro}
+        value={barbeiro.idBarbeiro}>{barbeiro.nameBarbeiro}
       </option>
     })
   }
 
   /* ----------------------------------------------------------------------------------------------------------------------- */
   const handleBarbeiro = event => {
-    setBarbeiroSelecionado(JSON.parse(event.target.value))
+    setBarbeiroSelecionado(event.target.value)
   }
+
 
   return (
     <ServicosAgendadosSC>
@@ -61,16 +66,29 @@ export default function ServicosAgendados() {
 
       <input type="date" value={dataSelecionada} onChange={event => setDataSelecionada(event.target.value)} />
 
-      <PermisssionGate
-        permissions={[
-          'Supervisor'
-        ]}
-        user={{ permissions: usuario.role }}
+      {
+        exibirBarbeiro &&
+        <PermisssionGate
+          permissions={[
+            'Supervisor'
+          ]}
+          user={{ permissions: usuario.role }}
+        >
+          <select
+            onChange={handleBarbeiro}
+            defaultValue={usuario.idBarbeiro}
+          >
+            {listarBarbeiros()}
+          </select>
+        </PermisssionGate>
+      }
+
+      <button
+        className='btn-refresh'
+        onClick={getAgendamentos}
       >
-        <select onChange={handleBarbeiro}        >
-          {listarBarbeiros()}
-        </select>
-      </PermisssionGate>
+        Atualizar
+      </button>
 
       <PermisssionGate
         permissions={[
