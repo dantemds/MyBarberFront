@@ -131,17 +131,24 @@ export default function FormAgendamento() {
 
     ///// ---------------------------------- /////
     const addAgendamento = dadosAgendamento => {
-        // console.log(dadosAgendamento)
-        setStatusAgendamento({ ...statusAgendamento, carregando: true })
-        RequestsClientes.postAgendamento(dadosAgendamento)
-            .then(() => {
-                setAgendamentoRealizado(true)
-                setStatusAgendamento({ ...statusAgendamento, carregando: false })
-                navigate('/confirmacao-agendamento')
-            })
-            .catch(() => {
-                setStatusAgendamento({ erroAgendamento: true, carregando: false })
-            })
+
+        if (new Date(getValues('horario')) > new Date()) {
+            setStatusAgendamento({ ...statusAgendamento, carregando: true })
+            RequestsClientes.postAgendamento(dadosAgendamento)
+                .then(() => {
+                    setAgendamentoRealizado(true)
+                    setStatusAgendamento({ ...statusAgendamento, carregando: false })
+                    navigate('/confirmacao-agendamento')
+                })
+                .catch(() => {
+                    setStatusAgendamento({ erroAgendamento: true, carregando: false })
+                })
+        }
+        else {
+            window.alert('Agendamento não realizado, a página será atualizada')
+            navigate(-1)
+        }
+
     }
 
     const getHorariosDisponiveis = (data) => {
