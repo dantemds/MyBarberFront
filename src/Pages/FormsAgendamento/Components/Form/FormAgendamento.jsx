@@ -133,10 +133,6 @@ export default function FormAgendamento() {
     const addAgendamento = dadosAgendamento => {
 
         if (new Date(getValues('horario')) > new Date()) {
-<<<<<<< HEAD
-=======
-
->>>>>>> cd6335fad0cbb859c535a292a7b3276e6eb5cf02
             setStatusAgendamento({ ...statusAgendamento, carregando: true })
             RequestsClientes.postAgendamento(dadosAgendamento)
                 .then(() => {
@@ -147,19 +143,12 @@ export default function FormAgendamento() {
                 .catch(() => {
                     setStatusAgendamento({ erroAgendamento: true, carregando: false })
                 })
-<<<<<<< HEAD
         }
         else {
             window.alert('Agendamento não realizado, a página será atualizada')
             navigate(-1)
         }
 
-=======
-        } else {
-            window.alert("Agendamento não realizado, tente novamente.")
-            navigate(-1)
-        }
->>>>>>> cd6335fad0cbb859c535a292a7b3276e6eb5cf02
     }
 
     const getHorariosDisponiveis = (data) => {
