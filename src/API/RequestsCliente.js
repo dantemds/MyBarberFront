@@ -21,11 +21,13 @@ const postAgendamento = async (agendamento) => {
         return await Api().post('/api/v1/agendamentos/', agendamento)
             .then((res) => {
                 // console.log(res)
-                if (res.status === 201) {
+                if (res.status === 201 && res.config.method === 'post') {
                     console.log('LOG: Agendamento realizado.')
-                    return true
+                    // return true
+                    return res
                 }
                 else {
+                    // return false
                     return false
                 }
             })
