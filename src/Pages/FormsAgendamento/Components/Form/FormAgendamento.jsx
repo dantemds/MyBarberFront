@@ -136,16 +136,22 @@ export default function FormAgendamento() {
 
             setStatusAgendamento({ ...statusAgendamento, carregando: true })
             RequestsClientes.postAgendamento(dadosAgendamento)
-                .then(() => {
-                    setAgendamentoRealizado(true)
-                    setStatusAgendamento({ ...statusAgendamento, carregando: false })
-                    navigate('/confirmacao-agendamento')
+                .then((res) => {
+                    // console.log(res)
+                    if (res !== false) {
+                        setAgendamentoRealizado(true)
+                        setStatusAgendamento({ ...statusAgendamento, carregando: false })
+                        navigate('/confirmacao-agendamento')
+                    }
+                    else {
+                        setStatusAgendamento({ erroAgendamento: true, carregando: false })
+                        window.alert('Não foi possível realizar o agendamento, tente novamente!')
+                        navigate(-1)
+                    }
                 })
-                .catch(() => {
-                    setStatusAgendamento({ erroAgendamento: true, carregando: false })
-                })
+                
         } else {
-            window.alert("Agendamento não realizado, tente novamente.")
+            window.alert("Agendamento não realizado, tente novamente!")
             navigate(-1)
         }
     }
