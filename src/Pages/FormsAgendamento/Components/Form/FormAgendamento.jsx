@@ -116,6 +116,9 @@ export default function FormAgendamento() {
     }
 
     const handleBarbeiro = event => {
+        const objData = formatar.toDate(new Date())
+        
+        setValue('horario', objData[0])
         setDataSelecionada(new Date())
         setValue('barbeirosId', event.target.value)
         setIdBarbeiroSelecionado(event.target.value)
