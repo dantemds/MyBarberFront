@@ -76,7 +76,7 @@ export default function Sobre() {
                     </div>
                 }
 
-                <div className='wrap-infos-texto'>
+                <div className='wrap-infos-texto' id='contato'>
                     <div className='wrap-titulo-texto'>
                         <h3>Endereço</h3>
                         {

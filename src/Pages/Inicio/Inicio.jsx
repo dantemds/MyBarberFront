@@ -52,6 +52,7 @@ export default function Inicio() {
         ['Início', '#Apresentacao'],
         ['Serviços', '#Servico'],
         ['Sobre', '#Sobre'],
+        ['Contatos', '#contato'],
         ['Mapa', '#Mapa'],
         ['Agendar', '/forms-agendamento']]
 
@@ -59,6 +60,7 @@ export default function Inicio() {
         ['Início', '#Apresentacao'],
         ['Serviços', '#Servico'],
         ['Sobre', '#Sobre'],
+        ['Contatos', '#contato'],
         ['Mapa', '#Mapa']]
 
     return (
