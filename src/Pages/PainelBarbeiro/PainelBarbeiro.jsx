@@ -4,6 +4,7 @@ import { RequestsClientes } from '../../API/RequestsCliente';
 
 import Header from '../../Components/Header/Header'
 import Rodape from '../../Components/Rodape/Rodape';
+import CriarEvento from './Components/CriarEvento/CriarEvento';
 import ServicosAgendados from './Components/ServicosAgendados/ServicosAgendados';
 
 
@@ -15,6 +16,7 @@ export default function PainelBarbeiro() {
 
     const linkMenuDados = [
         ['Sair', '#'],
+        ['Criar evento', '#'],
     ]
 
     useEffect(() => {
@@ -32,7 +34,8 @@ export default function PainelBarbeiro() {
         usuarioLogado &&
         <>
             <Header linkMenuDados={linkMenuDados} />
-            <ServicosAgendados />
+            {/* <ServicosAgendados /> */}
+            <CriarEvento/>
             <Rodape />
         </>
     )
