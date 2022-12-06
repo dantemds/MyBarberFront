@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
-
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated';
 import { CriarEventoSC } from './style'
+import foto from './images.png'
 
 export default function CriarEvento() {
 
@@ -10,47 +12,91 @@ export default function CriarEvento() {
         DescricaoEvento: '',
         HoraInicio: '',
         HoraFim: '',
-        DiaSemana: '',
+        DiaSemana: [],
         BarbeariasId: '',
-        BarbeirosId: ''
-    })
+        BarbeirosId: '',
+        DataInicio:'',
+        DataFim:'',
+        Temporario: true,
+        
+    });
 
     const handleNomeEvento = event => {
-        setEventoFixo([{...eventoFixo, NomeEvento: event.target.value}])
+        setEventoFixo({...eventoFixo, NomeEvento: event.target.value})
     }
 
     const handleDescricaoEvento = event => {
-        setEventoFixo([{...eventoFixo, DescricaoEvento: event.target.value}])
+        setEventoFixo({...eventoFixo, DescricaoEvento: event.target.value})
     }
 
     const handleHoraInicio = event => {
-        setEventoFixo([{...eventoFixo, HoraInicio: event.target.value}])
+        setEventoFixo({...eventoFixo, HoraInicio: event.target.value})
     }
 
     const handleHoraFim = event => {
-        setEventoFixo([{...eventoFixo, HoraFim: event.target.value}])
+        setEventoFixo({...eventoFixo, HoraFim: event.target.value})
     }
 
-    const handleDiaSemana= event => {
-        setEventoFixo({...eventoFixo, DiaSemana: event.target.value})
+    const handleDataInicio = event => {
+        setEventoFixo({...eventoFixo, DataInicio: event.target.value})
     }
+
+    const handleDataFim = event => {
+        setEventoFixo({...eventoFixo, DataFim: event.target.value})
+    }
+
+    const handleTemporario = event => {
+        setEventoFixo({...eventoFixo, Temporario: !eventoFixo.Temporario, DataFim:'', DataInicio:''})
+    }
+
+    const handleDiaSemana = event => {
+        setEventoFixo({...eventoFixo, DiaSemana:event.target.value})
+    }
+
 
     const addEvento = event => {
         event.preventDefault()
-        console.log('Post')
+        
         console.log(eventoFixo)
     }
 
+    const options = [
+        { value: 'domingo', label: 'Domingo' },
+        { value: 'segunda', label: 'Segunda-Feira' },
+        { value: 'terca', label: 'Terça-Feira' },
+        { value: 'quarta', label: 'Quarta-Feira' },
+        { value: 'quinta', label: 'Quinta-Feira' },
+        { value: 'sexta', label: 'Sexta-Feira' },
+        { value: 'sabado', label: 'Sábado' },
+      ]
+
+      const animatedComponents = makeAnimated();
+
     return (
         <CriarEventoSC>
+           
             <div className="mainContent">
+            <div>
+                <img src={foto} alt="Logo" />
+            </div>
                 <form onSubmit={addEvento}>
-                    <input type="text" placeholder='Nome do evento' onChange={()=>handleNomeEvento()}/>
-                    <input type="text" name="" id="" placeholder='Descrição do evento' onChange={()=>handleDescricaoEvento}/>
-                    <input type="time" name="" id="" onChange={()=>handleHoraInicio()}/>
-                    <input type="time" name="" id="" onChange={()=>handleHoraFim()}/>
-                    {/* <input type="checkbox" name="" id=""  onChange={()=>}/> */}
-                    <label >Repetir sempre.</label>
+                    <input type="text" placeholder='Nome do evento' onChange={(e)=>handleNomeEvento(e)}/>
+                    <input type="text" name="" id="" placeholder='Descrição do evento' onChange={(e)=>handleDescricaoEvento(e)}/>
+                    {/* String "16:30" */}
+                    <input type="time" name="" id="horaInicio" onChange={(e)=>handleHoraInicio(e)}/>
+                    {/* String "16:30" */}
+                    <input type="time" name="" id="horaFim" onChange={(e)=>handleHoraFim(e)}/> 
+
+                    <Select options={options} isMulti className="basic-multi-select" classNamePrefix="select" components={animatedComponents} onChange={(e)=>{handleDiaSemana(e)}}/>
+
+                    {/* //String Data "07/12/2022" dd/mm/yyyy*/}
+                    <input type={eventoFixo.Temporario ? "date" : "hidden"} name="" id="dataInicio" onChange={(e)=>{handleDataInicio(e)}}/> 
+                    {/* //String Data "07/12/2022" dd/mm/yyyy*/}
+                    <input type={eventoFixo.Temporario ? "date" : "hidden"} visible={eventoFixo.Temporario} name="" id="dataFim" onChange={(e)=>{handleDataFim(e)}}/>
+                    <span>
+                        <input type="checkbox" checked={!eventoFixo.Temporario} name="" id=""  onChange={(e)=>{handleTemporario(e)}}/>
+                        <label>Repetir sempre.</label>
+                    </span>
                     <button type="submit">Criar</button>
                 </form>
             </div>
