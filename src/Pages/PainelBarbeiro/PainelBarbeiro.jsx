@@ -34,8 +34,8 @@ export default function PainelBarbeiro() {
         usuarioLogado &&
         <>
             <Header linkMenuDados={linkMenuDados} />
-            {/* <ServicosAgendados /> */}
-            <CriarEvento/>
+            <ServicosAgendados />
+            {/* <CriarEvento/> */}
             <Rodape />
         </>
     )
