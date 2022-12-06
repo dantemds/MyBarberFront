@@ -4,6 +4,8 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import { CriarEventoSC } from './style'
 import foto from './images.png'
+import {padronizaData} from '../../../../Utils/functions.js'
+import {RequestsClientes} from '../../../.././API/RequestsCliente.js'
 
 export default function CriarEvento() {
 
@@ -12,7 +14,7 @@ export default function CriarEvento() {
         DescricaoEvento: '',
         HoraInicio: '',
         HoraFim: '',
-        DiaSemana: [],
+        DiaSemana: '',
         BarbeariasId: '',
         BarbeirosId: '',
         DataInicio:'',
@@ -20,6 +22,7 @@ export default function CriarEvento() {
         Temporario: true,
         
     });
+
 
     const handleNomeEvento = event => {
         setEventoFixo({...eventoFixo, NomeEvento: event.target.value})
@@ -38,11 +41,11 @@ export default function CriarEvento() {
     }
 
     const handleDataInicio = event => {
-        setEventoFixo({...eventoFixo, DataInicio: event.target.value})
+        setEventoFixo({...eventoFixo, DataInicio: padronizaData(event.target.value)})
     }
 
     const handleDataFim = event => {
-        setEventoFixo({...eventoFixo, DataFim: event.target.value})
+        setEventoFixo({...eventoFixo, DataFim: padronizaData(event.target.value)})
     }
 
     const handleTemporario = event => {
@@ -50,14 +53,26 @@ export default function CriarEvento() {
     }
 
     const handleDiaSemana = event => {
-        setEventoFixo({...eventoFixo, DiaSemana:event.target.value})
+        const dias = [];
+        event.forEach((item) => {
+            dias.push(item.value);
+        });
+        setEventoFixo({...eventoFixo, DiaSemana: dias})
     }
 
 
     const addEvento = event => {
         event.preventDefault()
-        
-        console.log(eventoFixo)
+        const usuario = JSON.parse(localStorage.getItem('usuario'));
+        if(eventoFixo.DiaSemana.length == 1){
+            console.log(eventoFixo)
+            const dados = eventoFixo;
+            dados.DiaSemana = eventoFixo.DiaSemana[0];
+            dados.BarbeariasId = usuario.idBarbearia;
+            dados.BarbeirosId = usuario.idBarbeiro;
+            console.log(dados)
+            RequestsClientes.postEvento(dados);
+        }
     }
 
     const options = [
@@ -86,9 +101,7 @@ export default function CriarEvento() {
                     <input type="time" name="" id="horaInicio" onChange={(e)=>handleHoraInicio(e)}/>
                     {/* String "16:30" */}
                     <input type="time" name="" id="horaFim" onChange={(e)=>handleHoraFim(e)}/> 
-
-                    <Select options={options} isMulti className="basic-multi-select" classNamePrefix="select" components={animatedComponents} onChange={(e)=>{handleDiaSemana(e)}}/>
-
+                    <Select options={options} isMulti className="basic-multi-select" classNamePrefix="select"  components={animatedComponents} onChange={(e)=>{handleDiaSemana(e)}}/>
                     {/* //String Data "07/12/2022" dd/mm/yyyy*/}
                     <input type={eventoFixo.Temporario ? "date" : "hidden"} name="" id="dataInicio" onChange={(e)=>{handleDataInicio(e)}}/> 
                     {/* //String Data "07/12/2022" dd/mm/yyyy*/}
