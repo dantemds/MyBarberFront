@@ -71,7 +71,15 @@ export default function CriarEvento() {
             dados.BarbeariasId = usuario.idBarbearia;
             dados.BarbeirosId = usuario.idBarbeiro;
             console.log(dados)
-            RequestsClientes.postEvento(dados);
+            RequestsClientes.postEvento(dados)
+                .then((res) => {
+                    // console.log('res', res);
+                    if (res) {
+                        console.log('deu certo');
+                    } else {
+                        console.log('deu ruim');
+                    }
+                })
         }
     }
 
@@ -97,6 +105,34 @@ export default function CriarEvento() {
                 <form onSubmit={addEvento}>
                     <input type="text" placeholder='Nome do evento' onChange={(e)=>handleNomeEvento(e)}/>
                     <input type="text" name="" id="" placeholder='Descrição do evento' onChange={(e)=>handleDescricaoEvento(e)}/>
+
+                    <datalist id="horaInicio">
+                    <option value="00:00"></option>
+                    <option value="00:30"></option>
+                    <option value="01:00"></option>
+                    <option value="01:30"></option>
+                    <option value="02:00"></option>
+                    <option value="02:30"></option>
+                    <option value="03:00"></option>
+                    <option value="03:30"></option>
+                    <option value="04:00"></option>
+                    <option value="04:30"></option>
+                    <option value="05:00"></option>
+                    <option value="05:30"></option>
+                    <option value="06:30"></option>
+                    <option value="07:00"></option>
+                    <option value="07:30"></option>
+                    <option value="08:00"></option>
+                    <option value="08:30"></option>
+                    <option value="09:00"></option>
+                    <option value="09:30"></option>
+                    <option value="10:00"></option>
+                    <option value="10:30"></option>
+                    <option value="11:00"></option>
+                    <option value="11:30"></option>
+                    <option value="12:00"></option>
+                    </datalist>
+                    {/* <input list="horaInicio" name="horaInicio" id="horaInicio"/> */}
                     {/* String "16:30" */}
                     <input type="time" name="" id="horaInicio" onChange={(e)=>handleHoraInicio(e)}/>
                     {/* String "16:30" */}
