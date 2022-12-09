@@ -3,12 +3,11 @@ import {useState} from 'react'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 import {CriarEventoSC} from './style'
-import foto from './images.png'
 import {padronizaData} from '../../../../Utils/functions.js'
 import {RequestsClientes} from '../../../.././API/RequestsCliente.js'
 import {validacaoEvento} from '../../../../Validations/EventosValidation';
 import {useForm} from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
+import {yupResolver} from '@hookform/resolvers/yup'
 
 export default function CriarEvento() {
 
@@ -106,9 +105,7 @@ export default function CriarEvento() {
         <CriarEventoSC>
            
             <div className="mainContent">
-            <div>
-                <img src={foto} alt="Logo" />AAA Miranha brocha
-            </div>
+                <h2>Crie eventos para bloquear sua agenda</h2>
                 <form onSubmit={handleSubmit(addEvento)}>
                     <input type="text" placeholder='Nome do evento' maxLength={30} minLength={3} onChange={(e)=>handleNomeEvento(e)}/>
                     <input type="text" name="descricaoEvento" id="descricaoEvento" placeholder='Descrição do evento' maxLength={100} onChange={(e)=>handleDescricaoEvento(e)}/>
