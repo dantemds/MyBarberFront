@@ -73,3 +73,9 @@ export const unlockScroll = () => {
     document.documentElement.style.overflow = 'auto'
     document.body.scroll = "yes"
 }
+
+export const padronizaData = (data) => {
+let ano, mes, dia;
+[ano, mes, dia] = data.split('-');
+return `${dia}/${mes}/${ano}`
+}

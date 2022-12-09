@@ -5,7 +5,7 @@ export const CriarEventoSC = styled.section`
     /* background-color: red; */
     display: flex;
     padding: 6rem 0;
-    background-color: red;
+    /* background-color: red; */
 
     form {
         /* background-color: green; */
@@ -15,8 +15,7 @@ export const CriarEventoSC = styled.section`
         gap: 1rem;
         margin: auto;
         padding: 4rem;
-        background-color: blue;
-        
+        /* background-color: blue; */
     }
     
 }

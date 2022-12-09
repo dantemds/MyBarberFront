@@ -89,6 +89,17 @@ const postAutenticacao = async (credencial) => {
         })
 }
 
+const postEvento = async (evento) => {
+    return await Api().post('/api/v1/eventosagendados', evento)
+    .then(res => {
+        return res.data
+    }) 
+    .catch(() => {
+        console.log('LOG: Evento Falhou');
+        return null
+    })
+}
+
 const getToken = () => {
     return window.localStorage.getItem('usuario').token
 }
@@ -103,4 +114,5 @@ export const RequestsClientes = {
     getHorariosDisponiveis,
     postAutenticacao,
     getToken,
+    postEvento,
 }

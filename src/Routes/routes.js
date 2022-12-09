@@ -8,6 +8,8 @@ import PainelBarbeiro from '../Pages/PainelBarbeiro/PainelBarbeiro'
 import Login from '../Pages/Login/Login'
 import { GlobalContext } from '../Contexts/GlobalContext'
 import BarbeariaNaoEncontrada from '../Pages/BarbeariaNaoEncontrada/BarbeariaNaoEncontrada'
+import CriarEvento from '../Pages/PainelBarbeiro/Components/CriarEvento/CriarEvento'
+import ServicosAgendados from '../Pages/PainelBarbeiro/Components/ServicosAgendados/ServicosAgendados'
 
 export default function Rotas() {
     const { dadosTenantBarbearia } = React.useContext(GlobalContext)
@@ -21,11 +23,11 @@ export default function Rotas() {
                 {/* } */}
                 <Route path="/confirmacao-agendamento" element={<ConfirmacaoAgendamento />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/painel-barbeiro" element={<PainelBarbeiro />} />
-                
-                
+                <Route path="/painel-barbeiro">
+                <Route index element={<PainelBarbeiro><ServicosAgendados/></PainelBarbeiro>}></Route>
+                <Route path=':evento' element={<PainelBarbeiro><CriarEvento/></PainelBarbeiro>}></Route>
+                </Route>
                 <Route path="/ops" element={<BarbeariaNaoEncontrada />} />
-
                 <Route path="/" element={<Login />} />
             </Routes>
         </BrowserRouter>
