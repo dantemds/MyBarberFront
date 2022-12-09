@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CriarEventoSC = styled.section`
 .mainContent {
-    /* background-color: red; */
     min-height: 100vh;
     max-width: 1200px;
     display: flex;
@@ -12,17 +11,35 @@ export const CriarEventoSC = styled.section`
     margin-top: 50px;
     padding: 3rem 0px;
     color: #202020;
+    justify-content: center;
 
-    /* background-color: red; */
 
     form {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: ${({ theme }) => theme.espacamento[5]}px;
+        margin-top: 2.5rem;
 
-        input, select {
+        input[type=checkbox] {
+            margin-right: 2%;
+            border: none;
+            border-bottom: 1px solid ${({ theme }) => theme.cores.secundaria};
+            background-color: #fafafa;
+        }
+        .check {
+            width: 400px;
+            height: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            font-size: .9rem;
+            padding: 0 12px;
+            border: none;
+        }
+
+        input[type=text], input[type=date], input[type=time], select  {
             width: 400px;
             height: 2.5rem;
             font-size: .9rem;
@@ -31,6 +48,15 @@ export const CriarEventoSC = styled.section`
             border: none;
             border-bottom: 1px solid ${({ theme }) => theme.cores.secundaria};
             background-color: #fafafa;
+        }
+        #selectDia {
+            width: 400px;
+            height: 2.5rem;
+            font-size: .9rem;
+            border: none;
+            border-bottom: 1px solid ${({ theme }) => theme.cores.secundaria};
+            background-color: #fafafa;
+            margin-bottom: 2.5rem;
         }
 
         input:focus, select:focus {
@@ -82,11 +108,7 @@ h2 {
 form {
     margin-top: 1rem 0 2rem 0;
 
-    .mensagem-erro {
-        width: 100%;
-    }
-
-    input, label, select, h2 {
+    input, label, select, h2,  #selectDia {
         width: 100%;
         max-width: 400px;
     }

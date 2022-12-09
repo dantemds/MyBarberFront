@@ -109,20 +109,20 @@ export default function CriarEvento() {
                 <form onSubmit={handleSubmit(addEvento)}>
                     <input type="text" placeholder='Nome do evento' maxLength={30} minLength={3} onChange={(e)=>handleNomeEvento(e)}/>
                     <input type="text" name="descricaoEvento" id="descricaoEvento" placeholder='Descrição do evento' maxLength={100} onChange={(e)=>handleDescricaoEvento(e)}/>
-                    <input list="horaInicio" name="horaInicio" id="horaInicio_input"/>
+                    {/* <input list="horaInicio" name="horaInicio" id="horaInicio_input"/> */}
                     {/* String "16:30" */}
                     <input type="time" name="" id="horaInicio1" onChange={(e)=>handleHoraInicio(e)}/>
                     {/* String "16:30" */}
                     <input type="time" name="" id="horaFim" onChange={(e)=>handleHoraFim(e)}/> 
-                    <Select options={options} isMulti className="basic-multi-select" classNamePrefix="select"  components={animatedComponents} onChange={(e)=>{handleDiaSemana(e)}}/>
+                    <Select options={options} isMulti className="basic-multi-select" classNamePrefix="select" id='selectDia' components={animatedComponents} onChange={(e)=>{handleDiaSemana(e)}}/>
                     {/* //String Data "07/12/2022" dd/mm/yyyy*/}
                     <input type={eventoFixo.Temporario ? "date" : "hidden"} name="" id="dataInicio" onChange={(e)=>{handleDataInicio(e)}}/> 
                     {/* //String Data "07/12/2022" dd/mm/yyyy*/}
                     <input type={eventoFixo.Temporario ? "date" : "hidden"} visible={eventoFixo.Temporario} name="" id="dataFim" onChange={(e)=>{handleDataFim(e)}}/>
-                    <span>
+                    <div class='check'>
                         <input type="checkbox" checked={!eventoFixo.Temporario} name="" id=""  onChange={(e)=>{handleTemporario(e)}}/>
                         <label>Repetir sempre.</label>
-                    </span>
+                    </div>
                     <button type="submit">Criar</button>
                 </form>
             </div>
