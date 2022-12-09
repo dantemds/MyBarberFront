@@ -36,7 +36,7 @@ export default function Inicio() {
                 localStorage.setItem('rota-barbearia', barbearia)
                 setDadosTenantBarbearia(res)
             })
-            .catch(() => navigate('/login'))
+            .catch(() => navigate('/ops'))
 
     }, [0])
 

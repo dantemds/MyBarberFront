@@ -1,11 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
+import {useState} from 'react'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
-import { CriarEventoSC } from './style'
+import {CriarEventoSC} from './style'
 import foto from './images.png'
 import {padronizaData} from '../../../../Utils/functions.js'
 import {RequestsClientes} from '../../../.././API/RequestsCliente.js'
+import {validacaoEvento} from '../../../../Validations/EventosValidation';
+import {useForm} from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 export default function CriarEvento() {
 
@@ -22,6 +25,11 @@ export default function CriarEvento() {
         Temporario: true,
         
     });
+
+
+    const { register, handleSubmit, formState: { errors }, setValue, getValues, clearErrors } = useForm({
+        resolver: yupResolver(validacaoEvento)
+    })
 
 
     const handleNomeEvento = event => {
@@ -73,7 +81,6 @@ export default function CriarEvento() {
             console.log(dados)
             RequestsClientes.postEvento(dados)
                 .then((res) => {
-                    // console.log('res', res);
                     if (res) {
                         console.log('deu certo');
                     } else {
@@ -100,41 +107,14 @@ export default function CriarEvento() {
            
             <div className="mainContent">
             <div>
-                <img src={foto} alt="Logo" />
+                <img src={foto} alt="Logo" />AAA Miranha brocha
             </div>
-                <form onSubmit={addEvento}>
-                    <input type="text" placeholder='Nome do evento' onChange={(e)=>handleNomeEvento(e)}/>
-                    <input type="text" name="" id="" placeholder='Descrição do evento' onChange={(e)=>handleDescricaoEvento(e)}/>
-
-                    <datalist id="horaInicio">
-                    <option value="00:00"></option>
-                    <option value="00:30"></option>
-                    <option value="01:00"></option>
-                    <option value="01:30"></option>
-                    <option value="02:00"></option>
-                    <option value="02:30"></option>
-                    <option value="03:00"></option>
-                    <option value="03:30"></option>
-                    <option value="04:00"></option>
-                    <option value="04:30"></option>
-                    <option value="05:00"></option>
-                    <option value="05:30"></option>
-                    <option value="06:30"></option>
-                    <option value="07:00"></option>
-                    <option value="07:30"></option>
-                    <option value="08:00"></option>
-                    <option value="08:30"></option>
-                    <option value="09:00"></option>
-                    <option value="09:30"></option>
-                    <option value="10:00"></option>
-                    <option value="10:30"></option>
-                    <option value="11:00"></option>
-                    <option value="11:30"></option>
-                    <option value="12:00"></option>
-                    </datalist>
-                    {/* <input list="horaInicio" name="horaInicio" id="horaInicio"/> */}
+                <form onSubmit={handleSubmit(addEvento)}>
+                    <input type="text" placeholder='Nome do evento' maxLength={30} minLength={3} onChange={(e)=>handleNomeEvento(e)}/>
+                    <input type="text" name="descricaoEvento" id="descricaoEvento" placeholder='Descrição do evento' maxLength={100} onChange={(e)=>handleDescricaoEvento(e)}/>
+                    <input list="horaInicio" name="horaInicio" id="horaInicio_input"/>
                     {/* String "16:30" */}
-                    <input type="time" name="" id="horaInicio" onChange={(e)=>handleHoraInicio(e)}/>
+                    <input type="time" name="" id="horaInicio1" onChange={(e)=>handleHoraInicio(e)}/>
                     {/* String "16:30" */}
                     <input type="time" name="" id="horaFim" onChange={(e)=>handleHoraFim(e)}/> 
                     <Select options={options} isMulti className="basic-multi-select" classNamePrefix="select"  components={animatedComponents} onChange={(e)=>{handleDiaSemana(e)}}/>

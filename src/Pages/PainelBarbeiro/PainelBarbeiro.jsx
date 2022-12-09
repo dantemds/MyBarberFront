@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { Children, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { RequestsClientes } from '../../API/RequestsCliente';
-
 import Header from '../../Components/Header/Header'
 import Rodape from '../../Components/Rodape/Rodape';
-import CriarEvento from './Components/CriarEvento/CriarEvento';
-import ServicosAgendados from './Components/ServicosAgendados/ServicosAgendados';
 
 
-export default function PainelBarbeiro() {
+
+export default function PainelBarbeiro(props) {
 
     const [usuarioLogado, setUsuarioLogado] = useState(false)
-
+console.log(props.children);
     let navigate = useNavigate()
 
     const linkMenuDados = [
-        ['Sair', '#'],
-        ['Criar evento', '#'],
+        ['Sair', ''],
+        (props.children.type.name == 'CriarEvento') ?  ['Voltar', '/painel-barbeiro'] :
+        ['Criar evento', 'painel-barbeiro/evento'],
     ]
 
     useEffect(() => {
@@ -34,8 +33,7 @@ export default function PainelBarbeiro() {
         usuarioLogado &&
         <>
             <Header linkMenuDados={linkMenuDados} />
-            {/* <ServicosAgendados /> */}
-            <CriarEvento/>
+            {props.children}
             <Rodape />
         </>
     )
