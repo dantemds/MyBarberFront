@@ -52,12 +52,28 @@ const deleteAgendamento = async (id) => {
         .catch(() => console.log("LOG: Falha ao cancelar o agendamento."))
 }
 
+const deleteEvento = async (id) => {
+    await Api().delete(`/api/v1/eventosagendados/${id}`)
+        .then(() => {
+            window.location.reload()
+        })
+        .catch(() => console.log("LOG: Falha ao cancelar o agendamento."))
+}
+
 const getAgendamentosBarbeiro = async (idBarbearia, idBarbeiro, data) => {
 
     return await Api().get(`api/v1/agendamentos/barbeiro/${idBarbearia}?data=${data}&idBarbeiro=${idBarbeiro}`)
         .then(res => {
             return res.data
         })
+}
+
+const getEventosBarbeiro = async (idBarbeiro) => {
+    console.log('barb', idBarbeiro);
+    return await Api().get(`api/v1/eventosagendados/${idBarbeiro}`)
+        .then(res => {
+            return res.data;
+        });
 }
 
 const getBarbeiros = async (idBarbearia) => {
@@ -115,4 +131,6 @@ export const RequestsClientes = {
     postAutenticacao,
     getToken,
     postEvento,
+    getEventosBarbeiro,
+    deleteEvento,
 }

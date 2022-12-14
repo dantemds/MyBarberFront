@@ -103,7 +103,7 @@ export default function ServicosAgendados() {
             <div>Cliente</div>
             <div>Serviço</div>
           </header>
-          <Agenda listaAgendamentos={listaAgendamentos} />
+          <Agenda factory='agendamento' listaAgendamentos={listaAgendamentos} />
         </DetalhesAgendamentoProvider>
       </PermisssionGate>
 

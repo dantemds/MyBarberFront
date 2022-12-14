@@ -1,6 +1,9 @@
 import styled from "styled-components"
 
 export const DetalhesAgendamentoSC = styled.div`
+input[type='checkbox'][readonly]{
+    pointer-events: none;
+}
     position: fixed;
     width: 100vw;
     min-height: 100vh;

@@ -13,9 +13,10 @@ console.log(props.children);
     let navigate = useNavigate()
 
     const linkMenuDados = [
+        (props.children.type.name == 'EventosMarcados') ? ['Criar evento', '/painel-barbeiro/evento']:[],
+        (props.children.type.name == 'CriarEvento' || props.children.type.name == 'EventosMarcados') ?  ['Voltar', '/painel-barbeiro'] : 
+        ['Eventos', '/painel-barbeiro/eventos'],
         ['Sair', ''],
-        (props.children.type.name == 'CriarEvento') ?  ['Voltar', '/painel-barbeiro'] :
-        ['Criar evento', 'painel-barbeiro/evento'],
     ]
 
     useEffect(() => {
