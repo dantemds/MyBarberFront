@@ -38,7 +38,7 @@ width: 100%;
             p {
                 font-size: 1.1rem;
                 font-weight: 600;
-                color: #3871C1;
+                color: #404040;
             }
         }
     }

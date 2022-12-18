@@ -4,20 +4,51 @@ import { RequestsClientes } from '../../API/RequestsCliente';
 import Header from '../../Components/Header/Header'
 import Rodape from '../../Components/Rodape/Rodape';
 
-
-
 export default function PainelBarbeiro(props) {
 
     const [usuarioLogado, setUsuarioLogado] = useState(false)
-console.log(props.children);
+
     let navigate = useNavigate()
 
-    const linkMenuDados = [
-        (props.children.type.name == 'EventosMarcados') ? ['Criar evento', '/painel-barbeiro/evento']:[],
-        (props.children.type.name == 'CriarEvento' || props.children.type.name == 'EventosMarcados') ?  ['Voltar', '/painel-barbeiro'] : 
+    const linkMenuDados1 = [
         ['Eventos', '/painel-barbeiro/eventos'],
-        ['Sair', ''],
+        ['Sair', 'sair'],
     ]
+
+    const linkMenuDados2 = [
+        ['Criar evento', '/painel-barbeiro/evento'],
+        ['Voltar', '/painel-barbeiro'],
+        ['Sair', 'sair'],
+    ]
+
+    const linkMenuDados3 = [
+        ['Voltar', '/painel-barbeiro'],
+        ['Sair', 'sair']
+    ]
+
+    const validarMenu = () => {
+        let menuCorreto = ''
+
+        switch (props.children.type.name) {
+            case 'ServicosAgendados':
+                menuCorreto = linkMenuDados1
+                break;
+
+            case 'EventosMarcados':
+                menuCorreto = linkMenuDados2
+                break;
+
+            case 'CriarEvento':
+                menuCorreto = linkMenuDados3
+                break;
+
+            default:
+                menuCorreto = linkMenuDados3
+                break;
+        }
+
+        return menuCorreto
+    }
 
     useEffect(() => {
         try {
@@ -33,7 +64,7 @@ console.log(props.children);
     return (
         usuarioLogado &&
         <>
-            <Header linkMenuDados={linkMenuDados} />
+            <Header linkMenuDados={validarMenu()} />
             {props.children}
             <Rodape />
         </>

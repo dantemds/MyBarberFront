@@ -76,7 +76,7 @@ input[type='checkbox'][readonly]{
                 /* text-align: center; */
 
                 td:nth-child(1) {
-                    color: #3871C1;
+                    color: #B78860;
                     font-weight: 900;
                     text-transform: uppercase;
                 }
@@ -102,7 +102,7 @@ input[type='checkbox'][readonly]{
             font-weight: 600;
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, .1);
-            background-color: #3871C1;
+            background-color: #B78860;
 
         }
     }

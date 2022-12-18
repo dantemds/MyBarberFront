@@ -38,7 +38,7 @@ export const EventosMarcadosSC = styled.section`
         margin: auto;
         padding: 1rem .5rem;
         border-radius: 5px 5px 0 0;
-        background-color: #3871C1;
+        background-color: #B78860;
 
         div {
             width: 100%;

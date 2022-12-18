@@ -29,7 +29,7 @@ export const ServicosAgendadosSC = styled.section`
         padding: 0 12px;
         margin-bottom: 2.5rem;
         border: none;
-        border-bottom: 1px solid #3871C1;
+        border-bottom: 1px solid #B78860;
         background-color: #fafafa;
     }
 
@@ -41,14 +41,22 @@ export const ServicosAgendadosSC = styled.section`
     input:focus, select:focus {
         outline: 0;
         box-shadow: 0 0 10px rgba(20, 20, 20, .3);
-        border-bottom: 3px solid #3871C1;
+        border-bottom: 3px solid #B78860;
     }
 
     .btn-refresh {
         color: #fff;
-        background-color: #3871C1;
+        background-color: #B78860;
         border-radius: 20px;
+        border: 1px solid #B78860;
         box-shadow: 0 0 20px rgba(20, 20, 20, .4);
+        cursor: pointer;
+        transition: all .2s;
+    }
+
+    .btn-refresh:hover {
+        background-color: transparent;
+        color: #B78860;
     }
 
     header {
@@ -57,7 +65,7 @@ export const ServicosAgendadosSC = styled.section`
         margin: auto;
         padding: 1rem .5rem;
         border-radius: 5px 5px 0 0;
-        background-color: #3871C1;
+        background-color: #B78860;
 
         div {
             width: 100%;

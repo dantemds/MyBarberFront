@@ -1,17 +1,14 @@
 import React from 'react'
-import {useState} from 'react'
-import Select from 'react-select'
-import makeAnimated from 'react-select/animated';
-import {CriarEventoSC} from './style'
-import {padronizaData} from '../../../../Utils/functions.js'
-import {RequestsClientes} from '../../../.././API/RequestsCliente.js'
-import {validacaoEvento} from '../../../../Validations/EventosValidation';
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import { InputTime } from '../../../../Components/Elementar/InputTime';
+import { useState } from 'react'
+import { CriarEventoSC } from './style'
+import { padronizaData } from '../../../../Utils/functions.js'
+import { RequestsClientes } from '../../../.././API/RequestsCliente.js'
+import { validacaoEvento } from '../../../../Validations/EventosValidation';
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useEffect } from 'react';
 
 export default function CriarEvento() {
-
     const [eventoFixo, setEventoFixo] = useState({
         NomeEvento: '',
         DescricaoEvento: '',
@@ -20,78 +17,10 @@ export default function CriarEvento() {
         DiaSemana: '',
         BarbeariasId: '',
         BarbeirosId: '',
-        DataInicio:'',
-        DataFim:'',
+        DataInicio: '',
+        DataFim: '',
         Temporario: true,
-        
-    });
-
-
-    const { register, handleSubmit, formState: { errors }, setValue, getValues, clearErrors } = useForm({
-        resolver: yupResolver(validacaoEvento)
     })
-
-
-    const handleNomeEvento = event => {
-        setEventoFixo({...eventoFixo, NomeEvento: event.target.value})
-    }
-
-    const handleDescricaoEvento = event => {
-        setEventoFixo({...eventoFixo, DescricaoEvento: event.target.value})
-    }
-
-    const handleHoraInicio = event => {
-        setEventoFixo({...eventoFixo, HoraInicio: event.target.value})
-    }
-
-    const handleHoraFim = event => {
-        setEventoFixo({...eventoFixo, HoraFim: event.target.value})
-    }
-
-    const handleDataInicio = event => {
-        setEventoFixo({...eventoFixo, DataInicio: padronizaData(event.target.value)})
-    }
-
-    const handleDataFim = event => {
-        setEventoFixo({...eventoFixo, DataFim: padronizaData(event.target.value)})
-    }
-
-    const handleTemporario = event => {
-        setEventoFixo({...eventoFixo, Temporario: !eventoFixo.Temporario, DataFim:'', DataInicio:''})
-    }
-
-    
-
-    const handleDiaSemana = event => {
-        const dias = [];
-        event.forEach((item) => {
-            dias.push(item.value);
-        });
-        setEventoFixo({...eventoFixo, DiaSemana: dias})
-    }
-
-    
-
-    const addEvento = event => {
-        event.preventDefault()
-        const usuario = JSON.parse(localStorage.getItem('usuario'));
-        if(eventoFixo.DiaSemana.length == 1){
-            console.log(eventoFixo)
-            const dados = eventoFixo;
-            dados.DiaSemana = eventoFixo.DiaSemana[0];
-            dados.BarbeariasId = usuario.idBarbearia;
-            dados.BarbeirosId = usuario.idBarbeiro;
-            console.log(dados)
-            RequestsClientes.postEvento(dados)
-                .then((res) => {
-                    if (res) {
-                        console.log('deu certo');
-                    } else {
-                        console.log('deu ruim');
-                    }
-                })
-        }
-    }
 
     const options = [
         { value: 'domingo', label: 'Domingo' },
@@ -101,136 +30,179 @@ export default function CriarEvento() {
         { value: 'quinta', label: 'Quinta-Feira' },
         { value: 'sexta', label: 'Sexta-Feira' },
         { value: 'sabado', label: 'Sábado' },
-      ]
-     
+    ]
 
-      
-      const animatedComponents = makeAnimated();
+    const [horariosBloqueio, setHorariosBloqueio] = useState([])
+
+    const [checkedDia, setCheckedDia] = useState(
+        new Array(options.length).fill(false)
+    )
+
+    const { register, handleSubmit, formState: { errors }, setValue, getValues, clearErrors } = useForm({
+        resolver: yupResolver(validacaoEvento)
+    })
+
+
+    const handleNomeEvento = event => {
+        setEventoFixo({ ...eventoFixo, NomeEvento: event.target.value })
+    }
+
+    const handleDescricaoEvento = event => {
+        setEventoFixo({ ...eventoFixo, DescricaoEvento: event.target.value })
+    }
+
+    const handleHoraInicio = event => {
+        setEventoFixo({ ...eventoFixo, HoraInicio: event.target.value })
+    }
+
+    const handleHoraFim = event => {
+        setEventoFixo({ ...eventoFixo, HoraFim: event.target.value })
+    }
+
+    const handleDataInicio = event => {
+        setEventoFixo({ ...eventoFixo, DataInicio: padronizaData(event.target.value) })
+    }
+
+    const handleDataFim = event => {
+        setEventoFixo({ ...eventoFixo, DataFim: padronizaData(event.target.value) })
+    }
+
+    const handleTemporario = event => {
+        setEventoFixo({ ...eventoFixo, Temporario: !eventoFixo.Temporario, DataFim: '', DataInicio: '' })
+    }
+
+    const handleDiaSemana = event => {
+        // const dias = [];
+        // event.forEach((item) => {
+        //     dias.push(item.value);
+        // });
+        // setEventoFixo({ ...eventoFixo, DiaSemana: dias })
+
+        const updatedCheckedDia = checkedDia.map((dia, index) =>
+            index === event ? !dia : dia
+        )
+
+        setCheckedDia(updatedCheckedDia)
+    }
+
+    const addEvento = event => {
+        event.preventDefault()
+        const usuario = JSON.parse(localStorage.getItem('usuario'))
+        // console.log(eventoFixo)
+
+        const dados = eventoFixo
+        // dados.DiaSemana = 'segunda'
+        dados.BarbeariasId = usuario.idBarbearia
+        dados.BarbeirosId = usuario.idBarbeiro
+        console.log(checkedDia)
+
+        checkedDia.map((dia, index) => {
+            if (dia) {
+                dados.DiaSemana = options[index].value
+                console.log(dados.DiaSemana)
+                console.log(dados)
+                RequestsClientes.postEvento(dados)
+                    .then((res) => {
+                        if (res) {
+                            console.log('deu certo');
+                        } else {
+                            console.log('deu ruim');
+                        }
+                    })
+            }
+        })
+        
+
+
+        // if (eventoFixo.DiaSemana.length == 1) {
+
+        // }
+    }
+
+    const gerarHorarios = () => {
+        const horasDia = []
+        let horaString = ''
+
+        for (let i = 0; i < 24; i++) {
+
+            if (i < 10)
+                horaString = '0' + i.toString()
+            else
+                horaString = i.toString()
+
+            horasDia.push(horaString + ':00')
+            horasDia.push(horaString + ':30')
+
+        }
+        setHorariosBloqueio(horasDia)
+    }
+
+    useEffect(() => {
+        gerarHorarios()
+    }, [0])
+
     return (
         <CriarEventoSC>
-           
+
             <div className="mainContent">
                 <h2>Crie eventos para bloquear sua agenda</h2>
                 <form onSubmit={addEvento}>
-                    <input type="text" placeholder='Nome do evento' maxLength={30} minLength={3} onChange={(e)=>handleNomeEvento(e)}/>
-                    <input type="text" name="descricaoEvento" id="descricaoEvento" placeholder='Descrição do evento' maxLength={100} onChange={(e)=>handleDescricaoEvento(e)}/>
-                    {/* <input list="horaInicio" name="horaInicio" id="horaInicio_input"/> */}
+                    <label className='labelTitle'>Nome do evento:</label>
+                    <input type="text" maxLength={30} minLength={3} onChange={(e) => handleNomeEvento(e)} />
+
+                    <label className='labelTitle'>Descrição do evento:</label>
+                    <input type="text" name="descricaoEvento" id="descricaoEvento" maxLength={100} onChange={(e) => handleDescricaoEvento(e)} />
+
                     {/* String "16:30" */}
-                    <select name="" id="horaInicio"  onChange={(e)=>handleHoraInicio(e)} >
-                    <option>00:00</option>
-                    <option>00:30</option>
-                    <option>01:00</option>
-                    <option>01:30</option>
-                    <option>02:00</option>
-                    <option>02:30</option>
-                    <option>03:00</option>
-                    <option>03:30</option>
-                    <option>04:00</option>
-                    <option>04:30</option>
-                    <option>05:00</option>
-                    <option>05:30</option>
-                    <option>06:00</option>
-                    <option>06:30</option>
-                    <option>07:00</option>
-                    <option>07:30</option>
-                    <option>08:00</option>
-                    <option>08:30</option>
-                    <option>09:00</option>
-                    <option>09:30</option>
-                    <option>10:00</option>
-                    <option>10:30</option>
-                    <option>11:00</option>
-                    <option>11:30</option>
-                    <option>12:00</option>
-                    <option>12:30</option>
-                    <option>13:00</option>
-                    <option>13:30</option>
-                    <option>14:00</option>
-                    <option>14:30</option>
-                    <option>15:00</option>
-                    <option>15:30</option>
-                    <option>16:00</option>
-                    <option>16:30</option>
-                    <option>17:00</option>
-                    <option>17:30</option>
-                    <option>18:00</option>
-                    <option>18:30</option>
-                    <option>19:00</option>
-                    <option>19:30</option>
-                    <option>20:00</option>
-                    <option>20:30</option>
-                    <option>21:00</option>
-                    <option>21:30</option>
-                    <option>22:00</option>
-                    <option>22:30</option>
-                    <option>23:00</option>
-                    <option>23:30</option>
+                    <label className='labelTitle'>Hora início:</label>
+                    <select name="" id="horaInicio" onChange={(e) => handleHoraInicio(e)} >
+                        <option value="">Selecionar</option>
+                        {horariosBloqueio.map(horario => {
+                            return <option value={horario} key={'inicio' + horario}>{horario}</option>
+                        })}
                     </select>
 
                     {/* String "16:30" */}
-                    <select name="" id="horaFim" onChange={(e)=>handleHoraFim(e)} >
-                    <option>00:00</option>
-                    <option>00:30</option>
-                    <option>01:00</option>
-                    <option>01:30</option>
-                    <option>02:00</option>
-                    <option>02:30</option>
-                    <option>03:00</option>
-                    <option>03:30</option>
-                    <option>04:00</option>
-                    <option>04:30</option>
-                    <option>05:00</option>
-                    <option>05:30</option>
-                    <option>06:00</option>
-                    <option>06:30</option>
-                    <option>07:00</option>
-                    <option>07:30</option>
-                    <option>08:00</option>
-                    <option>08:30</option>
-                    <option>09:00</option>
-                    <option>09:30</option>
-                    <option>10:00</option>
-                    <option>10:30</option>
-                    <option>11:00</option>
-                    <option>11:30</option>
-                    <option>12:00</option>
-                    <option>12:30</option>
-                    <option>13:00</option>
-                    <option>13:30</option>
-                    <option>14:00</option>
-                    <option>14:30</option>
-                    <option>15:00</option>
-                    <option>15:30</option>
-                    <option>16:00</option>
-                    <option>16:30</option>
-                    <option>17:00</option>
-                    <option>17:30</option>
-                    <option>18:00</option>
-                    <option>18:30</option>
-                    <option>19:00</option>
-                    <option>19:30</option>
-                    <option>20:00</option>
-                    <option>20:30</option>
-                    <option>21:00</option>
-                    <option>21:30</option>
-                    <option>22:00</option>
-                    <option>22:30</option>
-                    <option>23:00</option>
-                    <option>23:30</option>
+                    <label className='labelTitle'>Hora fim:</label>
+                    <select name="" id="horaFim" onChange={(e) => handleHoraFim(e)} step="30">
+                        <option value="">Selecionar</option>
+                        {horariosBloqueio.map(horario => {
+                            return <option value={horario} key={'fim' + horario}>{horario}</option>
+                        })}
                     </select>
-                    
-                    <Select options={options} isMulti className="basic-multi-select" classNamePrefix="select" id='selectDia' components={animatedComponents} onChange={(e)=>{handleDiaSemana(e)}}/>
-                    {/* //String Data "07/12/2022" dd/mm/yyyy*/}
-                    <input type={eventoFixo.Temporario ? "date" : "hidden"} name="" id="dataInicio" onChange={(e)=>{handleDataInicio(e)}}/> 
-                    {/* //String Data "07/12/2022" dd/mm/yyyy*/}
-                    <input type={eventoFixo.Temporario ? "date" : "hidden"} visible={eventoFixo.Temporario} name="" id="dataFim" onChange={(e)=>{handleDataFim(e)}}/>
-                    <div className='check'>
-                        <input type="checkbox" checked={!eventoFixo.Temporario} name="" id=""  onChange={(e)=>{handleTemporario(e)}}/>
-                        <label>Repetir sempre.</label>
+
+                    <label className='labelTitle'>Dias de ocorrência:</label>
+                    <div className="wrapCheckbox">
+                        {options.map((dia, index) => {
+                            return <label key={dia.label} className="container">{dia.label}
+                                <input type="checkbox" value={dia.value} name="diasSemana" onChange={() => handleDiaSemana(index)} />
+                                <span className="checkmark"></span>
+                            </label>
+                        })}
                     </div>
+
+                    {eventoFixo.Temporario &&
+                        <>
+                            {/* //String Data "07/12/2022" dd/mm/yyyy*/}
+                            <label className='labelTitle'>Data início:</label>
+                            <input type="date" name="" id="dataInicio" onChange={(e) => { handleDataInicio(e) }} />
+
+                            {/* //String Data "07/12/2022" dd/mm/yyyy*/}
+                            <label className='labelTitle'>Data fim:</label>
+                            <input type="date" name="" id="dataFim" onChange={(e) => { handleDataFim(e) }} />
+                        </>
+                    }
+
+                    <div className="wrapCheckbox">
+                        <label className="container oneCheck">Repetir sempre.
+                            <input type="checkbox" checked={!eventoFixo.Temporario} name="" id="checkMark" onChange={(e) => { handleTemporario(e) }} />
+                            <span className="checkmark"></span>
+                        </label>
+                    </div>
+
                     <button type="submit">Criar</button>
                 </form>
             </div>
-        </CriarEventoSC>
+        </CriarEventoSC >
     )
 }
