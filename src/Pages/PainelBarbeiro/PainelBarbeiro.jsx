@@ -28,6 +28,7 @@ export default function PainelBarbeiro(props) {
     ]
 
     const validarMenu = () => {
+        console.log(props.children.type.name)
         switch (props.children.type.name) {
             case 'ServicosAgendados':
                 setLinksMenu(linkMenuDados1)
