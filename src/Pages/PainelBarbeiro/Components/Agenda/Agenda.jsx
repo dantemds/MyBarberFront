@@ -15,7 +15,6 @@ import { EventoModel } from '../../../../Models/EventoModel'
 export default function Agenda(props) {
 
   const { exibirDetalhesAgendamento, exibirConfirmacaoCancelamento, idAgendamento, exibirConfirmacaoCancelamentoEvento } = React.useContext(DetalhesAgendamentoContext)
-console.log('e', exibirDetalhesAgendamento);
   const agendamento = props.factory == 'agendamento';
   const ExibirModal = () => {
     return <DetalhesAgendamento factory={props.factory} listaAgendamentos={props.listaAgendamentos} />

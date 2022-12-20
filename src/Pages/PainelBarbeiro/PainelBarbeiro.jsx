@@ -7,6 +7,7 @@ import Rodape from '../../Components/Rodape/Rodape';
 export default function PainelBarbeiro(props) {
 
     const [usuarioLogado, setUsuarioLogado] = useState(false)
+    const [linksMenu, setLinksMenu] = useState(false)
 
     let navigate = useNavigate()
 
@@ -27,33 +28,30 @@ export default function PainelBarbeiro(props) {
     ]
 
     const validarMenu = () => {
-        let menuCorreto = ''
-
         switch (props.children.type.name) {
             case 'ServicosAgendados':
-                menuCorreto = linkMenuDados1
+                setLinksMenu(linkMenuDados1)
                 break;
 
             case 'EventosMarcados':
-                menuCorreto = linkMenuDados2
+                setLinksMenu(linkMenuDados2)
                 break;
 
             case 'CriarEvento':
-                menuCorreto = linkMenuDados3
+                setLinksMenu(linkMenuDados3)
                 break;
 
             default:
-                menuCorreto = linkMenuDados3
+                setLinksMenu(linkMenuDados3)
                 break;
         }
-
-        return menuCorreto
     }
 
     useEffect(() => {
         try {
             RequestsClientes.getToken()
             setUsuarioLogado(true)
+            validarMenu()
         }
         catch {
             setUsuarioLogado(false)
@@ -64,7 +62,7 @@ export default function PainelBarbeiro(props) {
     return (
         usuarioLogado &&
         <>
-            <Header linkMenuDados={validarMenu()} />
+            {linksMenu && <Header linkMenuDados={linksMenu} />}
             {props.children}
             <Rodape />
         </>
