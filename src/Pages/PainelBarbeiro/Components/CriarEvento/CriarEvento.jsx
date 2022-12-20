@@ -7,6 +7,7 @@ import { validacaoEvento } from '../../../../Validations/EventosValidation';
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react';
+import ModalRequestsEventos from '../../../../Components/Status/ModalRequestsEventos/ModalRequestsEventos'
 
 export default function CriarEvento() {
     const [eventoFixo, setEventoFixo] = useState({
@@ -32,8 +33,12 @@ export default function CriarEvento() {
         { value: 'sabado', label: 'Sábado' },
     ]
 
-    const [horariosBloqueio, setHorariosBloqueio] = useState([])
+    const [respostaRequest, setRespostaRequest] = useState([])
 
+
+
+    const [horariosBloqueio, setHorariosBloqueio] = useState([])
+    const [modalStatus, setModalStatus] = useState(false)
     const [checkedDia, setCheckedDia] = useState(
         new Array(options.length).fill(false)
     )
@@ -88,35 +93,32 @@ export default function CriarEvento() {
     const addEvento = event => {
         event.preventDefault()
         const usuario = JSON.parse(localStorage.getItem('usuario'))
-        // console.log(eventoFixo)
 
         const dados = eventoFixo
-        // dados.DiaSemana = 'segunda'
         dados.BarbeariasId = usuario.idBarbearia
         dados.BarbeirosId = usuario.idBarbeiro
-        console.log(checkedDia)
+        let listaRes = []
 
         checkedDia.map((dia, index) => {
             if (dia) {
                 dados.DiaSemana = options[index].value
-                console.log(dados.DiaSemana)
-                console.log(dados)
                 RequestsClientes.postEvento(dados)
                     .then((res) => {
                         if (res) {
-                            console.log('deu certo');
+                            listaRes.push({ dia: options[index].label, status: 'Sucesso' })
                         } else {
-                            console.log('deu ruim');
+                            listaRes.push({ dia: options[index].label, status: 'Falha' })
+
                         }
                     })
+                    .finally(() => {setRespostaRequest(listaRes); console.log(listaRes)})
             }
+
+
         })
-        
-
-
-        // if (eventoFixo.DiaSemana.length == 1) {
-
-        // }
+        setTimeout(() => {
+            setModalStatus(true)
+          }, 2000)
     }
 
     const gerarHorarios = () => {
@@ -143,6 +145,9 @@ export default function CriarEvento() {
 
     return (
         <CriarEventoSC>
+            {
+                modalStatus && <ModalRequestsEventos acao={() => setModalStatus(false)}  dados={respostaRequest}/>
+            }
 
             <div className="mainContent">
                 <h2>Crie eventos para bloquear sua agenda</h2>

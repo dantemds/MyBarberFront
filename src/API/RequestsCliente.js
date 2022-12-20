@@ -8,7 +8,7 @@ const getAll = async (barbearia) => {
         .then(res => {
             resApi = res.data
         })
-        // .catch(() => console.log('AAAAAAAAAAAAAA'))
+    // .catch(() => console.log('AAAAAAAAAAAAAA'))
 
     return resApi
 }
@@ -107,13 +107,13 @@ const postAutenticacao = async (credencial) => {
 
 const postEvento = async (evento) => {
     return await Api().post('/api/v1/eventosagendados', evento)
-    .then(res => {
-        return res.data
-    }) 
-    .catch(() => {
-        console.log('LOG: Evento Falhou');
-        return null
-    })
+        .then(res => {
+            return res.data
+        })
+        .catch(() => {
+            console.log('LOG: Evento Falhou');
+            return null
+        })
 }
 
 const getToken = () => {
