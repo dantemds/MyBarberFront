@@ -102,23 +102,23 @@ export default function CriarEvento() {
         checkedDia.map((dia, index) => {
             if (dia) {
                 dados.DiaSemana = options[index].value
-                RequestsClientes.postEvento(dados)
-                    .then((res) => {
-                        if (res) {
-                            listaRes.push({ dia: options[index].label, status: 'Sucesso' })
-                        } else {
-                            listaRes.push({ dia: options[index].label, status: 'Falha' })
+                
+                setTimeout(() => {
+                    RequestsClientes.postEvento(dados)
+                        .then((res) => {
+                            if (res) {
+                                listaRes.push({ dia: options[index].label, status: 'Sucesso' })
+                            } else {
+                                listaRes.push({ dia: options[index].label, status: 'Falha' })
 
-                        }
-                    })
-                    .finally(() => {setRespostaRequest(listaRes); console.log(listaRes)})
+                            }
+                        })
+                        .finally(() => { setRespostaRequest(listaRes); console.log(listaRes) })
+
+                    setModalStatus(true)
+                }, 500)
             }
-
-
         })
-        setTimeout(() => {
-            setModalStatus(true)
-          }, 2000)
     }
 
     const gerarHorarios = () => {
@@ -146,7 +146,7 @@ export default function CriarEvento() {
     return (
         <CriarEventoSC>
             {
-                modalStatus && <ModalRequestsEventos acao={() => setModalStatus(false)}  dados={respostaRequest}/>
+                modalStatus && <ModalRequestsEventos acao={() => setModalStatus(false)} dados={respostaRequest} />
             }
 
             <div className="mainContent">
