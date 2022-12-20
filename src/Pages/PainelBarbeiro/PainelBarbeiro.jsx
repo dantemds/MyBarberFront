@@ -1,5 +1,5 @@
 import React, { Children, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RequestsClientes } from '../../API/RequestsCliente';
 import Header from '../../Components/Header/Header'
 import Rodape from '../../Components/Rodape/Rodape';
@@ -9,6 +9,8 @@ export default function PainelBarbeiro(props) {
     const [usuarioLogado, setUsuarioLogado] = useState(false)
     const [linksMenu, setLinksMenu] = useState(false)
 
+    const { rotaPagina } = useParams()
+    
     let navigate = useNavigate()
 
     const linkMenuDados1 = [
@@ -28,17 +30,16 @@ export default function PainelBarbeiro(props) {
     ]
 
     const validarMenu = () => {
-        console.log(props.children)
-        switch (props.children.type.name) {
-            case 'ServicosAgendados':
+        switch (window.location.pathname) {
+            case '/painel-barbeiro':
                 setLinksMenu(linkMenuDados1)
                 break;
 
-            case 'EventosMarcados':
+            case '/painel-barbeiro/eventos':
                 setLinksMenu(linkMenuDados2)
                 break;
 
-            case 'CriarEvento':
+            case '/painel-barbeiro/evento':
                 setLinksMenu(linkMenuDados3)
                 break;
 
