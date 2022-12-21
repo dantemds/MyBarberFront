@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { CriarEventoSC } from './style'
-import { padronizaData } from '../../../../Utils/functions.js'
+import { padronizaData, padronizaFeedbackEvento } from '../../../../Utils/functions.js'
 import { RequestsClientes } from '../../../.././API/RequestsCliente.js'
 import { validacaoEvento } from '../../../../Validations/EventosValidation';
 import { useForm } from 'react-hook-form'
@@ -90,35 +90,31 @@ export default function CriarEvento() {
         setCheckedDia(updatedCheckedDia)
     }
 
-    const addEvento = event => {
+    const addEvento = (event) => {
         event.preventDefault()
         const usuario = JSON.parse(localStorage.getItem('usuario'))
 
         const dados = eventoFixo
         dados.BarbeariasId = usuario.idBarbearia
         dados.BarbeirosId = usuario.idBarbeiro
-        let listaRes = []
 
-        checkedDia.map((dia, index) => {
+        const a = checkedDia.map((dia, index) => {
             if (dia) {
                 dados.DiaSemana = options[index].value
-                
-                setTimeout(() => {
-                    RequestsClientes.postEvento(dados)
-                        .then((res) => {
-                            if (res) {
-                                listaRes.push({ dia: options[index].label, status: 'Sucesso' })
-                            } else {
-                                listaRes.push({ dia: options[index].label, status: 'Falha' })
 
-                            }
-                        })
-                        .finally(() => { setRespostaRequest(listaRes); console.log(listaRes) })
-
-                    setModalStatus(true)
-                }, 500)
+                return RequestsClientes.postEvento(dados)
+                    .then((res) => {
+                        return res
+                    })
             }
         })
+
+        Promise.all(a)
+            .then((res) => { setRespostaRequest(padronizaFeedbackEvento(res)) })
+            .catch((res) => { console.log('cath promisse all', res) })
+        // .finally((res)=>{console.log('finally')})
+
+        setModalStatus(true)
     }
 
     const gerarHorarios = () => {

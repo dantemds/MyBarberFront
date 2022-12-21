@@ -55,8 +55,6 @@ export default function ModalRequestsEventos(props) {
                     }
                 </table>
 
-                {/* <p>Nos dias com status <span className='Falha'>Falha</span> não foram criados eventos, verifique se já existe outro evento ou agendamento de serviço neste horário.</p> */}
-
                 <button onClick={() => Confirmacao()}>Entendi</button>
             </div>
         </ModalRequestsEventosSC>

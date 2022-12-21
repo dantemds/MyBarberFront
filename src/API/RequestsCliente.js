@@ -1,3 +1,4 @@
+import { padronizaFeedbackEvento } from "../Utils/functions"
 import { PostAgendamentoValidations } from "../Validations/PostAgendamentoValidation"
 import Api from "./ApiConfig"
 
@@ -108,11 +109,13 @@ const postAutenticacao = async (credencial) => {
 const postEvento = async (evento) => {
     return await Api().post('/api/v1/eventosagendados', evento)
         .then(res => {
+            // console.log(padronizaFeedbackEvento(res.data, 'Sucesso'))
             return res.data
         })
         .catch(() => {
-            console.log('LOG: Evento Falhou');
-            return null
+            // console.log('LOG: Evento Falhou');
+            // console.log(padronizaFeedbackEvento(evento, 'Falha'))
+            return 'Falha'
         })
 }
 

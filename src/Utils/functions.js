@@ -75,7 +75,37 @@ export const unlockScroll = () => {
 }
 
 export const padronizaData = (data) => {
-let ano, mes, dia;
-[ano, mes, dia] = data.split('-');
-return `${dia}/${mes}/${ano}`
+    let ano, mes, dia;
+    [ano, mes, dia] = data.split('-');
+    return `${dia}/${mes}/${ano}`
+}
+
+const options = [
+    { value: 'domingo', label: 'Domingo' },
+    { value: 'segunda', label: 'Segunda-Feira' },
+    { value: 'terca', label: 'Terça-Feira' },
+    { value: 'quarta', label: 'Quarta-Feira' },
+    { value: 'quinta', label: 'Quinta-Feira' },
+    { value: 'sexta', label: 'Sexta-Feira' },
+    { value: 'sabado', label: 'Sábado' },
+]
+
+export const padronizaFeedbackEvento = (eventos) => {
+    const listaFeedback = []
+
+    eventos.map((evento, index) => {
+        if (evento != undefined) {
+
+            if (evento === 'Falha') {
+                listaFeedback.push({ dia: options[index].label, status: 'Falha' })
+            }
+
+            else {
+                const dia = options.filter((dia) => (dia.value == evento.diaSemana))
+                listaFeedback.push({ dia: dia[0].label, status: 'Sucesso' })
+            }
+        }
+    })
+
+    return listaFeedback
 }

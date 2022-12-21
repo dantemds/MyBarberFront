@@ -54,8 +54,6 @@ export const HeaderSC = styled.header`
     } 
     
     a:hover {
-        text-decoration: underline;
-        text-decoration-color:  ${({ theme }) => theme.cores.secundaria}; 
         text-shadow: ${({ theme }) => theme.sombras.texto};
     }
 
