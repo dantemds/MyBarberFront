@@ -159,6 +159,15 @@ export const CriarEventoSC = styled.section`
             color: #B78860
         }
 
+        .mensagem-erro {
+            width: 400px;
+            color: red;
+            text-align: left;
+            font-size: .8rem;
+            margin-top: -2.2rem;
+            margin-bottom: 2.5rem;
+        }
+
     }
 
     h2 {

@@ -3,13 +3,16 @@ import { useState } from 'react'
 import { CriarEventoSC } from './style'
 import { padronizaData, padronizaFeedbackEvento } from '../../../../Utils/functions.js'
 import { RequestsClientes } from '../../../.././API/RequestsCliente.js'
-import { validacaoEvento } from '../../../../Validations/EventosValidation';
+import { validacaoEvento } from '../../../../Validations/EventosValidation'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react';
 import ModalRequestsEventos from '../../../../Components/Status/ModalRequestsEventos/ModalRequestsEventos'
+import { useNavigate } from 'react-router-dom'
 
 export default function CriarEvento() {
+    let navigate = useNavigate()
+
     const [eventoFixo, setEventoFixo] = useState({
         NomeEvento: '',
         DescricaoEvento: '',
@@ -34,9 +37,6 @@ export default function CriarEvento() {
     ]
 
     const [respostaRequest, setRespostaRequest] = useState([])
-
-
-
     const [horariosBloqueio, setHorariosBloqueio] = useState([])
     const [modalStatus, setModalStatus] = useState(false)
     const [checkedDia, setCheckedDia] = useState(
@@ -73,6 +73,14 @@ export default function CriarEvento() {
     }
 
     const handleTemporario = event => {
+        if (eventoFixo.Temporario) {
+            setValue('DataInicio', ' ')
+            setValue('DataFim', ' ')
+        }
+        else {
+            setValue('DataInicio', '')
+            setValue('DataFim', '')
+        }
         setEventoFixo({ ...eventoFixo, Temporario: !eventoFixo.Temporario, DataFim: '', DataInicio: '' })
     }
 
@@ -83,6 +91,9 @@ export default function CriarEvento() {
         // });
         // setEventoFixo({ ...eventoFixo, DiaSemana: dias })
 
+        // console.log(checkedDia)
+
+
         const updatedCheckedDia = checkedDia.map((dia, index) =>
             index === event ? !dia : dia
         )
@@ -91,7 +102,8 @@ export default function CriarEvento() {
     }
 
     const addEvento = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
+        console.log(event)
         const usuario = JSON.parse(localStorage.getItem('usuario'))
 
         const dados = eventoFixo
@@ -136,67 +148,84 @@ export default function CriarEvento() {
     }
 
     useEffect(() => {
+        if (checkedDia.includes(true)) {
+            setValue('DiaSemana', ' ')
+        }
+        else {
+            setValue('DiaSemana', '')
+        }
+    }, [checkedDia])
+
+    useEffect(() => {
         gerarHorarios()
+        setValue('DiaSemana', '')
     }, [0])
 
     return (
         <CriarEventoSC>
             {
-                modalStatus && <ModalRequestsEventos acao={() => setModalStatus(false)} dados={respostaRequest} />
+                modalStatus && <ModalRequestsEventos acao={() => navigate('/painel-barbeiro/eventos')} dados={respostaRequest} />
             }
 
             <div className="mainContent">
                 <h2>Crie eventos para bloquear sua agenda</h2>
-                <form onSubmit={addEvento}>
+                <form onSubmit={handleSubmit(addEvento)}>
                     <label className='labelTitle'>Nome do evento:</label>
-                    <input type="text" maxLength={30} minLength={3} onChange={(e) => handleNomeEvento(e)} />
+                    <input type="text" {...register("NomeEvento")} maxLength={30} minLength={3} onChange={(e) => handleNomeEvento(e)} />
+                    <p className="mensagem-erro">{errors.NomeEvento?.message}</p>
 
                     <label className='labelTitle'>Descrição do evento:</label>
-                    <input type="text" name="descricaoEvento" id="descricaoEvento" maxLength={100} onChange={(e) => handleDescricaoEvento(e)} />
+                    <input type="text" {...register("DescricaoEvento")} name="DescricaoEvento" id="descricaoEvento" maxLength={100} onChange={(e) => handleDescricaoEvento(e)} />
+                    <p className="mensagem-erro">{errors.DescricaoEvento?.message}</p>
 
                     {/* String "16:30" */}
                     <label className='labelTitle'>Hora início:</label>
-                    <select name="" id="horaInicio" onChange={(e) => handleHoraInicio(e)} >
+                    <select {...register("HoraInicio")} name="HoraInicio" id="horaInicio" onChange={(e) => handleHoraInicio(e)} >
                         <option value="">Selecionar</option>
                         {horariosBloqueio.map(horario => {
                             return <option value={horario} key={'inicio' + horario}>{horario}</option>
                         })}
                     </select>
+                    <p className="mensagem-erro">{errors.HoraInicio?.message}</p>
 
                     {/* String "16:30" */}
                     <label className='labelTitle'>Hora fim:</label>
-                    <select name="" id="horaFim" onChange={(e) => handleHoraFim(e)} step="30">
+                    <select {...register("HoraFim")} name="HoraFim" id="horaFim" onChange={(e) => handleHoraFim(e)} step="30">
                         <option value="">Selecionar</option>
                         {horariosBloqueio.map(horario => {
                             return <option value={horario} key={'fim' + horario}>{horario}</option>
                         })}
                     </select>
+                    <p className="mensagem-erro">{errors.HoraFim?.message}</p>
 
                     <label className='labelTitle'>Dias de ocorrência:</label>
-                    <div className="wrapCheckbox">
+                    <div className="wrapCheckbox" >
                         {options.map((dia, index) => {
                             return <label key={dia.label} className="container">{dia.label}
-                                <input type="checkbox" value={dia.value} name="diasSemana" onChange={() => handleDiaSemana(index)} />
+                                <input type="checkbox" value={dia.value} name="" onChange={() => handleDiaSemana(index)} />
                                 <span className="checkmark"></span>
                             </label>
                         })}
                     </div>
+                    <p className="mensagem-erro">{errors.DiaSemana?.message}</p>
 
                     {eventoFixo.Temporario &&
                         <>
                             {/* //String Data "07/12/2022" dd/mm/yyyy*/}
                             <label className='labelTitle'>Data início:</label>
-                            <input type="date" name="" id="dataInicio" onChange={(e) => { handleDataInicio(e) }} />
+                            <input type="date" {...register("DataInicio")} name="DataInicio" id="dataInicio" onChange={(e) => { handleDataInicio(e) }} />
+                            <p className="mensagem-erro">{errors.DataInicio?.message}</p>
 
                             {/* //String Data "07/12/2022" dd/mm/yyyy*/}
                             <label className='labelTitle'>Data fim:</label>
-                            <input type="date" name="" id="dataFim" onChange={(e) => { handleDataFim(e) }} />
+                            <input type="date" {...register("DataFim")} name="DataFim" id="dataFim" onChange={(e) => { handleDataFim(e) }} />
+                            <p className="mensagem-erro">{errors.DataFim?.message}</p>
                         </>
                     }
 
                     <div className="wrapCheckbox">
                         <label className="container oneCheck">Repetir sempre.
-                            <input type="checkbox" checked={!eventoFixo.Temporario} name="" id="checkMark" onChange={(e) => { handleTemporario(e) }} />
+                            <input type="checkbox" {...register("Temporario")} checked={!eventoFixo.Temporario} name="Temporario" id="checkMark" onChange={(e) => { handleTemporario(e) }} />
                             <span className="checkmark"></span>
                         </label>
                     </div>

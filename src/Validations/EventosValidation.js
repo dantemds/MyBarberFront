@@ -1,10 +1,12 @@
 import * as yup from 'yup'
 
 export const validacaoEvento = yup.object().shape({
-    name: yup.string().required("O nome é obrigatório."),
-    email: yup.string().required("O e-mail é obrigatório."),
-    contato: yup.string().required("O telefone é obrigatório."),
-    horario: yup.string().min(19, "O horário é obrigatório.").required("O horário é obrigatório."),
-    servicosId: yup.string().min(2, "O serviço é obrigatório.").required(),
-    barbeirosId: yup.string().min(2, "O barbeiro é obrigatório.").required("O barbeiro é obrigatório.")
+    NomeEvento: yup.string().required("O nome é obrigatório."),
+    DescricaoEvento: yup.string().required("A descrição é obrigatória."),
+    HoraInicio: yup.string().required("Hora início é obrigatória."),
+    HoraFim: yup.string().required("Hora fim é obrigatória."),
+    DiaSemana: yup.string().required("Seleciona ao menos um dia."),
+    DataInicio: yup.string().required("Data início é obrigatória."),
+    DataFim: yup.string().required("Data fim é obrigatória."),
+    Temporario: yup.string("O barbeiro é obrigatório.").required("O barbeiro é obrigatório.")
 })
