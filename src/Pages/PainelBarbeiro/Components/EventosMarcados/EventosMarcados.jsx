@@ -1,12 +1,10 @@
 import { EventosMarcadosSC } from "./style";
-import Select from 'react-select'
-import makeAnimated from 'react-select/animated';
 import Agenda from "../Agenda/Agenda";
 import { useEffect, useState } from "react";
 import { RequestsClientes } from "../../../../API/RequestsCliente";
 import { DetalhesAgendamentoProvider } from '../../../../Contexts/DetalhesAgendamentoContext'
-export default function EventosMarcados() {
 
+export default function EventosMarcados() {
   const [listaEventos, setListaEventos] = useState([])
   const [barbeiroSelecionado, setBarbeiroSelecionado] = useState('')
   const [load, setLoad] = useState(false);
@@ -49,13 +47,12 @@ export default function EventosMarcados() {
 
   useEffect(() => {
     const usuario = JSON.parse(localStorage.getItem('usuario'));
+
     setBarbeiroSelecionado(usuario.idBarbeiro);
 
     RequestsClientes.getEventosBarbeiro(usuario.idBarbeiro)
       .then(res => {
-        console.log('re', res);
         const filtro = res.filter(option => option.diaSemana == diaSelecionado);
-        console.log('fil', filtro)
         setListaEventos(filtro);
       })
       .catch(() => console.log('LOG: Falha, eventos não foram recebidos.'));
@@ -63,20 +60,28 @@ export default function EventosMarcados() {
   }, [diaSelecionado]);
 
   const handleDiaSemana = event => {
-    setDiaSelecionado(event.value);
+    setDiaSelecionado(event.target.value);
   }
 
-
-  const animatedComponents = makeAnimated();
   return (
     <EventosMarcadosSC>
 
       <h2>Eventos Marcados</h2>
 
-      <Select options={options} value={
-        options.filter(option =>
-          option.value === diaSelecionado)
-      } className="basic-multi-select" classNamePrefix="select" id='selectDia' components={animatedComponents} onChange={(e) => { handleDiaSemana(e) }} />
+      <select
+        name=""
+        id=""
+        className="selectDia"
+        onChange={handleDiaSemana}
+        value={diaSelecionado}
+      >
+        {
+          options.map((dia, index) => {
+            return <option value={dia.value} key={dia.value + index}>{dia.label}</option>
+          })
+        }
+      </select>
+
       <DetalhesAgendamentoProvider>
         <header>
           <div>Hora Início</div>

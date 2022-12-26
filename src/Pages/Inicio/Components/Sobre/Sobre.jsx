@@ -106,46 +106,49 @@ export default function Sobre() {
                         <h3>Entre em contato</h3>
                         {
                             contatos &&
-                            <>
-                                {
-                                    contatos.instagrams.length > 0
-                                        ? <a href={`https://www.instagram.com/${contatos.instagrams[0]}`} target="_blank">
-                                            <BsInstagram />
-                                            <span>@{contatos.instagrams[0]}</span>
-                                        </a>
-                                        : ''
-                                }
+                            <div className='wrap-contatos'>
+                                <div className="wrap-item-contato">
 
-                                {
-                                    contatos.celulares
-                                        ? contatos.celulares.map((celular, index) =>
-                                            <a key={index} href={`https://api.whatsapp.com/send?phone=${celular.replace(" ", "")}`} target="_blank">
-                                                <BsWhatsapp />
-                                                <span>{`(${celular.replace(" ", ') ')}`}</span>
-                                            </a>)
-                                        : ''
-                                }
+                                    {
+                                        contatos.instagrams.length > 0
+                                            ? <a href={`https://www.instagram.com/${contatos.instagrams[0]}`} target="_blank">
+                                                <BsInstagram />
+                                                <span>@{contatos.instagrams[0]}</span>
+                                            </a>
+                                            : ''
+                                    }
 
-                                {
-                                    contatos.telefones != ''
-                                        ? contatos.telefones.map((telefone, index) =>
-                                            <a key={index} target={'_blank'} href={`tel:${telefone}`}>
-                                                <BsTelephone />
-                                                <span>{`(${telefone.replace(" ", ') ')}`}</span>
-                                            </a>)
-                                        : ''
-                                }
+                                    {
+                                        contatos.celulares
+                                            ? contatos.celulares.map((celular, index) =>
+                                                <a key={index} href={`https://api.whatsapp.com/send?phone=${celular.replace(" ", "")}`} target="_blank">
+                                                    <BsWhatsapp />
+                                                    <span>{`(${celular.replace(" ", ') ')}`}</span>
+                                                </a>)
+                                            : ''
+                                    }
 
-                                {
-                                    contatos.emails
-                                        ? contatos.emails.map((email, index) =>
-                                            <a key={index} href={`mailto:${email}?subject=Dúvidas Atemdimento`} target="_blank">
-                                                <BsEnvelope />
-                                                <span>{email}</span>
-                                            </a>)
-                                        : ''
-                                }
-                            </>
+                                    {
+                                        contatos.telefones != ''
+                                            ? contatos.telefones.map((telefone, index) =>
+                                                <a key={index} target={'_blank'} href={`tel:${telefone}`}>
+                                                    <BsTelephone />
+                                                    <span>{`(${telefone.replace(" ", ') ')}`}</span>
+                                                </a>)
+                                            : ''
+                                    }
+
+                                    {
+                                        contatos.emails
+                                            ? contatos.emails.map((email, index) =>
+                                                <a key={index} href={`mailto:${email}?subject=Dúvidas Atemdimento`} target="_blank">
+                                                    <BsEnvelope />
+                                                    <span>{email}</span>
+                                                </a>)
+                                            : ''
+                                    }
+                                </div>
+                            </div>
                         }
                     </div>
                 </div>

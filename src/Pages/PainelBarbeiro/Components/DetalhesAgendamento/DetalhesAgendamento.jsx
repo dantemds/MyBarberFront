@@ -13,7 +13,7 @@ export default function DetalhesAgendamento(props) {
     const agendamento = props.factory == 'agendamento';
     const CalcelarAgendamento = () => {
         setExibirDetalhesAgendamento(false)
-        if(agendamento) {
+        if (agendamento) {
             setExibirConfirmacaoCancelamento(true)
 
         } else {
@@ -22,23 +22,24 @@ export default function DetalhesAgendamento(props) {
         }
     }
 
-    
+
     useEffect(() => {
         lockScroll()
     }, [0])
 
     const EventoSelecionado = () => {
-        return props.listaAgendamentos.map(evento=> {
+        return props.listaAgendamentos.map(evento => {
+            console.log(evento)
             let Evento = new EventoModel(evento);
             const temporario = () => {
                 return <><tr>
-                <td>Data inicial</td>
-                <td>{Evento.dataIncio}</td>
-            </tr>
-            <tr>
-                <td>Data Final</td>
-                <td>{Evento.dataFim}</td>
-            </tr></>
+                    <td>Data inicial</td>
+                    <td>{Evento.dataIncio}</td>
+                </tr>
+                    <tr>
+                        <td>Data Final</td>
+                        <td>{Evento.dataFim}</td>
+                    </tr></>
             }
             if (Evento.id == idAgendamento)
                 return <DetalhesAgendamentoSC key={Evento.id}>
@@ -63,8 +64,8 @@ export default function DetalhesAgendamento(props) {
                                         <td>{Evento.duracao}</td>
                                     </tr>
                                     <tr>
-                                        <td>Ínicio</td>
-                                        <td>{Evento.horaFim}</td>
+                                        <td>Início</td>
+                                        <td>{Evento.horaInicio}</td>
                                     </tr>
                                     <tr>
                                         <td>Fim</td>
@@ -74,6 +75,7 @@ export default function DetalhesAgendamento(props) {
                                         <td>Temporário</td>
                                         <td><input type='checkbox' checked={Evento.temporario} readOnly></input></td>
                                     </tr>
+                                    {console.log(Evento)}
                                     {Evento.temporario == true ? <temporario></temporario> : ''}
                                 </tbody>
                             </table>
@@ -140,6 +142,6 @@ export default function DetalhesAgendamento(props) {
     }
 
     return (
-       (agendamento)? ServicoSelecionado() : EventoSelecionado()
+        (agendamento) ? ServicoSelecionado() : EventoSelecionado()
     )
 }

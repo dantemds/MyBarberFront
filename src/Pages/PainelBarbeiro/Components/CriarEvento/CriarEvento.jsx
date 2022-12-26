@@ -50,26 +50,32 @@ export default function CriarEvento() {
 
     const handleNomeEvento = event => {
         setEventoFixo({ ...eventoFixo, NomeEvento: event.target.value })
+        clearErrors('NomeEvento')
     }
 
     const handleDescricaoEvento = event => {
         setEventoFixo({ ...eventoFixo, DescricaoEvento: event.target.value })
+        clearErrors('DescricaoEvento')
     }
 
     const handleHoraInicio = event => {
         setEventoFixo({ ...eventoFixo, HoraInicio: event.target.value })
+        clearErrors('HoraInicio')
     }
 
     const handleHoraFim = event => {
         setEventoFixo({ ...eventoFixo, HoraFim: event.target.value })
+        clearErrors('HoraFim')
     }
 
     const handleDataInicio = event => {
         setEventoFixo({ ...eventoFixo, DataInicio: padronizaData(event.target.value) })
+        clearErrors('DataInicio')
     }
 
     const handleDataFim = event => {
         setEventoFixo({ ...eventoFixo, DataFim: padronizaData(event.target.value) })
+        clearErrors('DataFim')
     }
 
     const handleTemporario = event => {
@@ -85,15 +91,8 @@ export default function CriarEvento() {
     }
 
     const handleDiaSemana = event => {
-        // const dias = [];
-        // event.forEach((item) => {
-        //     dias.push(item.value);
-        // });
-        // setEventoFixo({ ...eventoFixo, DiaSemana: dias })
-
-        // console.log(checkedDia)
-
-
+        clearErrors('DiaSemana')
+     
         const updatedCheckedDia = checkedDia.map((dia, index) =>
             index === event ? !dia : dia
         )
@@ -102,8 +101,6 @@ export default function CriarEvento() {
     }
 
     const addEvento = (event) => {
-        // event.preventDefault()
-        console.log(event)
         const usuario = JSON.parse(localStorage.getItem('usuario'))
 
         const dados = eventoFixo
@@ -164,7 +161,7 @@ export default function CriarEvento() {
     return (
         <CriarEventoSC>
             {
-                modalStatus && <ModalRequestsEventos acao={() => navigate('/painel-barbeiro/eventos')} dados={respostaRequest} />
+                modalStatus && <ModalRequestsEventos acao={() => navigate('/painel-barbeiro/eventos')} dados={respostaRequest} dadosHeader={eventoFixo}/>
             }
 
             <div className="mainContent">

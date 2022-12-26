@@ -40,9 +40,8 @@ export const SobreSC = styled.section`
             font-weight: 300;
             margin: 0;
             margin-top: 1em;
-            text-decoration: underline ${({ theme }) => theme.cores.secundaria};
         }
-
+        
         .pHorarioFuncionamento {
             margin-top: 0;
         }
@@ -50,25 +49,44 @@ export const SobreSC = styled.section`
         .pHorarioFuncionamento:nth-child(1) {
             margin-top: 1em;
         }
-
+        
         a {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
-
+        
         .wrap-infos-texto {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
         }
-
+        
         .wrap-titulo-texto {
             width: 300px;
             margin: 0 3rem;
             flex-direction: column;
+            
+            .wrap-contatos {
+                display: flex;
+                
+                .wrap-item-contato {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    margin: auto;
+
+                    a {
+                        text-decoration: underline ${({ theme }) => theme.cores.secundaria};
+                    }
+
+                    svg {
+                        color: ${({ theme }) => theme.cores.secundaria};
+                    }
+                }
+            }
         }
 
         .btnScroll {

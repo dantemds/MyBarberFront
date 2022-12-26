@@ -25,16 +25,15 @@ export default function ModalRequestsEventos(props) {
                 <div className="wrapDadosRequest">
                     <div className="wrapDado">
                         <h2>Hora início:</h2>
-                        <label>07:00</label>
+                        <label>{props.dadosHeader.HoraInicio}</label>
                     </div>
                     <div className="wrapDado">
                         <h2>Hora fim:</h2>
-                        <label>08:00</label>
+                        <label>{props.dadosHeader.HoraFim}</label>
                     </div>
-
                     <div className="wrapDado">
                         <h2>Nome:</h2>
-                        <label>Almoço</label>
+                        <label>{props.dadosHeader.NomeEvento}</label>
                     </div>
                 </div>
 
@@ -43,9 +42,9 @@ export default function ModalRequestsEventos(props) {
                         <th>Dia</th>
                         <th>Status</th>
                     </tr>
-                    {console.log(props.dados)}
+                    {/* {console.log(props.dados)} */}
                     {
-                        props.dados != [] && 
+                        props.dados != [] &&
                         props.dados.map(item => {
                             return <tr>
                                 <td>{item.dia}</td>

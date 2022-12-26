@@ -1,6 +1,6 @@
 export class EventoModel {
 
-    constructor(dados){
+    constructor(dados) {
         this.descricaoEvento = dados.descricaoEvento;
         this.diaSemana = dados.diaSemana;
         this.duracao = dados.duracao;

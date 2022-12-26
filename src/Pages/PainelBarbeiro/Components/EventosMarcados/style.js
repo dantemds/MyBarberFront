@@ -21,15 +21,17 @@ export const EventosMarcadosSC = styled.section`
         padding: 0 24px;
         margin: 2.5rem 0;
     }
-    #selectDia {
-            width: 200px;
-            height: 2.5rem;
-            font-size: .9rem;
-            border: none;
-            border-bottom: 1px solid ${({ theme }) => theme.cores.secundaria};
-            background-color: #fafafa;
-            margin-bottom: 2.5rem;
-        }
+
+    .selectDia {
+        width: 200px;
+        height: 2.5rem;
+        font-size: .9rem;
+        border: none;
+        border-bottom: 1px solid #B78860;
+        background-color: #fff;
+        padding: .5rem;
+        margin-bottom: 2.5rem;
+    }
 
     header {
         width: 550px;

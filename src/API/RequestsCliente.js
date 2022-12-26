@@ -70,7 +70,6 @@ const getAgendamentosBarbeiro = async (idBarbearia, idBarbeiro, data) => {
 }
 
 const getEventosBarbeiro = async (idBarbeiro) => {
-    console.log('barb', idBarbeiro);
     return await Api().get(`api/v1/eventosagendados/${idBarbeiro}`)
         .then(res => {
             return res.data;
@@ -114,7 +113,6 @@ const postEvento = async (evento) => {
         })
         .catch(() => {
             // console.log('LOG: Evento Falhou');
-            // console.log(padronizaFeedbackEvento(evento, 'Falha'))
             return 'Falha'
         })
 }

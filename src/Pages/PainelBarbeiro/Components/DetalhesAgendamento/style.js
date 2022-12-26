@@ -27,13 +27,13 @@ input[type='checkbox'][readonly]{
         display: flex;
         flex-direction: column;
         align-items: center;
-
+        
         div:nth-child(1) {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-
+            
             > button {
                 color: #202020;
                 width: 32px;
@@ -45,7 +45,7 @@ input[type='checkbox'][readonly]{
                 font-weight: 900;
                 background-color: #ddd;
             }
-
+            
             > h3 {
                 width: 80%;
                 color: #202020;
@@ -56,14 +56,19 @@ input[type='checkbox'][readonly]{
                 word-break: keep-all;
                 margin: auto;
             }
-
+            
         }
-
+        
         div:nth-child(2) {
+            width: 100%;
             padding: 32px 0;
 
             a {
                 color: #202020;
+            }
+
+            table {
+                width: 100%;
             }
 
             table, td {

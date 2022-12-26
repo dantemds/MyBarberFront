@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { DetalhesAgendamentoContext } from '../../../../Contexts/DetalhesAgendamentoContext'
 
 export default function CardEvento(props) {
-    console.log('porps', props)
+    // console.log('porps', props)
 
     const { exibirDetalhesAgendamento, setExibirDetalhesAgendamento, setIdAgendamento } = React.useContext(DetalhesAgendamentoContext)
     return (
