@@ -14,7 +14,7 @@ export const findBanner = (banner, conditionalState) => {
 
 export const getUrImagem = banner => {
     if (banner)
-        return process.env.REACT_APP_DOMAIN_FRONT + banner.url
+        return process.env.REACT_APP_DOMAIN_FRONT_CDN + banner.url
     else
         return ""
 }

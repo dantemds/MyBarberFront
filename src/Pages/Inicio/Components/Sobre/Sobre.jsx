@@ -27,7 +27,7 @@ export default function Sobre() {
 
                     {imagensLandingPage.map(imagem => {
                         return <picture key={imagem.idLandingPageImage}>
-                            <img src={process.env.REACT_APP_DOMAIN_FRONT + imagem.url} alt={imagem.posicao + imagem.numeroImagem}></img>
+                            <img src={process.env.REACT_APP_DOMAIN_FRONT_CDN + imagem.url} alt={imagem.posicao + imagem.numeroImagem}></img>
                         </picture>
                     })}
                 </div>

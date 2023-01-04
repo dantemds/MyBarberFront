@@ -2,7 +2,7 @@ import axios from "axios";
 
 const Api = () => {
     return axios.create({
-        baseURL: 'https://api.minha-barbearia.online'
+        baseURL: process.env.REACT_APP_API_CORE
         // baseURL: 'https://api.minha-barbearia.online'
     })
 }

@@ -1,8 +1,8 @@
-name: s3 deployment
+name: s3 deployment prod
 
 on:
   push:
-    branches: [develop] # the branch we want this to run on
+    branches: [master] # the branch we want this to run on
 
 jobs:
   build:
@@ -42,4 +42,3 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id E1ZYG7FCZQTPUE \
             --paths "/*"
-

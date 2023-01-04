@@ -5,7 +5,7 @@ import { FotoBarbeiroSC } from './style'
 export default function FotoBarbeiro(props) {
 
     const fotoBarbeiro = () => {
-        const domain = process.env.REACT_APP_DOMAIN_FRONT
+        const domain = process.env.REACT_APP_DOMAIN_FRONT_CDN
         const fotoBarbeiro = props.listaBarbeiros.find(barbeiro => barbeiro.barbeiros.idBarbeiro == props.idBarbeiro).barbeiros.barbeiroImagem
 
         if (fotoBarbeiro)
