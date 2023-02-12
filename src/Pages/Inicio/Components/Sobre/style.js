@@ -182,7 +182,7 @@ export const SobreSC = styled.section`
             picture {
                 width: 128px;
                 height: 128px;
-                /* overflow: hidden; */
+                overflow: hidden;
                 border-radius: 100px;
                 border: 1px solid ${({ theme }) => theme.cores.secundaria};
                 box-shadow: .3em .3em 1em rgba(0, 0, 0, 0.4);
