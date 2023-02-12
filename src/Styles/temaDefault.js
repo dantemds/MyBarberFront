@@ -5,6 +5,8 @@ export default function Tema(props) {
             primaria: '#202020',
             textoPrimario: '#fff',
             secundaria: '#202020',
+            ternaria: '#fff',
+            quartenaria: '#fff',
         },
 
         espacamento: [0, 4, 8, 12, 16, 24, 32, 64],

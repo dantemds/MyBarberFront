@@ -1,6 +1,5 @@
 export default function Tema(props) {
 
-
     return {
         cores: {
             primaria: props.corSecundaria,
