@@ -7,6 +7,8 @@ export default function Tema(props) {
             textoPrimario: '#fff',
 
             secundaria: props.corPrimaria,
+            ternaria: props.corTernaria,
+            quartenaria: props.corQuartenaria,
         },
 
         espacamento: [0, 4, 8, 12, 16, 24, 32, 64],

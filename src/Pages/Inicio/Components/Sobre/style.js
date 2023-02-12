@@ -24,6 +24,7 @@ export const SobreSC = styled.section`
             font-weight: 900;
             padding: 0 24px;
             color: #fff;
+            color: ${({ theme }) => theme.cores.ternaria};
         }
 
         h3 {
@@ -37,6 +38,7 @@ export const SobreSC = styled.section`
 
         p, a {
             color: #fff;
+            color: ${({ theme }) => theme.cores.ternaria};
             font-size: 1rem;
             font-weight: 300;
             margin: 0;
@@ -80,11 +82,11 @@ export const SobreSC = styled.section`
                     margin: auto;
 
                     a {
-                        text-decoration: underline ${({ theme }) => theme.cores.secundaria};
+                        text-decoration: underline ${({ theme }) => theme.cores.quartenaria};
                     }
 
                     svg {
-                        color: ${({ theme }) => theme.cores.secundaria};
+                        color: ${({ theme }) => theme.cores.quartenaria};
                     }
                 }
             }
