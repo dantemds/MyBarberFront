@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const SobreSC = styled.section`
     padding: 64px 24px !important;
     color: #fff;
-    background-color: #202020;
-    background-image: linear-gradient(to bottom right, rgb(20, 20, 20), #505050);
+    background-color: ${({ theme }) => theme.cores.primaria};
+    /* background-color: #202020; */
+    /* background-image: linear-gradient(to bottom right, rgb(20, 20, 20), #505050); */
     
     .content-sobre {
         max-width: 1200px;
