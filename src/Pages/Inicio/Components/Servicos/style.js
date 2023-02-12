@@ -20,6 +20,7 @@ export const ServicosSC = styled.section`
     }
 
     ul {
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -33,9 +34,10 @@ export const ServicosSC = styled.section`
         width: 300px;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 4px;
         margin-top: 1rem;
-        padding: 0 0 0 8rem;
+        padding: 0 0 0 0;
         text-decoration: none;
 
         svg {
@@ -69,6 +71,7 @@ export const ServicosSC = styled.section`
 
         .Wrap-mais-servicos {
             padding: 0;
+            margin-top: 0;
         }
 
        
@@ -76,14 +79,14 @@ export const ServicosSC = styled.section`
 
     @media (max-width: 663px) {
         .Wrap-mais-servicos {
-            margin: 1.5rem auto 0 auto;
+            /* margin: 1.5rem auto 0 auto; */
         }
     }
 
     @media (max-width: 450px) {
         .Wrap-mais-servicos {
             width: 250px;
-            margin: 1.5rem auto 0 auto;
+            /* margin: 1.5rem auto 0 auto; */
         }
     }
 

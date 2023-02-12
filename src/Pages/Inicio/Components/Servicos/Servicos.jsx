@@ -33,8 +33,6 @@ export default function Servicos() {
                 return <CardServico key={servico.idServico} dadosServico={servico} />
             })
           }
-        </ul>
-
         {
           dadosTenantBarbearia.funcaoAgendamento &&
           <Link to='/forms-agendamento' className='Wrap-mais-servicos'>
@@ -42,6 +40,8 @@ export default function Servicos() {
             <BsArrowRightCircle />
           </Link>
         }
+        </ul>
+
       </div>
 
     </ServicosSC>
