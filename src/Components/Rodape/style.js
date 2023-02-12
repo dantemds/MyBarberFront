@@ -6,7 +6,7 @@ export const RodapeSC = styled.footer`
         justify-content: center;
         width: 100%;
         padding: 32px;
-        background-color: #000;
+        background-color: ${({ theme }) => theme.cores.primaria};
 
     p {
         color: #fff;
