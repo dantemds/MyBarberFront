@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HeaderSC = styled.header`
     /* background-color: ${({ theme }) => theme.cores.primaria}dd; */
     background-color: #202020dd;
+    background-color:${({ theme }) => theme.cores.primaria}dd;
     color:${({ theme }) => theme.cores.textoPrimario};
     position: fixed;
     display: flex;  
