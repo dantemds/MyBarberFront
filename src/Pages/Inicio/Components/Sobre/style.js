@@ -99,11 +99,11 @@ export const SobreSC = styled.section`
             border-radius: 20px;
             padding: 4px;
             background-color: transparent;
-            border: 1px solid ${({ theme }) => theme.cores.secundaria};
+            border: 1px solid ${({ theme }) => theme.cores.quartenaria};
             cursor: pointer;
 
             svg {
-                color: ${({ theme }) => theme.cores.secundaria};
+                color: ${({ theme }) => theme.cores.quartenaria};
                 width: 100%;
                 height: 100%;
             }
