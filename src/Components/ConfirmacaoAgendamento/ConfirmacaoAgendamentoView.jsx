@@ -10,7 +10,7 @@ export default function ConfirmacaoAgendamentoView() {
     const list = infoAgendamento.horario.split('-');
     const ano = list[0];
     const mes = list[1];
-    const dia = list[2];
+    const dia = list[2].slice(0,2);
     const data = `${dia}/${mes}/${ano}`;
     return (
         <ConfirmacaoAgendamento>
