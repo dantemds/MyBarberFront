@@ -20,6 +20,32 @@ export default function Inicio() {
     const { barbearia } = useParams()
 
     useEffect(() => {
+        // obtém a URL atual do navegador
+        var currentUrl = window.location.href;
+        console.log(currentUrl)
+
+        // atualiza a start_url no manifest.json com a URL atual
+        fetch('manifest.json')
+            .then(response => response.json())
+            .then(data => {
+                data.start_url = currentUrl;
+                const updatedManifest = JSON.stringify(data);
+                const blob = new Blob([updatedManifest], { type: 'application/json' });
+                const manifestUrl = URL.createObjectURL(blob);
+                const link = document.querySelector('link[rel="manifest"]');
+                link.href = manifestUrl;
+            });
+
+        setTimeout(() => {
+            fetch('manifest.json')
+                .then(response => response.json())
+                .then(data => {
+
+                    console.log(data.start_url)
+                });
+
+        }, [3000])
+
         window.scroll({
             top: 0,
             behavior: 'smooth'
