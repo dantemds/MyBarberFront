@@ -7,13 +7,17 @@ export default function ConfirmacaoAgendamentoView() {
 
     const rotaBarbearia = localStorage.getItem('rota-barbearia')
     const infoAgendamento = JSON.parse(localStorage.getItem('infoAgendamento'))
-
+    const list = infoAgendamento.horario.split('-');
+    const ano = list[0];
+    const mes = list[1];
+    const dia = list[2];
+    const data = `${dia}/${mes}/${ano}`;
     return (
         <ConfirmacaoAgendamento>
             <div >
                 <div >
                     <h1>Agendamento Confirmado</h1>
-                    <p>Você deverá comparecer na data <span>{infoAgendamento.horario.slice(0, 10).replaceAll('-', '/')}</span> e horário <span> {infoAgendamento.horario.slice(11, 16).replaceAll('-', '/')}</span>.
+                    <p>Você deverá comparecer na data <span>{data}</span> e horário <span> {infoAgendamento.horario.slice(11, 16).replaceAll('-', '/')}</span>.
                     </p>
 
                     <Link to={`/${rotaBarbearia}`}><button>Voltar ao início</button></Link>
