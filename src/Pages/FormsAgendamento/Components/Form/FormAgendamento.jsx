@@ -20,6 +20,7 @@ import { CardServicoModel } from '../../../../Models/CardServicoModel'
 import FotoBarbeiro from '../../../../Components/FotoBarbeiro/FotoBarbeiro'
 import { formatarHorario } from '../../../../Utils/functions'
 import Oval from 'react-loading-icons/dist/esm/components/oval'
+import InputMask from 'react-input-mask';
 
 export default function FormAgendamento() {
     const { dadosTenantBarbearia, servicoSelecionado, setServicoSelecionado, setAgendamentoRealizado } = React.useContext(GlobalContext)
@@ -45,10 +46,13 @@ export default function FormAgendamento() {
         carregando: false
     })
 
+    
     const { register, handleSubmit, formState: { errors }, setValue, getValues, clearErrors } = useForm({
         resolver: yupResolver(validacaoAgendamento)
     })
 
+
+    
 
     useEffect(() => {
         setValue('barbeariasId', dadosTenantBarbearia.idBarbearia)
@@ -134,7 +138,7 @@ export default function FormAgendamento() {
 
     ///// ---------------------------------- /////
     const addAgendamento = dadosAgendamento => {
-
+        dadosAgendamento.contato = dadosAgendamento.contato.replace("(", "").replace(")", "").replace("-","").replace(" ", "");
         if (new Date(getValues('horario')) > new Date()) {
             setStatusAgendamento({ ...statusAgendamento, carregando: true })
             RequestsClientes.postAgendamento(dadosAgendamento)
@@ -272,7 +276,16 @@ export default function FormAgendamento() {
                     <input type="email" name='email' placeholder='E-mail' {...register('email')} maxLength={30} minLength={3}></input>
                     <p className="mensagem-erro">{errors.email?.message}</p>
 
-                    <input type="tel" name='contato' placeholder='Telefone' {...register('contato')} maxLength={11} minLength={3}></input>
+                    {/* <input type="tel" name='contato' placeholder='Telefone' {...register('contato')} maxLength={11} minLength={3}></input>
+                     */}
+
+                    <InputMask
+                            mask="(99) 99999-9999"
+                            maskChar="_"
+                            name="contato"
+                            placeholder="Telefone"
+                            {...register('contato')}
+                        />
                     <p className="mensagem-erro">{errors.contato?.message}</p>
 
                     <button
