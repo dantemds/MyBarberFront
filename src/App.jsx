@@ -12,10 +12,10 @@ import { isExist } from './Utils/functions';
 import { applyTema } from './Styles/applyTema';
 
 import CookieConsent from "react-cookie-consent"
+import { useState } from 'react';
 
 function App() {
   const { dadosTenantBarbearia, tema, setTema } = React.useContext(GlobalContext)
-
   useEffect(() => {
     setTema(applyTema(dadosTenantBarbearia))
     document.title = dadosTenantBarbearia ? dadosTenantBarbearia.nomeBarbearia : 'Minha Barbearia Online'
